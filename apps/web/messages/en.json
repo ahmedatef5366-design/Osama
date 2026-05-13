@@ -23,24 +23,24 @@
   },
   "landing": {
     "hero": {
-      "headlineL1": "Transform your body.",
-      "headlineL2": "Transform your life.",
-      "subheadline": "Training and nutrition programs designed just for you",
-      "cta": "Start your journey",
+      "headlineL1": "Build your strongest version.",
+      "headlineL2": "With Coach Osama.",
+      "subheadline": "Not just a plan — a complete system built around your body, your goals, and your schedule",
+      "cta": "Start your transformation",
       "metrics": {
-        "clients": "+2,400 clients",
-        "satisfaction": "98% satisfaction",
-        "rating": "4.9★ rating"
+        "clients": "2,437 real clients",
+        "satisfaction": "97.3% retention",
+        "rating": "4.92★ avg rating"
       }
     },
     "features": {
-      "title": "Everything you need — in one place",
+      "title": "YOUR COMPLETE TOOLKIT",
       "items": {
-        "1": "Custom training plan",
-        "2": "Flexible nutrition system",
-        "3": "Daily check-ins",
-        "4": "Direct coach messaging",
-        "5": "Detailed weekly reports"
+        "1": "Training built for YOUR body",
+        "2": "Nutrition that actually fits",
+        "3": "Real daily accountability",
+        "4": "Direct messaging — not a bot",
+        "5": "Reports with real numbers"
       }
     }
   },

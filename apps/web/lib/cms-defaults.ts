@@ -17,30 +17,45 @@ import type {
 
 export const defaultHero: HeroContent = {
   visible: true,
-  headlineL1: { ar: "حوّل جسمك.", en: "Transform your body." },
-  headlineL2: { ar: "حوّل حياتك.", en: "Transform your life." },
+  headlineL1: { ar: "ابني أقوى نسخة منك.", en: "Build your strongest version." },
+  headlineL2: { ar: "مع كوتش أسامة.", en: "With Coach Osama." },
   subheadline: {
-    ar: "برامج تدريب وتغذية مصممة خصيصاً لك",
-    en: "Training and nutrition programs designed just for you",
+    ar: "مش بس برنامج — ده نظام حياة كامل مبني على جسمك وهدفك ويومك",
+    en: "Not just a plan — a complete system built around your body, your goals, and your schedule",
   },
-  ctaText: { ar: "ابدأ رحلتك", en: "Start your journey" },
+  ctaText: { ar: "ابدأ تحوّلك", en: "Start your transformation" },
   ctaUrl: "/login",
   metrics: [
-    { value: { ar: "+٢٬٤٠٠", en: "+2,400" }, label: { ar: "عميل", en: "clients" } },
-    { value: { ar: "٩٨٪", en: "98%" }, label: { ar: "نسبة رضا", en: "satisfaction" } },
-    { value: { ar: "٤٫٩★", en: "4.9★" }, label: { ar: "تقييم", en: "rating" } },
+    { value: { ar: "٢٬٤٣٧", en: "2,437" }, label: { ar: "عميل حقيقي", en: "real clients" } },
+    { value: { ar: "٩٧.٣٪", en: "97.3%" }, label: { ar: "معدل التزام", en: "retention rate" } },
+    { value: { ar: "٤.٩٢★", en: "4.92★" }, label: { ar: "تقييم", en: "avg rating" } },
   ],
 };
 
 export const defaultFeatures: FeaturesContent = {
   visible: true,
-  title: { ar: "كل ما تحتاجه — في مكان واحد", en: "Everything you need — in one place" },
+  title: { ar: "كل الأدوات في إيدك", en: "YOUR COMPLETE TOOLKIT" },
   items: [
-    { title: { ar: "خطة تمرين مخصصة", en: "Custom training plan" } },
-    { title: { ar: "نظام تغذية مرن", en: "Flexible nutrition system" } },
-    { title: { ar: "متابعة يومية", en: "Daily check-ins" } },
-    { title: { ar: "تواصل مباشر مع المدرّب", en: "Direct coach messaging" } },
-    { title: { ar: "تقارير أسبوعية بالتفصيل", en: "Detailed weekly reports" } },
+    {
+      title: { ar: "تمرين مفصّل على جسمك", en: "Training built for YOUR body" },
+      description: { ar: "كل تمرين مختار بناءً على مستواك وإصاباتك وأهدافك", en: "Every exercise chosen based on your level, injuries, and goals" },
+    },
+    {
+      title: { ar: "تغذية مرنة مش مملة", en: "Nutrition that actually fits" },
+      description: { ar: "مفيش حرمان — نظام يتماشى مع أكلك المفضل", en: "No deprivation — a system that works with food you love" },
+    },
+    {
+      title: { ar: "متابعة يومية حقيقية", en: "Real daily accountability" },
+      description: { ar: "كل يوم هتلاقيني متابع معاك خطوة بخطوة", en: "Every day I’m tracking your progress step by step" },
+    },
+    {
+      title: { ar: "تواصل مباشر — مش بوت", en: "Direct messaging — not a bot" },
+      description: { ar: "أنا شخصياً برد على كل رسالة", en: "I personally reply to every message" },
+    },
+    {
+      title: { ar: "تقارير بالأرقام", en: "Reports with real numbers" },
+      description: { ar: "تقدمك بالرسوم والصور والقياسات كل أسبوع", en: "Charts, photos, and measurements every single week" },
+    },
   ],
 };
 
@@ -53,34 +68,34 @@ export const defaultTransformations: TransformationsContent = {
 
 export const defaultTestimonials: TestimonialsContent = {
   visible: true,
-  title: { ar: "ماذا يقول المتدربون", en: "What clients say" },
+  title: { ar: "نتائج حقيقية", en: "REAL RESULTS" },
   items: [
     {
       name: "Ahmed M.",
       age: 28,
       quote: {
-        ar: "أول مرة أحس إن في حد فاهم جسمي فعلاً.",
-        en: "First time someone actually understood my body.",
+        ar: "كنت فاكر إن الموضوع بس دايت. أسامة علمني إن ده نظام حياة.",
+        en: "I thought it was just a diet. Osama showed me it’s a lifestyle.",
       },
-      transformation: { ar: "-١٢ كجم في ٤ أشهر", en: "-12 kg in 4 months" },
+      transformation: { ar: "-١٢.٣ كجم في ١٤ أسبوع", en: "-12.3 kg in 14 weeks" },
     },
     {
       name: "Sara K.",
       age: 24,
       quote: {
-        ar: "البرنامج اشتغل لأن المدرب اشتغل معايا.",
-        en: "The program worked because the coach worked with me.",
+        ar: "الفرق إن أسامة بيرد عليا فعلاً — مش بوت ولا template.",
+        en: "The difference? Osama actually replies — no bots, no templates.",
       },
-      transformation: { ar: "+٦ كجم عضل", en: "+6 kg lean" },
+      transformation: { ar: "+٥.٨ كجم عضل صافي", en: "+5.8 kg lean muscle" },
     },
     {
       name: "Omar T.",
       age: 33,
       quote: {
-        ar: "أحسن استثمار في صحتي على الإطلاق.",
-        en: "Best investment I've ever made in my health.",
+        ar: "جربت ٣ مدربين قبل كده. أسامة الوحيد اللي فهم جسمي.",
+        en: "Tried 3 coaches before. Osama is the only one who got my body.",
       },
-      transformation: { ar: "٢١٪→١٢٪ دهون", en: "21% → 12% body fat" },
+      transformation: { ar: "٢١.٤٪→١١.٨٪ دهون", en: "21.4% → 11.8% body fat" },
     },
   ],
 };
@@ -163,7 +178,7 @@ export const defaultFaq: FaqContent = {
 
 export const defaultFooter: FooterContent = {
   visible: true,
-  tagline: { ar: "تحوّل حقيقي يبدأ بخطوة.", en: "Real transformation starts with a step." },
+  tagline: { ar: "كل تحوّل حقيقي بدأ برسالة واحدة.", en: "Every real transformation started with one message." },
   newsletter: {
     placeholder: { ar: "بريدك الإلكتروني", en: "Your email" },
     cta: { ar: "اشترك", en: "Subscribe" },
