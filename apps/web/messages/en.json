@@ -84,6 +84,30 @@
         "activeOnly": "Active only",
         "inactiveOnly": "Inactive only"
       }
+    },
+    "cms": {
+      "title": "Content",
+      "subtitle": "Edit the landing-page sections. Every save creates a new revision.",
+      "save": "Save & publish",
+      "saving": "Saving…",
+      "saved": "Saved & published",
+      "reset": "Reset",
+      "history": "History",
+      "historyEmpty": "No history yet",
+      "restore": "Restore",
+      "confirmRestore": "Restore this revision?",
+      "errors": {
+        "invalidJson": "Invalid JSON"
+      },
+      "sections": {
+        "hero": "Hero",
+        "features": "Features",
+        "transformations": "Transformations",
+        "testimonials": "Testimonials",
+        "pricing": "Pricing",
+        "faq": "FAQ",
+        "footer": "Footer"
+      }
     }
   },
   "client": {

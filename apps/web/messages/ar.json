@@ -84,6 +84,30 @@
         "activeOnly": "النشطون فقط",
         "inactiveOnly": "غير النشطين"
       }
+    },
+    "cms": {
+      "title": "إدارة المحتوى",
+      "subtitle": "عدّل أقسام الصفحة الرئيسية. أي تعديل يحفظ نسخة جديدة في السجل.",
+      "save": "حفظ ونشر",
+      "saving": "جارٍ الحفظ…",
+      "saved": "تم الحفظ والنشر",
+      "reset": "تراجع",
+      "history": "السجل",
+      "historyEmpty": "لا يوجد سجل بعد",
+      "restore": "استعادة",
+      "confirmRestore": "هل أنت متأكد من استعادة هذه النسخة؟",
+      "errors": {
+        "invalidJson": "محتوى JSON غير صالح"
+      },
+      "sections": {
+        "hero": "الواجهة",
+        "features": "المزايا",
+        "transformations": "التحوّلات",
+        "testimonials": "الشهادات",
+        "pricing": "الباقات",
+        "faq": "الأسئلة الشائعة",
+        "footer": "التذييل"
+      }
     }
   },
   "client": {

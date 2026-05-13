@@ -21,6 +21,7 @@ import (
 	"github.com/ahmedatef5366-design/Osama/apps/api/internal/cache"
 	"github.com/ahmedatef5366-design/Osama/apps/api/internal/clients"
 	"github.com/ahmedatef5366-design/Osama/apps/api/internal/config"
+	"github.com/ahmedatef5366-design/Osama/apps/api/internal/content"
 	"github.com/ahmedatef5366-design/Osama/apps/api/internal/database"
 	db "github.com/ahmedatef5366-design/Osama/apps/api/internal/db/generated"
 	"github.com/ahmedatef5366-design/Osama/apps/api/internal/logger"
@@ -74,6 +75,10 @@ func main() {
 	clientsSvc := clients.NewService(pool, queries)
 	clientsH := clients.NewHandler(clientsSvc)
 
+	revalidator := content.NewRevalidator(cfg.RevalidateURL, cfg.RevalidateSecret, log)
+	contentSvc := content.NewService(pool, queries, rdb, revalidator)
+	contentH := content.NewHandler(contentSvc)
+
 	if err := bootstrapAdmin(ctx, cfg, queries, log); err != nil {
 		log.Warn("bootstrap_admin_skipped", zap.Error(err))
 	}
@@ -98,6 +103,7 @@ func main() {
 		Tokens:  tokens,
 		Auth:    authH,
 		Clients: clientsH,
+		Content: contentH,
 	})
 
 	// Serve in a goroutine so we can listen for shutdown signals.

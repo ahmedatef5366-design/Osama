@@ -8,6 +8,7 @@ import (
 
 	"github.com/ahmedatef5366-design/Osama/apps/api/internal/auth"
 	"github.com/ahmedatef5366-design/Osama/apps/api/internal/clients"
+	"github.com/ahmedatef5366-design/Osama/apps/api/internal/content"
 	db "github.com/ahmedatef5366-design/Osama/apps/api/internal/db/generated"
 	"github.com/ahmedatef5366-design/Osama/apps/api/internal/middleware"
 )
@@ -18,6 +19,7 @@ type Deps struct {
 	Tokens  *auth.TokenManager
 	Auth    *auth.Handler
 	Clients *clients.Handler
+	Content *content.Handler
 }
 
 // Register mounts every route on the supplied app.
@@ -60,4 +62,20 @@ func Register(app *fiber.App, d Deps) {
 		middleware.RequireRole(auth.RoleAdmin),
 		d.Clients.Patch,
 	)
+
+	// ── Site content (CMS) ─────────────────────────────────
+	// Public GET drives the landing page server-side render; everything
+	// else is admin-only.
+	if d.Content != nil {
+		api.Get("/site-content/:section", d.Content.GetPublic)
+
+		cmsAdmin := api.Group("/site-content",
+			middleware.RequireAuth(d.Tokens, d.Queries),
+			middleware.RequireRole(auth.RoleAdmin),
+		)
+		cmsAdmin.Get("", d.Content.List)
+		cmsAdmin.Put("/:section", d.Content.Upsert)
+		cmsAdmin.Get("/:section/history", d.Content.History)
+		cmsAdmin.Post("/:section/rollback", d.Content.Rollback)
+	}
 }
