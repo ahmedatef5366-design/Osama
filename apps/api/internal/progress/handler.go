@@ -1,0 +1,190 @@
+package progress
+
+import (
+	"strconv"
+	"time"
+
+	"github.com/gofiber/fiber/v2"
+	"github.com/jackc/pgx/v5/pgtype"
+
+	"github.com/ahmedatef5366-design/Osama/apps/api/internal/auth"
+	"github.com/ahmedatef5366-design/Osama/apps/api/internal/httpx"
+	"github.com/ahmedatef5366-design/Osama/apps/api/internal/pgxutil"
+)
+
+type Handler struct {
+	svc *Service
+}
+
+func NewHandler(svc *Service) *Handler { return &Handler{svc: svc} }
+
+func clientID(c *fiber.Ctx) (string, error) {
+	uid, _ := c.Locals(auth.LocalsUserID).(string)
+	if uid == "" {
+		return "", httpx.Unauthorized("missing_user", "missing user")
+	}
+	return uid, nil
+}
+
+// ── Weight ─────────────────────────────────────────────────────
+
+func (h *Handler) LogWeight(c *fiber.Ctx) error {
+	uid, err := clientID(c)
+	if err != nil {
+		return err
+	}
+	cid, err := resolveClientID(c, uid)
+	if err != nil {
+		return err
+	}
+	var req LogWeightRequest
+	if err := c.BodyParser(&req); err != nil {
+		return httpx.BadRequest("invalid_body", "invalid request body")
+	}
+	if err := h.svc.LogWeight(c.UserContext(), cid, req); err != nil {
+		return err
+	}
+	return httpx.Created(c, map[string]string{"status": "ok"})
+}
+
+func (h *Handler) ListWeight(c *fiber.Ctx) error {
+	uid, err := clientID(c)
+	if err != nil {
+		return err
+	}
+	cid, err := resolveClientID(c, uid)
+	if err != nil {
+		return err
+	}
+	from := parseTime(c.Query("from"), time.Now().AddDate(0, -3, 0))
+	to := parseTime(c.Query("to"), time.Now())
+	entries, err := h.svc.ListWeight(c.UserContext(), cid, from, to)
+	if err != nil {
+		return err
+	}
+	return httpx.OK(c, entries)
+}
+
+// ── Measurements ───────────────────────────────────────────────
+
+func (h *Handler) LogMeasurement(c *fiber.Ctx) error {
+	uid, err := clientID(c)
+	if err != nil {
+		return err
+	}
+	cid, err := resolveClientID(c, uid)
+	if err != nil {
+		return err
+	}
+	var req LogMeasurementRequest
+	if err := c.BodyParser(&req); err != nil {
+		return httpx.BadRequest("invalid_body", "invalid request body")
+	}
+	if err := h.svc.LogMeasurement(c.UserContext(), cid, req); err != nil {
+		return err
+	}
+	return httpx.Created(c, map[string]string{"status": "ok"})
+}
+
+func (h *Handler) ListMeasurements(c *fiber.Ctx) error {
+	uid, err := clientID(c)
+	if err != nil {
+		return err
+	}
+	cid, err := resolveClientID(c, uid)
+	if err != nil {
+		return err
+	}
+	limit, _ := strconv.Atoi(c.Query("limit", "20"))
+	offset, _ := strconv.Atoi(c.Query("offset", "0"))
+	entries, err := h.svc.ListMeasurements(c.UserContext(), cid, limit, offset)
+	if err != nil {
+		return err
+	}
+	return httpx.OK(c, entries)
+}
+
+// ── Photos ─────────────────────────────────────────────────────
+
+func (h *Handler) UploadPhoto(c *fiber.Ctx) error {
+	uid, err := clientID(c)
+	if err != nil {
+		return err
+	}
+	cid, err := resolveClientID(c, uid)
+	if err != nil {
+		return err
+	}
+	var req UploadPhotoRequest
+	if err := c.BodyParser(&req); err != nil {
+		return httpx.BadRequest("invalid_body", "invalid request body")
+	}
+	photo, err := h.svc.UploadPhoto(c.UserContext(), cid, req)
+	if err != nil {
+		return err
+	}
+	return httpx.Created(c, photo)
+}
+
+func (h *Handler) ListPhotos(c *fiber.Ctx) error {
+	uid, err := clientID(c)
+	if err != nil {
+		return err
+	}
+	cid, err := resolveClientID(c, uid)
+	if err != nil {
+		return err
+	}
+	limit, _ := strconv.Atoi(c.Query("limit", "20"))
+	offset, _ := strconv.Atoi(c.Query("offset", "0"))
+	photos, err := h.svc.ListPhotos(c.UserContext(), cid, limit, offset)
+	if err != nil {
+		return err
+	}
+	return httpx.OK(c, photos)
+}
+
+func (h *Handler) DeletePhoto(c *fiber.Ctx) error {
+	uid, err := clientID(c)
+	if err != nil {
+		return err
+	}
+	cid, err := resolveClientID(c, uid)
+	if err != nil {
+		return err
+	}
+	photoID, err := pgxutil.UUIDFromString(c.Params("id"))
+	if err != nil {
+		return httpx.BadRequest("invalid_id", "id must be a UUID")
+	}
+	if err := h.svc.DeletePhoto(c.UserContext(), photoID, cid); err != nil {
+		return err
+	}
+	return httpx.NoContent(c)
+}
+
+// ── helpers ────────────────────────────────────────────────────
+
+func resolveClientID(c *fiber.Ctx, userID string) (pgtype.UUID, error) {
+	if id := c.Params("clientId"); id != "" {
+		return pgxutil.UUIDFromString(id)
+	}
+	if id := c.Query("clientId"); id != "" {
+		return pgxutil.UUIDFromString(id)
+	}
+	return pgxutil.UUIDFromString(userID)
+}
+
+func parseTime(s string, fallback time.Time) time.Time {
+	if s == "" {
+		return fallback
+	}
+	t, err := time.Parse(time.RFC3339, s)
+	if err != nil {
+		t, err = time.Parse("2006-01-02", s)
+		if err != nil {
+			return fallback
+		}
+	}
+	return t
+}

@@ -7,23 +7,33 @@ import (
 	"github.com/gofiber/fiber/v2"
 
 	"github.com/ahmedatef5366-design/Osama/apps/api/internal/auth"
+	"github.com/ahmedatef5366-design/Osama/apps/api/internal/checkin"
 	"github.com/ahmedatef5366-design/Osama/apps/api/internal/clients"
 	"github.com/ahmedatef5366-design/Osama/apps/api/internal/content"
 	db "github.com/ahmedatef5366-design/Osama/apps/api/internal/db/generated"
+	"github.com/ahmedatef5366-design/Osama/apps/api/internal/messaging"
 	"github.com/ahmedatef5366-design/Osama/apps/api/internal/middleware"
+	"github.com/ahmedatef5366-design/Osama/apps/api/internal/monitoring"
 	"github.com/ahmedatef5366-design/Osama/apps/api/internal/nutrition"
+	"github.com/ahmedatef5366-design/Osama/apps/api/internal/progress"
 	"github.com/ahmedatef5366-design/Osama/apps/api/internal/workouts"
+	"github.com/ahmedatef5366-design/Osama/apps/api/internal/ws"
 )
 
 // Deps bundles the runtime dependencies the route layer needs.
 type Deps struct {
-	Queries   *db.Queries
-	Tokens    *auth.TokenManager
-	Auth      *auth.Handler
-	Clients   *clients.Handler
-	Content   *content.Handler
-	Workouts  *workouts.Handler
-	Nutrition *nutrition.Handler
+	Queries    *db.Queries
+	Tokens     *auth.TokenManager
+	Auth       *auth.Handler
+	Clients    *clients.Handler
+	Content    *content.Handler
+	Workouts   *workouts.Handler
+	Nutrition  *nutrition.Handler
+	Progress   *progress.Handler
+	Checkin    *checkin.Handler
+	Messaging  *messaging.Handler
+	Monitoring *monitoring.Handler
+	Hub        *ws.Hub
 }
 
 // Register mounts every route on the supplied app.
@@ -223,6 +233,82 @@ func Register(app *fiber.App, d Deps) {
 			middleware.RequireAuth(d.Tokens, d.Queries),
 			middleware.RequireRole(auth.RoleAdmin),
 			d.Nutrition.CalcMacros,
+		)
+	}
+
+	// ── Progress tracking ──────────────────────────────────────
+	if d.Progress != nil {
+		progressGroup := api.Group("/weight",
+			middleware.RequireAuth(d.Tokens, d.Queries),
+		)
+		progressGroup.Post("", d.Progress.LogWeight)
+		progressGroup.Get("", d.Progress.ListWeight)
+
+		measurements := api.Group("/measurements",
+			middleware.RequireAuth(d.Tokens, d.Queries),
+		)
+		measurements.Post("", d.Progress.LogMeasurement)
+		measurements.Get("", d.Progress.ListMeasurements)
+
+		photos := api.Group("/photos",
+			middleware.RequireAuth(d.Tokens, d.Queries),
+		)
+		photos.Post("", d.Progress.UploadPhoto)
+		photos.Get("", d.Progress.ListPhotos)
+		photos.Delete("/:id", d.Progress.DeletePhoto)
+	}
+
+	// ── Check-in ───────────────────────────────────────────────
+	if d.Checkin != nil {
+		checkinGroup := api.Group("/checkin",
+			middleware.RequireAuth(d.Tokens, d.Queries),
+		)
+		checkinGroup.Post("", d.Checkin.Submit)
+		checkinGroup.Get("", d.Checkin.Get)
+		checkinGroup.Get("/history", d.Checkin.List)
+
+		// Admin: at-risk
+		api.Get("/admin/at-risk",
+			middleware.RequireAuth(d.Tokens, d.Queries),
+			middleware.RequireRole(auth.RoleAdmin),
+			d.Checkin.AtRisk,
+		)
+	}
+
+	// ── Messages ───────────────────────────────────────────────
+	if d.Messaging != nil {
+		msgGroup := api.Group("/messages",
+			middleware.RequireAuth(d.Tokens, d.Queries),
+		)
+		msgGroup.Post("", d.Messaging.Send)
+		msgGroup.Get("/:userId", d.Messaging.ListThread)
+
+		notifGroup := api.Group("/notifications",
+			middleware.RequireAuth(d.Tokens, d.Queries),
+		)
+		notifGroup.Get("", d.Messaging.ListNotifications)
+		notifGroup.Get("/count", d.Messaging.CountUnread)
+		notifGroup.Post("/read-all", d.Messaging.MarkAllNotificationsRead)
+		notifGroup.Post("/:id/read", d.Messaging.MarkNotificationRead)
+	}
+
+	// ── Monitoring (admin dashboard) ───────────────────────────
+	if d.Monitoring != nil {
+		adminGroup := api.Group("/admin",
+			middleware.RequireAuth(d.Tokens, d.Queries),
+			middleware.RequireRole(auth.RoleAdmin),
+		)
+		adminGroup.Get("/monitoring", d.Monitoring.Dashboard)
+		adminGroup.Get("/monitoring/compliance-trend", d.Monitoring.ComplianceTrend)
+		adminGroup.Get("/monitoring/top-clients", d.Monitoring.TopClients)
+		adminGroup.Get("/monitoring/checkins-per-day", d.Monitoring.CheckinsPerDay)
+	}
+
+	// ── SSE (real-time notifications) ──────────────────────────
+	if d.Hub != nil {
+		api.Get("/sse/notifications",
+			middleware.RequireAuth(d.Tokens, d.Queries),
+			d.Hub.SSENotifications,
 		)
 	}
 }
