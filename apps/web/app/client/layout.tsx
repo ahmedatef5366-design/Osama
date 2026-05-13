@@ -1,5 +1,6 @@
 import { redirect } from "next/navigation";
 import { BottomNav } from "@/components/client/bottom-nav";
+import { RestTimerOverlay } from "@/components/client/rest-timer-overlay";
 import { PageTransition } from "@/components/motion";
 import { getCurrentUser } from "@/lib/auth";
 
@@ -20,6 +21,7 @@ export default async function ClientLayout({
         <PageTransition>{children}</PageTransition>
       </div>
       <BottomNav />
+      <RestTimerOverlay />
     </div>
   );
 }

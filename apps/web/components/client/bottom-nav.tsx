@@ -7,11 +7,12 @@ import { cn } from "@/lib/utils";
 
 type Item = {
   href: string;
-  key: "today" | "progress" | "photos" | "checkin";
+  key: "today" | "nutrition" | "progress" | "photos" | "checkin";
 };
 
 const items: Item[] = [
   { href: "/client/today", key: "today" },
+  { href: "/client/nutrition", key: "nutrition" },
   { href: "/client/progress", key: "progress" },
   { href: "/client/photos", key: "photos" },
   { href: "/client/checkin", key: "checkin" },
@@ -23,7 +24,7 @@ export function BottomNav() {
 
   return (
     <nav className="glass fixed inset-x-4 bottom-4 z-30 rounded-xl px-2 py-2">
-      <ul className="grid grid-cols-4 gap-1">
+      <ul className="grid grid-cols-5 gap-1">
         {items.map((it) => {
           const active = path === it.href || path.startsWith(it.href + "/");
           return (

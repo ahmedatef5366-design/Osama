@@ -254,7 +254,20 @@
       "sets": "sets",
       "reps": "reps",
       "rest": "rest",
-      "secs": "s"
+      "secs": "s",
+      "skipRest": "Skip rest"
+    },
+    "nutrition": {
+      "title": "Nutrition",
+      "macros": "Today's macros",
+      "calories": "Calories",
+      "protein": "Protein",
+      "carbs": "Carbs",
+      "fat": "Fat",
+      "todayLog": "Food log",
+      "noLogs": "No food logged today.",
+      "food": "Food item",
+      "error": "Could not load nutrition data."
     },
     "progress": {
       "title": "Progress",

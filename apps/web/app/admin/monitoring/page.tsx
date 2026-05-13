@@ -2,6 +2,16 @@
 
 import { useCallback, useEffect, useState } from "react";
 import { useTranslations } from "next-intl";
+import {
+  AreaChart,
+  Area,
+  BarChart,
+  Bar,
+  XAxis,
+  YAxis,
+  Tooltip,
+  ResponsiveContainer,
+} from "recharts";
 import { apiData } from "@/lib/api";
 import { Card, CardHeader, CardBody, CardTitle } from "@/components/ui/card";
 import { StaggerReveal, RevealItem } from "@/components/motion";
@@ -91,8 +101,6 @@ function ComplianceTrendSection() {
     })();
   }, []);
 
-  const max = Math.max(...trend.map((d) => d.avgCompliance), 100);
-
   return (
     <Card>
       <CardHeader>
@@ -102,23 +110,46 @@ function ComplianceTrendSection() {
         {trend.length === 0 ? (
           <p className="text-text-2 text-sm">{t("noData")}</p>
         ) : (
-          <div className="flex h-40 items-end gap-1">
-            {trend.map((d) => (
-              <div
-                key={d.day}
-                className="group relative flex-1"
-                title={`${d.day}: ${d.avgCompliance}%`}
-              >
-                <div
-                  className="rounded-t bg-accent/80 transition-colors group-hover:bg-accent"
-                  style={{
-                    height: `${(d.avgCompliance / max) * 100}%`,
-                    minHeight: 2,
-                  }}
-                />
-              </div>
-            ))}
-          </div>
+          <ResponsiveContainer width="100%" height={160}>
+            <AreaChart data={trend}>
+              <defs>
+                <linearGradient id="accentGrad" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="5%" stopColor="#C8F135" stopOpacity={0.3} />
+                  <stop offset="95%" stopColor="#C8F135" stopOpacity={0} />
+                </linearGradient>
+              </defs>
+              <XAxis
+                dataKey="day"
+                tickLine={false}
+                axisLine={false}
+                tick={{ fill: "#7A8B9A", fontSize: 10 }}
+                tickFormatter={(v: string) => v.slice(5)}
+              />
+              <YAxis
+                domain={[0, 100]}
+                tickLine={false}
+                axisLine={false}
+                tick={{ fill: "#7A8B9A", fontSize: 10 }}
+                width={30}
+              />
+              <Tooltip
+                contentStyle={{
+                  background: "#0F1419",
+                  border: "1px solid rgba(255,255,255,0.07)",
+                  borderRadius: 8,
+                  color: "#F0F4F8",
+                  fontSize: 12,
+                }}
+              />
+              <Area
+                type="monotone"
+                dataKey="avgCompliance"
+                stroke="#C8F135"
+                strokeWidth={2}
+                fill="url(#accentGrad)"
+              />
+            </AreaChart>
+          </ResponsiveContainer>
         )}
       </CardBody>
     </Card>
@@ -151,21 +182,40 @@ function TopClientsSection() {
         {clients.length === 0 ? (
           <p className="text-text-2 text-sm">{t("noData")}</p>
         ) : (
-          <div className="space-y-2">
-            {clients.map((c) => (
-              <div
-                key={c.id}
-                className="flex items-center justify-between rounded-md bg-surface-high px-3 py-2"
-              >
-                <span className="text-sm font-medium text-text-1">
-                  {c.name}
-                </span>
-                <span className="font-mono text-sm font-bold text-accent">
-                  {c.avgCompliance}%
-                </span>
-              </div>
-            ))}
-          </div>
+          <ResponsiveContainer width="100%" height={160}>
+            <BarChart data={clients} layout="vertical">
+              <XAxis
+                type="number"
+                domain={[0, 100]}
+                tickLine={false}
+                axisLine={false}
+                tick={{ fill: "#7A8B9A", fontSize: 10 }}
+              />
+              <YAxis
+                type="category"
+                dataKey="name"
+                tickLine={false}
+                axisLine={false}
+                tick={{ fill: "#F0F4F8", fontSize: 11 }}
+                width={90}
+              />
+              <Tooltip
+                contentStyle={{
+                  background: "#0F1419",
+                  border: "1px solid rgba(255,255,255,0.07)",
+                  borderRadius: 8,
+                  color: "#F0F4F8",
+                  fontSize: 12,
+                }}
+              />
+              <Bar
+                dataKey="avgCompliance"
+                fill="#C8F135"
+                radius={[0, 4, 4, 0]}
+                barSize={16}
+              />
+            </BarChart>
+          </ResponsiveContainer>
         )}
       </CardBody>
     </Card>
