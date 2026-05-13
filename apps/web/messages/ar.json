@@ -67,6 +67,21 @@
       },
       "soon": "قريباً — Phase 5"
     },
+    "monitoring": {
+      "title": "المتابعة",
+      "activeClients": "العملاء النشطون",
+      "avgCompliance": "متوسّط الالتزام",
+      "atRisk": "في خطر",
+      "todayCheckins": "متابعات اليوم",
+      "complianceTrend": "اتّجاه الالتزام (30 يوم)",
+      "topClients": "أفضل العملاء (7 أيام)",
+      "checkinsPerDay": "المتابعات في اليوم",
+      "atRiskClients": "العملاء المعرّضون للخطر",
+      "noData": "لا توجد بيانات بعد",
+      "clientName": "الاسم",
+      "compliance": "الالتزام",
+      "checkins": "المتابعات"
+    },
     "clients": {
       "title": "العملاء",
       "newClient": "عميل جديد",
@@ -233,7 +248,72 @@
   "client": {
     "today": {
       "title": "تمرين اليوم",
-      "soon": "قيد التطوير — Phase 4"
+      "soon": "قيد التطوير — Phase 4",
+      "noActivePlan": "لا توجد خطة تمرين نشطة.",
+      "restDay": "يوم راحة",
+      "sets": "مجموعات",
+      "reps": "تكرارات",
+      "rest": "راحة",
+      "secs": "ث"
+    },
+    "progress": {
+      "title": "التقدّم",
+      "weight": "سجل الوزن",
+      "measurements": "القياسات",
+      "logWeight": "تسجيل الوزن",
+      "logMeasurement": "تسجيل القياسات",
+      "weightKg": "الوزن (كجم)",
+      "notes": "ملاحظات",
+      "empty": "لا توجد بيانات بعد — سجّل أول قراءة.",
+      "save": "حفظ",
+      "cancel": "إلغاء",
+      "waist": "الخصر",
+      "chest": "الصدر",
+      "shoulders": "الأكتاف",
+      "hips": "الأرداف",
+      "leftArm": "الذراع الأيسر",
+      "rightArm": "الذراع الأيمن",
+      "leftThigh": "الفخذ الأيسر",
+      "rightThigh": "الفخذ الأيمن",
+      "bodyFat": "نسبة الدهون %"
+    },
+    "photos": {
+      "title": "صور التقدّم",
+      "upload": "رفع صورة",
+      "empty": "لا توجد صور بعد.",
+      "delete": "حذف",
+      "confirmDelete": "هل تريد حذف هذه الصورة؟",
+      "pose": "الوضعية",
+      "note": "ملاحظة",
+      "front": "أمامي",
+      "side": "جانبي",
+      "back": "خلفي"
+    },
+    "checkin": {
+      "title": "المتابعة اليومية",
+      "streak": "سلسلة",
+      "days": "أيام",
+      "submit": "إرسال",
+      "submitting": "جارٍ الإرسال…",
+      "submitted": "تم الإرسال!",
+      "workoutStatus": "حالة التمرين",
+      "completed": "مكتمل",
+      "partial": "جزئي",
+      "skipped": "تم التخطي",
+      "dietCompliance": "الالتزام بالحمية",
+      "sleepQuality": "جودة النوم",
+      "sleepHours": "ساعات النوم",
+      "waterCups": "الماء (أكواب)",
+      "cardio": "كارديو",
+      "cardioMinutes": "دقائق الكارديو",
+      "notes": "ملاحظات",
+      "history": "السجل"
+    },
+    "messages": {
+      "title": "الرسائل",
+      "send": "إرسال",
+      "placeholder": "اكتب رسالة…",
+      "empty": "لا توجد رسائل بعد."
     }
   },
   "common": {
