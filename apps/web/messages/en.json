@@ -67,6 +67,21 @@
       },
       "soon": "Coming soon — Phase 5"
     },
+    "monitoring": {
+      "title": "Monitoring",
+      "activeClients": "Active clients",
+      "avgCompliance": "Avg compliance",
+      "atRisk": "At risk",
+      "todayCheckins": "Today's check-ins",
+      "complianceTrend": "Compliance trend (30 days)",
+      "topClients": "Top clients (7 days)",
+      "checkinsPerDay": "Check-ins per day",
+      "atRiskClients": "At-risk clients",
+      "noData": "No data yet",
+      "clientName": "Name",
+      "compliance": "Compliance",
+      "checkins": "Check-ins"
+    },
     "clients": {
       "title": "Clients",
       "newClient": "New client",
@@ -233,7 +248,72 @@
   "client": {
     "today": {
       "title": "Today's workout",
-      "soon": "Coming soon — Phase 4"
+      "soon": "Coming soon — Phase 4",
+      "noActivePlan": "No active workout plan.",
+      "restDay": "Rest day",
+      "sets": "sets",
+      "reps": "reps",
+      "rest": "rest",
+      "secs": "s"
+    },
+    "progress": {
+      "title": "Progress",
+      "weight": "Weight log",
+      "measurements": "Measurements",
+      "logWeight": "Log weight",
+      "logMeasurement": "Log measurement",
+      "weightKg": "Weight (kg)",
+      "notes": "Notes",
+      "empty": "No data yet — log your first entry.",
+      "save": "Save",
+      "cancel": "Cancel",
+      "waist": "Waist",
+      "chest": "Chest",
+      "shoulders": "Shoulders",
+      "hips": "Hips",
+      "leftArm": "Left arm",
+      "rightArm": "Right arm",
+      "leftThigh": "Left thigh",
+      "rightThigh": "Right thigh",
+      "bodyFat": "Body fat %"
+    },
+    "photos": {
+      "title": "Progress photos",
+      "upload": "Upload photo",
+      "empty": "No photos yet.",
+      "delete": "Delete",
+      "confirmDelete": "Delete this photo?",
+      "pose": "Pose",
+      "note": "Note",
+      "front": "Front",
+      "side": "Side",
+      "back": "Back"
+    },
+    "checkin": {
+      "title": "Daily check-in",
+      "streak": "Streak",
+      "days": "days",
+      "submit": "Submit",
+      "submitting": "Submitting…",
+      "submitted": "Submitted!",
+      "workoutStatus": "Workout status",
+      "completed": "Completed",
+      "partial": "Partial",
+      "skipped": "Skipped",
+      "dietCompliance": "Diet compliance",
+      "sleepQuality": "Sleep quality",
+      "sleepHours": "Sleep hours",
+      "waterCups": "Water (cups)",
+      "cardio": "Cardio",
+      "cardioMinutes": "Cardio minutes",
+      "notes": "Notes",
+      "history": "History"
+    },
+    "messages": {
+      "title": "Messages",
+      "send": "Send",
+      "placeholder": "Type a message…",
+      "empty": "No messages yet."
     }
   },
   "common": {
