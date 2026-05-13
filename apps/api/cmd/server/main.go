@@ -135,6 +135,7 @@ func main() {
 	app.Use(middleware.SecurityHeaders(cfg))
 	app.Use(middleware.CORS(cfg))
 	app.Use(middleware.RequestLogger(log))
+	app.Use(middleware.AuditAdminWrites(log))
 	app.Use(middleware.RateLimit(rdb, cfg.RateLimitPerMinute))
 
 	routes.Register(app, routes.Deps{
