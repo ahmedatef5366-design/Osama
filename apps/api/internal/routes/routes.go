@@ -11,15 +11,19 @@ import (
 	"github.com/ahmedatef5366-design/Osama/apps/api/internal/content"
 	db "github.com/ahmedatef5366-design/Osama/apps/api/internal/db/generated"
 	"github.com/ahmedatef5366-design/Osama/apps/api/internal/middleware"
+	"github.com/ahmedatef5366-design/Osama/apps/api/internal/nutrition"
+	"github.com/ahmedatef5366-design/Osama/apps/api/internal/workouts"
 )
 
 // Deps bundles the runtime dependencies the route layer needs.
 type Deps struct {
-	Queries *db.Queries
-	Tokens  *auth.TokenManager
-	Auth    *auth.Handler
-	Clients *clients.Handler
-	Content *content.Handler
+	Queries   *db.Queries
+	Tokens    *auth.TokenManager
+	Auth      *auth.Handler
+	Clients   *clients.Handler
+	Content   *content.Handler
+	Workouts  *workouts.Handler
+	Nutrition *nutrition.Handler
 }
 
 // Register mounts every route on the supplied app.
@@ -63,9 +67,38 @@ func Register(app *fiber.App, d Deps) {
 		d.Clients.Patch,
 	)
 
+	// Client-scoped workout + nutrition shortcuts. These live under
+	// /api/clients/:id/... and are admin-only.
+	if d.Workouts != nil {
+		clientsGroup.Get("/:id/workout-plan",
+			middleware.RequireRole(auth.RoleAdmin),
+			d.Workouts.GetClientActivePlan,
+		)
+		clientsGroup.Post("/:id/workout-plan",
+			middleware.RequireRole(auth.RoleAdmin),
+			d.Workouts.CreateClientPlan,
+		)
+		clientsGroup.Get("/:id/workout-plans",
+			middleware.RequireRole(auth.RoleAdmin),
+			d.Workouts.ListPlans,
+		)
+	}
+	if d.Nutrition != nil {
+		clientsGroup.Get("/:id/nutrition-plan",
+			middleware.RequireRole(auth.RoleAdmin),
+			d.Nutrition.GetClientActivePlan,
+		)
+		clientsGroup.Post("/:id/nutrition-plan",
+			middleware.RequireRole(auth.RoleAdmin),
+			d.Nutrition.CreateClientPlan,
+		)
+		clientsGroup.Get("/:id/nutrition-plans",
+			middleware.RequireRole(auth.RoleAdmin),
+			d.Nutrition.ListPlans,
+		)
+	}
+
 	// ── Site content (CMS) ─────────────────────────────────
-	// Public GET drives the landing page server-side render; everything
-	// else is admin-only.
 	if d.Content != nil {
 		api.Get("/site-content/:section", d.Content.GetPublic)
 
@@ -77,5 +110,119 @@ func Register(app *fiber.App, d Deps) {
 		cmsAdmin.Put("/:section", d.Content.Upsert)
 		cmsAdmin.Get("/:section/history", d.Content.History)
 		cmsAdmin.Post("/:section/rollback", d.Content.Rollback)
+	}
+
+	// ── Exercise library (admin curated; readable by authed users) ──
+	if d.Workouts != nil {
+		lib := api.Group("/exercise-library",
+			middleware.RequireAuth(d.Tokens, d.Queries),
+		)
+		lib.Get("", d.Workouts.ListLibrary)
+		lib.Get("/:id", d.Workouts.GetLibrary)
+		libAdmin := api.Group("/exercise-library",
+			middleware.RequireAuth(d.Tokens, d.Queries),
+			middleware.RequireRole(auth.RoleAdmin),
+		)
+		libAdmin.Post("", d.Workouts.CreateLibrary)
+		libAdmin.Patch("/:id", d.Workouts.PatchLibrary)
+		libAdmin.Delete("/:id", d.Workouts.DeleteLibrary)
+
+		// ── Workout plans / days / exercises ────────────────────
+		plans := api.Group("/workout-plans",
+			middleware.RequireAuth(d.Tokens, d.Queries),
+			middleware.RequireRole(auth.RoleAdmin),
+		)
+		plans.Get("/:id", d.Workouts.GetPlan)
+		plans.Patch("/:id", d.Workouts.PatchPlan)
+		plans.Delete("/:id", d.Workouts.DeletePlan)
+		plans.Post("/:id/days", d.Workouts.CreateDay)
+		plans.Post("/:id/save-as-template", d.Workouts.SnapshotAsTemplate)
+
+		days := api.Group("/workout-days",
+			middleware.RequireAuth(d.Tokens, d.Queries),
+			middleware.RequireRole(auth.RoleAdmin),
+		)
+		days.Patch("/:id", d.Workouts.PatchDay)
+		days.Delete("/:id", d.Workouts.DeleteDay)
+		days.Post("/:id/exercises", d.Workouts.CreateExercise)
+
+		exercises := api.Group("/workout-exercises",
+			middleware.RequireAuth(d.Tokens, d.Queries),
+			middleware.RequireRole(auth.RoleAdmin),
+		)
+		exercises.Patch("/:id", d.Workouts.PatchExercise)
+		exercises.Delete("/:id", d.Workouts.DeleteExercise)
+
+		// ── Templates ────────────────────────────────────────────
+		tmpl := api.Group("/workout-templates",
+			middleware.RequireAuth(d.Tokens, d.Queries),
+			middleware.RequireRole(auth.RoleAdmin),
+		)
+		tmpl.Get("", d.Workouts.ListTemplates)
+		tmpl.Post("", d.Workouts.CreateTemplate)
+		tmpl.Delete("/:id", d.Workouts.DeleteTemplate)
+		tmpl.Post("/:id/apply", d.Workouts.ApplyTemplate)
+
+		// ── Workout logs ─────────────────────────────────────────
+		logs := api.Group("/workout-logs",
+			middleware.RequireAuth(d.Tokens, d.Queries),
+		)
+		logs.Get("", middleware.RequireRole(auth.RoleAdmin), d.Workouts.ListLogs)
+		logs.Post("", middleware.RequireRole(auth.RoleAdmin), d.Workouts.CreateLog)
+		logs.Get("/:clientId/latest",
+			middleware.RequireRole(auth.RoleAdmin),
+			d.Workouts.GetLatestLog,
+		)
+	}
+
+	// ── Nutrition ─────────────────────────────────────────────
+	if d.Nutrition != nil {
+		np := api.Group("/nutrition-plans",
+			middleware.RequireAuth(d.Tokens, d.Queries),
+			middleware.RequireRole(auth.RoleAdmin),
+		)
+		np.Get("/:id", d.Nutrition.GetPlan)
+		np.Patch("/:id", d.Nutrition.PatchPlan)
+		np.Delete("/:id", d.Nutrition.DeletePlan)
+		np.Post("/:id/meals", d.Nutrition.CreateMeal)
+
+		meals := api.Group("/meals",
+			middleware.RequireAuth(d.Tokens, d.Queries),
+			middleware.RequireRole(auth.RoleAdmin),
+		)
+		meals.Patch("/:id", d.Nutrition.PatchMeal)
+		meals.Delete("/:id", d.Nutrition.DeleteMeal)
+
+		// Food DB — search is open to any authed user; mutations admin-only.
+		food := api.Group("/food-database",
+			middleware.RequireAuth(d.Tokens, d.Queries),
+		)
+		food.Get("", d.Nutrition.SearchFoods)
+		food.Get("/:id", d.Nutrition.GetFood)
+		foodAdmin := api.Group("/food-database",
+			middleware.RequireAuth(d.Tokens, d.Queries),
+			middleware.RequireRole(auth.RoleAdmin),
+		)
+		foodAdmin.Post("", d.Nutrition.CreateFood)
+		foodAdmin.Post("/import", d.Nutrition.ImportFoodsCSV)
+		foodAdmin.Patch("/:id", d.Nutrition.PatchFood)
+		foodAdmin.Delete("/:id", d.Nutrition.DeleteFood)
+
+		// Food log — admin in Phase 3; client-self routes will be added later.
+		flog := api.Group("/food-log",
+			middleware.RequireAuth(d.Tokens, d.Queries),
+			middleware.RequireRole(auth.RoleAdmin),
+		)
+		flog.Get("", d.Nutrition.ListFoodLog)
+		flog.Get("/sum", d.Nutrition.SumFoodLog)
+		flog.Post("", d.Nutrition.CreateFoodLog)
+		flog.Delete("/:id", d.Nutrition.DeleteFoodLog)
+
+		// Macro calculator — pure compute, admin-only entry point.
+		api.Post("/macros/calc",
+			middleware.RequireAuth(d.Tokens, d.Queries),
+			middleware.RequireRole(auth.RoleAdmin),
+			d.Nutrition.CalcMacros,
+		)
 	}
 }
