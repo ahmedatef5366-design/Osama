@@ -1,0 +1,41 @@
+run:
+  timeout: 3m
+  go: "1.22"
+  tests: true
+
+linters:
+  disable-all: true
+  enable:
+    - errcheck
+    - gosimple
+    - govet
+    - ineffassign
+    - staticcheck
+    - unused
+    - misspell
+    - revive
+    - bodyclose
+    - rowserrcheck
+    - sqlclosecheck
+
+linters-settings:
+  revive:
+    severity: warning
+    rules:
+      - name: var-naming
+      - name: exported
+        disabled: true
+      - name: error-return
+      - name: error-naming
+      - name: errorf
+      - name: context-as-argument
+      - name: context-keys-type
+      - name: time-naming
+      - name: package-comments
+        disabled: true
+
+issues:
+  exclude-dirs:
+    - internal/db/generated
+  max-same-issues: 0
+  max-issues-per-linter: 0

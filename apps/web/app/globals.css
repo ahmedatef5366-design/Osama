@@ -1,0 +1,200 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ═══════════════════════════════════════════════════════════════════
+   Design tokens — Osama
+   Every value here is intentional. Hard-coded hex codes in components
+   are a code smell; use these CSS variables (or the matching Tailwind
+   theme.extend entries in tailwind.config.ts) instead.
+   ═══════════════════════════════════════════════════════════════════ */
+:root {
+  /* Surfaces — near-black with a hint of cool grey to feel premium, not bleak. */
+  --bg:           #080B0F;
+  --surface:      #0F1419;
+  --surface-high: #161C23;
+  --border:       rgba(255, 255, 255, 0.07);
+  --border-hover: rgba(255, 255, 255, 0.14);
+
+  /* Accent — electric lime. The platform's signature. Used sparingly. */
+  --accent:      #C8F135;
+  --accent-dim:  rgba(200, 241, 53, 0.10);
+  --accent-glow: rgba(200, 241, 53, 0.22);
+  --accent-text: #9DC429;
+
+  /* Text — never pure white. Pure white on black hurts. */
+  --text-1: #F0F4F8;
+  --text-2: #7A8B9A;
+  --text-3: #3D4F5C;
+
+  /* Semantic */
+  --success: #00D68F;
+  --warning: #FFB020;
+  --danger:  #FF4444;
+  --info:    #4BA3FF;
+
+  /* Typography — fluid via clamp so things scale on mobile without media queries. */
+  --text-xs:   clamp(0.7rem,  1.5vw, 0.75rem);
+  --text-sm:   clamp(0.8rem,  2vw,   0.875rem);
+  --text-base: clamp(0.9rem,  2vw,   1rem);
+  --text-lg:   clamp(1rem,    2.5vw, 1.125rem);
+  --text-xl:   clamp(1.1rem,  3vw,   1.25rem);
+  --text-2xl:  clamp(1.25rem, 4vw,   1.5rem);
+  --text-3xl:  clamp(1.5rem,  5vw,   1.875rem);
+  --text-4xl:  clamp(1.875rem,6vw,   2.25rem);
+  --text-5xl:  clamp(2.25rem, 7vw,   3rem);
+  --text-6xl:  clamp(3rem,    8vw,   3.75rem);
+  --text-7xl:  clamp(3.75rem, 10vw,  4.5rem);
+  --text-8xl:  clamp(4.5rem,  12vw,  6rem);
+
+  /* Radii */
+  --radius-sm: 6px;
+  --radius-md: 12px;
+  --radius-lg: 20px;
+  --radius-xl: 32px;
+
+  /* Motion */
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in-out:   cubic-bezier(0.4, 0, 0.2, 1);
+
+  color-scheme: dark;
+}
+
+/* ─── Base resets ────────────────────────────────────────────────── */
+* {
+  border-color: var(--border);
+}
+
+html, body {
+  height: 100%;
+}
+
+html {
+  background: var(--bg);
+}
+
+body {
+  background: var(--bg);
+  color: var(--text-1);
+  font-family: var(--font-body), "DM Sans", system-ui, sans-serif;
+  font-feature-settings: "ss01", "cv11";
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+html[dir="rtl"] body {
+  font-family: var(--font-arabic), "Cairo", system-ui, sans-serif;
+}
+
+::selection {
+  background: var(--accent);
+  color: var(--bg);
+}
+
+/* Always-visible focus ring on accent — accessibility first. */
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* Scrollbar — discreet, on-brand. */
+::-webkit-scrollbar { width: 10px; height: 10px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb {
+  background: var(--border);
+  border-radius: 999px;
+}
+::-webkit-scrollbar-thumb:hover { background: var(--border-hover); }
+
+/* ─── Reusable component utilities ───────────────────────────────── */
+@layer components {
+  /* The signature animated mesh background for the landing hero. */
+  .bg-mesh {
+    background:
+      radial-gradient(at 20% 50%, rgba(200, 241, 53, 0.18) 0%, transparent 50%),
+      radial-gradient(at 80% 20%, rgba(26, 42, 58, 0.6) 0%, transparent 50%),
+      radial-gradient(at 50% 80%, rgba(8, 11, 15, 0.0) 0%, transparent 50%);
+    background-size: 200% 200%;
+    animation: mesh 12s ease infinite;
+  }
+
+  /* Hairline ghost number used behind feature list rows. */
+  .ghost-num {
+    font-family: var(--font-display), "Syne", sans-serif;
+    font-weight: 800;
+    font-size: clamp(4rem, 12vw, 8rem);
+    line-height: 1;
+    color: var(--text-1);
+    opacity: 0.04;
+    pointer-events: none;
+  }
+
+  /* Frosted-glass card — used by the bottom nav and floating hero badges. */
+  .glass {
+    background: color-mix(in srgb, var(--surface) 70%, transparent);
+    backdrop-filter: blur(20px) saturate(140%);
+    -webkit-backdrop-filter: blur(20px) saturate(140%);
+    border: 1px solid var(--border);
+  }
+
+  /* The signature electric-lime CTA. Glow grows on hover. */
+  .btn-accent {
+    background: var(--accent);
+    color: var(--bg);
+    box-shadow: 0 0 0 0 var(--accent-glow);
+    transition:
+      box-shadow 240ms var(--ease-out-expo),
+      transform  180ms var(--ease-out-expo);
+  }
+  .btn-accent:hover {
+    box-shadow: 0 0 32px 4px var(--accent-glow);
+    transform: translateY(-1px);
+  }
+  .btn-accent:active {
+    transform: translateY(0);
+  }
+
+  .btn-ghost {
+    background: transparent;
+    color: var(--text-1);
+    border: 1px solid var(--border);
+    transition: border-color 200ms var(--ease-in-out), background 200ms var(--ease-in-out);
+  }
+  .btn-ghost:hover {
+    border-color: var(--border-hover);
+    background: var(--surface);
+  }
+
+  /* Text input — chrome stripped, minimal underline-on-focus. */
+  .input-base {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    color: var(--text-1);
+    transition: border-color 200ms var(--ease-in-out), background 200ms var(--ease-in-out);
+  }
+  .input-base::placeholder { color: var(--text-3); }
+  .input-base:hover { border-color: var(--border-hover); }
+  .input-base:focus-visible {
+    border-color: var(--accent);
+    outline: none;
+    box-shadow: 0 0 0 4px var(--accent-dim);
+  }
+
+  /* Shimmer effect used by Skeleton. */
+  .skeleton {
+    background: linear-gradient(
+      90deg,
+      var(--surface) 0%,
+      var(--surface-high) 50%,
+      var(--surface) 100%
+    );
+    background-size: 400% 100%;
+    animation: shimmer 1.6s linear infinite;
+    border-radius: var(--radius-sm);
+  }
+}
+
+/* ─── RTL polish ──────────────────────────────────────────────────── */
+html[dir="rtl"] .ghost-num { font-family: var(--font-display), "Syne", sans-serif; }
