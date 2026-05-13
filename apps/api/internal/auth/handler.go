@@ -97,8 +97,16 @@ func validateLogin(r loginRequest) error {
 	if r.Email == "" || !strings.Contains(r.Email, "@") {
 		return httpx.BadRequest("invalid_email", "email is required")
 	}
+	if len(r.Email) > 254 {
+		return httpx.BadRequest("invalid_email", "email is too long")
+	}
 	if len(r.Password) < 8 {
 		return httpx.BadRequest("invalid_password", "password must be at least 8 characters")
+	}
+	// bcrypt only hashes the first 72 bytes — reject anything past that
+	// so two long, distinct passwords aren't silently treated as equal.
+	if len(r.Password) > 72 {
+		return httpx.BadRequest("invalid_password", "password must be at most 72 characters")
 	}
 	return nil
 }
@@ -115,6 +123,12 @@ func (h *Handler) setAuthCookies(c *fiber.Ctx, p TokenPair) {
 		Secure:   h.cfg.CookieSecure,
 		SameSite: cookieSameSite(sameSite),
 	})
+	// The refresh cookie is *always* SameSite=Strict regardless of the
+	// access-cookie setting. It is only ever read on direct hits to
+	// /api/auth/refresh, so there's no legitimate cross-origin flow that
+	// needs the laxer settings. Pinning Strict here closes the CSRF
+	// window for the long-lived credential even when the rest of the
+	// site uses Lax.
 	c.Cookie(&fiber.Cookie{
 		Name:     RefreshCookieName,
 		Value:    p.RefreshToken,
@@ -123,7 +137,7 @@ func (h *Handler) setAuthCookies(c *fiber.Ctx, p TokenPair) {
 		Expires:  p.RefreshExpiresAt,
 		HTTPOnly: true,
 		Secure:   h.cfg.CookieSecure,
-		SameSite: cookieSameSite(sameSite),
+		SameSite: "Strict",
 	})
 }
 

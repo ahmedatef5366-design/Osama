@@ -5,35 +5,28 @@ import (
 	"time"
 
 	"github.com/gofiber/fiber/v2"
-	"github.com/jackc/pgx/v5/pgtype"
 
-	"github.com/ahmedatef5366-design/Osama/apps/api/internal/auth"
+	"github.com/ahmedatef5366-design/Osama/apps/api/internal/access"
 	"github.com/ahmedatef5366-design/Osama/apps/api/internal/httpx"
 	"github.com/ahmedatef5366-design/Osama/apps/api/internal/pgxutil"
 )
 
 type Handler struct {
-	svc *Service
+	svc      *Service
+	resolver *access.Resolver
 }
 
-func NewHandler(svc *Service) *Handler { return &Handler{svc: svc} }
-
-func clientID(c *fiber.Ctx) (string, error) {
-	uid, _ := c.Locals(auth.LocalsUserID).(string)
-	if uid == "" {
-		return "", httpx.Unauthorized("missing_user", "missing user")
-	}
-	return uid, nil
+// NewHandler returns a progress handler. The resolver translates the
+// request identity into an authoritative client_id — handlers never
+// trust query/path-supplied clientIds for client-role callers.
+func NewHandler(svc *Service, resolver *access.Resolver) *Handler {
+	return &Handler{svc: svc, resolver: resolver}
 }
 
 // ── Weight ─────────────────────────────────────────────────────
 
 func (h *Handler) LogWeight(c *fiber.Ctx) error {
-	uid, err := clientID(c)
-	if err != nil {
-		return err
-	}
-	cid, err := resolveClientID(c, uid)
+	cid, err := h.resolver.ClientID(c)
 	if err != nil {
 		return err
 	}
@@ -48,11 +41,7 @@ func (h *Handler) LogWeight(c *fiber.Ctx) error {
 }
 
 func (h *Handler) ListWeight(c *fiber.Ctx) error {
-	uid, err := clientID(c)
-	if err != nil {
-		return err
-	}
-	cid, err := resolveClientID(c, uid)
+	cid, err := h.resolver.ClientID(c)
 	if err != nil {
 		return err
 	}
@@ -68,11 +57,7 @@ func (h *Handler) ListWeight(c *fiber.Ctx) error {
 // ── Measurements ───────────────────────────────────────────────
 
 func (h *Handler) LogMeasurement(c *fiber.Ctx) error {
-	uid, err := clientID(c)
-	if err != nil {
-		return err
-	}
-	cid, err := resolveClientID(c, uid)
+	cid, err := h.resolver.ClientID(c)
 	if err != nil {
 		return err
 	}
@@ -87,11 +72,7 @@ func (h *Handler) LogMeasurement(c *fiber.Ctx) error {
 }
 
 func (h *Handler) ListMeasurements(c *fiber.Ctx) error {
-	uid, err := clientID(c)
-	if err != nil {
-		return err
-	}
-	cid, err := resolveClientID(c, uid)
+	cid, err := h.resolver.ClientID(c)
 	if err != nil {
 		return err
 	}
@@ -107,11 +88,7 @@ func (h *Handler) ListMeasurements(c *fiber.Ctx) error {
 // ── Photos ─────────────────────────────────────────────────────
 
 func (h *Handler) UploadPhoto(c *fiber.Ctx) error {
-	uid, err := clientID(c)
-	if err != nil {
-		return err
-	}
-	cid, err := resolveClientID(c, uid)
+	cid, err := h.resolver.ClientID(c)
 	if err != nil {
 		return err
 	}
@@ -127,11 +104,7 @@ func (h *Handler) UploadPhoto(c *fiber.Ctx) error {
 }
 
 func (h *Handler) ListPhotos(c *fiber.Ctx) error {
-	uid, err := clientID(c)
-	if err != nil {
-		return err
-	}
-	cid, err := resolveClientID(c, uid)
+	cid, err := h.resolver.ClientID(c)
 	if err != nil {
 		return err
 	}
@@ -145,11 +118,7 @@ func (h *Handler) ListPhotos(c *fiber.Ctx) error {
 }
 
 func (h *Handler) DeletePhoto(c *fiber.Ctx) error {
-	uid, err := clientID(c)
-	if err != nil {
-		return err
-	}
-	cid, err := resolveClientID(c, uid)
+	cid, err := h.resolver.ClientID(c)
 	if err != nil {
 		return err
 	}
@@ -164,16 +133,6 @@ func (h *Handler) DeletePhoto(c *fiber.Ctx) error {
 }
 
 // ── helpers ────────────────────────────────────────────────────
-
-func resolveClientID(c *fiber.Ctx, userID string) (pgtype.UUID, error) {
-	if id := c.Params("clientId"); id != "" {
-		return pgxutil.UUIDFromString(id)
-	}
-	if id := c.Query("clientId"); id != "" {
-		return pgxutil.UUIDFromString(id)
-	}
-	return pgxutil.UUIDFromString(userID)
-}
 
 func parseTime(s string, fallback time.Time) time.Time {
 	if s == "" {

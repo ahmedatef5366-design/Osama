@@ -10,7 +10,7 @@ function isLocale(value: string | undefined): value is Locale {
 }
 
 export default getRequestConfig(async () => {
-  const stored = cookies().get("locale")?.value;
+  const stored = (await cookies()).get("locale")?.value;
   const locale: Locale = isLocale(stored) ? stored : defaultLocale;
 
   const messages = (await import(`../messages/${locale}.json`)).default;

@@ -10,10 +10,11 @@ import (
 // want to control the HTTP status, machine-readable code, and the message
 // rendered to the client. Anything else is treated as a 500.
 type APIError struct {
-	Status  int    // HTTP status code
-	Code    string // stable machine-readable string, e.g. "client_not_found"
-	Message string // safe-to-show-to-user message
-	Cause   error  // wrapped underlying error (logged but never serialised)
+	Status  int               // HTTP status code
+	Code    string            // stable machine-readable string, e.g. "client_not_found"
+	Message string            // safe-to-show-to-user message
+	Cause   error             // wrapped underlying error (logged but never serialised)
+	Headers map[string]string // optional headers to set on the error response (e.g. Retry-After)
 }
 
 func (e *APIError) Error() string {
@@ -63,4 +64,20 @@ func Internal(code string, cause error) *APIError {
 		Message: "internal server error",
 		Cause:   cause,
 	}
+}
+
+// TooManyRequests builds a 429 error with an optional Retry-After value
+// (in seconds). retryAfterSeconds <= 0 omits the header.
+func TooManyRequests(code, msg string, retryAfterSeconds int) *APIError {
+	err := &APIError{Status: http.StatusTooManyRequests, Code: code, Message: msg}
+	if retryAfterSeconds > 0 {
+		err.Headers = map[string]string{
+			"Retry-After": itoa(retryAfterSeconds),
+		}
+	}
+	return err
+}
+
+func itoa(n int) string {
+	return fmt.Sprintf("%d", n)
 }

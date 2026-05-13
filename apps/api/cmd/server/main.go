@@ -17,6 +17,7 @@ import (
 	"github.com/jackc/pgx/v5"
 	"go.uber.org/zap"
 
+	"github.com/ahmedatef5366-design/Osama/apps/api/internal/access"
 	"github.com/ahmedatef5366-design/Osama/apps/api/internal/auth"
 	"github.com/ahmedatef5366-design/Osama/apps/api/internal/cache"
 	"github.com/ahmedatef5366-design/Osama/apps/api/internal/checkin"
@@ -77,7 +78,11 @@ func main() {
 	queries := db.New(pool)
 	tokens := auth.NewTokenManager(priv, pub, cfg.JWTIssuer, cfg.AccessTokenTTL, cfg.RefreshTokenTTL, rdb)
 
-	authSvc := auth.NewService(queries, tokens)
+	// Per-account login throttle. The lockout window doubles per failure
+	// past the threshold (1m, 2m, 4m, …) up to 30m. Backed by Redis so it
+	// survives across replicas.
+	loginThrottle := auth.NewLoginThrottle(rdb, 5, time.Minute, 30*time.Minute)
+	authSvc := auth.NewService(queries, tokens).WithThrottle(loginThrottle)
 	authH := auth.NewHandler(authSvc, cfg)
 
 	clientsSvc := clients.NewService(pool, queries)
@@ -93,13 +98,15 @@ func main() {
 	nutritionSvc := nutrition.NewService(pool, queries)
 	nutritionH := nutrition.NewHandler(nutritionSvc)
 
+	resolver := access.NewResolver(queries)
+
 	progressSvc := progress.NewService(pool)
-	progressH := progress.NewHandler(progressSvc)
+	progressH := progress.NewHandler(progressSvc, resolver)
 
 	checkinSvc := checkin.NewService(pool)
-	checkinH := checkin.NewHandler(checkinSvc)
+	checkinH := checkin.NewHandler(checkinSvc, resolver)
 
-	messagingSvc := messaging.NewService(pool)
+	messagingSvc := messaging.NewService(pool, queries)
 	messagingH := messaging.NewHandler(messagingSvc)
 
 	monitoringH := monitoring.NewHandler(pool)
@@ -125,6 +132,7 @@ func main() {
 	})
 
 	app.Use(middleware.RequestID())
+	app.Use(middleware.SecurityHeaders(cfg))
 	app.Use(middleware.CORS(cfg))
 	app.Use(middleware.RequestLogger(log))
 	app.Use(middleware.RateLimit(rdb, cfg.RateLimitPerMinute))

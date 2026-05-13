@@ -298,9 +298,17 @@ func (h *Handler) ImportFoodsCSV(c *fiber.Ctx) error {
 	}
 	defer func() { _ = f.Close() }()
 
-	r := csv.NewReader(f)
+	// Hard cap the upload size (separate from Fiber's body limit) so a
+	// malicious admin can't drive the import past a sane line count. The
+	// CSV header alone is on the order of ~80 bytes, so 1 MB \u2248 8k rows.
+	const maxCSVBytes = 1 * 1024 * 1024
+	limited := io.LimitReader(f, maxCSVBytes+1)
+
+	r := csv.NewReader(limited)
 	r.TrimLeadingSpace = true
 	r.FieldsPerRecord = -1 // allow ragged rows; we validate column-by-name
+
+	const maxRows = 5000
 
 	header, err := r.Read()
 	if err != nil {
@@ -410,6 +418,10 @@ func (h *Handler) ImportFoodsCSV(c *fiber.Ctx) error {
 			}
 		}
 		items = append(items, req)
+		if len(items) > maxRows {
+			return httpx.BadRequest("too_many_rows",
+				"CSV exceeds maximum row count of "+strconv.Itoa(maxRows))
+		}
 	}
 
 	uid, err := adminID(c)

@@ -2,10 +2,13 @@ import { ClientProfile } from "./client-profile";
 
 export const dynamic = "force-dynamic";
 
-export default function AdminClientDetailPage({
+// Next 15 made route params async — they're now a Promise the page has
+// to await before destructuring. The component itself stays the same.
+export default async function AdminClientDetailPage({
   params,
 }: {
-  params: { id: string };
+  params: Promise<{ id: string }>;
 }) {
-  return <ClientProfile clientId={params.id} />;
+  const { id } = await params;
+  return <ClientProfile clientId={id} />;
 }

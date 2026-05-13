@@ -5,22 +5,25 @@ import (
 	"time"
 
 	"github.com/gofiber/fiber/v2"
-	"github.com/jackc/pgx/v5/pgtype"
 
-	"github.com/ahmedatef5366-design/Osama/apps/api/internal/auth"
+	"github.com/ahmedatef5366-design/Osama/apps/api/internal/access"
 	"github.com/ahmedatef5366-design/Osama/apps/api/internal/httpx"
-	"github.com/ahmedatef5366-design/Osama/apps/api/internal/pgxutil"
 )
 
 type Handler struct {
-	svc *Service
+	svc      *Service
+	resolver *access.Resolver
 }
 
-func NewHandler(svc *Service) *Handler { return &Handler{svc: svc} }
+// NewHandler returns a check-in handler. The resolver translates the
+// request identity into an authoritative client_id — handlers never
+// trust query/path-supplied clientIds for client-role callers.
+func NewHandler(svc *Service, resolver *access.Resolver) *Handler {
+	return &Handler{svc: svc, resolver: resolver}
+}
 
 func (h *Handler) Submit(c *fiber.Ctx) error {
-	userID, _ := c.Locals(auth.LocalsUserID).(string)
-	cid, err := resolveClientID(c, userID)
+	cid, err := h.resolver.ClientID(c)
 	if err != nil {
 		return err
 	}
@@ -36,8 +39,7 @@ func (h *Handler) Submit(c *fiber.Ctx) error {
 }
 
 func (h *Handler) Get(c *fiber.Ctx) error {
-	userID, _ := c.Locals(auth.LocalsUserID).(string)
-	cid, err := resolveClientID(c, userID)
+	cid, err := h.resolver.ClientID(c)
 	if err != nil {
 		return err
 	}
@@ -50,8 +52,7 @@ func (h *Handler) Get(c *fiber.Ctx) error {
 }
 
 func (h *Handler) List(c *fiber.Ctx) error {
-	userID, _ := c.Locals(auth.LocalsUserID).(string)
-	cid, err := resolveClientID(c, userID)
+	cid, err := h.resolver.ClientID(c)
 	if err != nil {
 		return err
 	}
@@ -70,14 +71,4 @@ func (h *Handler) AtRisk(c *fiber.Ctx) error {
 		return err
 	}
 	return httpx.OK(c, clients)
-}
-
-func resolveClientID(c *fiber.Ctx, userID string) (pgtype.UUID, error) {
-	if id := c.Params("clientId"); id != "" {
-		return pgxutil.UUIDFromString(id)
-	}
-	if id := c.Query("clientId"); id != "" {
-		return pgxutil.UUIDFromString(id)
-	}
-	return pgxutil.UUIDFromString(userID)
 }

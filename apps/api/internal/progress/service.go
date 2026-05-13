@@ -2,6 +2,7 @@ package progress
 
 import (
 	"context"
+	"net/url"
 	"time"
 
 	"github.com/jackc/pgx/v5"
@@ -11,6 +12,28 @@ import (
 	"github.com/ahmedatef5366-design/Osama/apps/api/internal/httpx"
 	"github.com/ahmedatef5366-design/Osama/apps/api/internal/pgxutil"
 )
+
+// isAllowedPhotoURL parses the URL and accepts only https:// addresses
+// with a non-empty host. Same-origin enforcement is deliberately not
+// done here — uploads come from Cloudinary, S3, etc., on different
+// hostnames — but blocking javascript:, data:, file:, and http: schemes
+// closes the most obvious abuse vectors.
+func isAllowedPhotoURL(s string) bool {
+	if len(s) > 2048 {
+		return false
+	}
+	u, err := url.Parse(s)
+	if err != nil {
+		return false
+	}
+	if u.Scheme != "https" {
+		return false
+	}
+	if u.Host == "" {
+		return false
+	}
+	return true
+}
 
 type Service struct {
 	pool *pgxpool.Pool
@@ -151,6 +174,12 @@ func (s *Service) ListMeasurements(ctx context.Context, clientID pgtype.UUID, li
 func (s *Service) UploadPhoto(ctx context.Context, clientID pgtype.UUID, req UploadPhotoRequest) (Photo, error) {
 	if req.PhotoURL == "" || req.PublicID == "" {
 		return Photo{}, httpx.BadRequest("invalid_photo", "photoUrl and publicId are required")
+	}
+	// Only accept HTTPS-served photos. This blocks `javascript:` and other
+	// schemes that could be embedded in an <img src> on the frontend and
+	// also rejects plain-http URLs that would mixed-content-warn the user.
+	if !isAllowedPhotoURL(req.PhotoURL) {
+		return Photo{}, httpx.BadRequest("invalid_photo_url", "photoUrl must be an https URL")
 	}
 	var p Photo
 	var id pgtype.UUID
