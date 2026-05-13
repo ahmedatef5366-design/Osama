@@ -13,6 +13,8 @@
     "nutrition": "التغذية",
     "monitoring": "المتابعة",
     "cms": "المحتوى",
+    "inbox": "الرسائل",
+    "calendar": "التقويم",
     "settings": "الإعدادات",
     "today": "اليوم",
     "progress": "التقدّم",
@@ -223,6 +225,80 @@
       "noTemplates": "لا توجد نماذج بعد — احفظ خطة عميل لإعادة استخدامها.",
       "delete": "حذف"
     },
+    "command": {
+      "placeholder": "ابحث في الصفحات والعملاء…",
+      "noResults": "لا توجد نتائج.",
+      "hint": "نصيحة: اضغط Ctrl+K لفتح البحث في أي وقت",
+      "dashboard": "لوحة التحكم",
+      "clients": "العملاء",
+      "monitoring": "المتابعة",
+      "plans": "البرامج",
+      "nutritionPage": "التغذية",
+      "cms": "المحتوى",
+      "inbox": "الرسائل",
+      "calendar": "التقويم",
+      "pages": "الصفحات"
+    },
+    "inbox": {
+      "title": "الرسائل",
+      "empty": "لا توجد محادثات بعد.",
+      "selectConversation": "اختر محادثة",
+      "selectHint": "اختر محادثة من القائمة الجانبية.",
+      "replyPlaceholder": "اكتب رداً…",
+      "send": "إرسال"
+    },
+    "calendar": {
+      "title": "تقويم المتابعة",
+      "pageTitle": "التقويم",
+      "legend": "الدليل",
+      "high": "≥٨٠٪ متابعة",
+      "medium": "٥٠-٧٩٪ متابعة",
+      "low": "<٥٠٪ متابعة",
+      "noData": "لا متابعات"
+    },
+    "activity": {
+      "empty": "لا يوجد نشاط حديث.",
+      "checkin": "أرسل متابعة",
+      "workout": "أكمل التمرين",
+      "photo": "رفع صورة",
+      "message": "أرسل رسالة",
+      "weight": "سجّل الوزن"
+    },
+    "comparison": {
+      "vs": "مقابل",
+      "compliance": "متوسط الالتزام",
+      "weightChange": "تغيّر الوزن",
+      "streak": "سلسلة المتابعة"
+    },
+    "bulk": {
+      "selected": "{count} محدد",
+      "actions": "إجراءات",
+      "clear": "مسح",
+      "sendMessage": "إرسال رسالة للجميع",
+      "deactivate": "إلغاء تنشيط المحددين"
+    },
+    "notes": {
+      "title": "ملاحظات سريعة",
+      "placeholder": "أضف ملاحظة…",
+      "add": "إضافة",
+      "empty": "لا توجد ملاحظات بعد.",
+      "pin": "تثبيت",
+      "unpin": "إلغاء التثبيت",
+      "delete": "حذف"
+    },
+    "report": {
+      "title": "تقرير العميل",
+      "export": "تصدير PDF",
+      "compliance": "متوسط الالتزام",
+      "weightChange": "تغيّر الوزن",
+      "workouts": "التمارين المكتملة",
+      "checkins": "المتابعات المكتملة",
+      "generatedBy": "تم إنشاؤه بواسطة منصة أسامة للتدريب"
+    },
+    "mealPlanner": {
+      "dragHere": "اسحب الأطعمة هنا",
+      "addFood": "إضافة من قاعدة الأطعمة…"
+    },
     "nutrition": {
       "title": "التغذية",
       "subtitle": "إدارة قاعدة الأطعمة الموحّدة والاستيراد الجماعي.",
@@ -256,6 +332,32 @@
       "rest": "راحة",
       "secs": "ث",
       "skipRest": "تخطي الراحة"
+    },
+    "greeting": {
+      "morning": "صباح الخير يا {name}",
+      "afternoon": "مساء الخير يا {name}",
+      "evening": "مساء الخير يا {name}",
+      "subtitle": "خلّنا نخلي اليوم يفرق."
+    },
+    "badges": {
+      "firstWorkout": "أول تمرين",
+      "weekStreak": "سلسلة ٧ أيام",
+      "monthStreak": "سلسلة ٣٠ يوم",
+      "tenWorkouts": "١٠ تمارين",
+      "fiftyWorkouts": "٥٠ تمرين",
+      "perfectWeek": "أسبوع مثالي"
+    },
+    "water": {
+      "addCup": "أضف كوب",
+      "cups": "أكواب ماء"
+    },
+    "workoutSummary": {
+      "title": "تم إكمال التمرين!",
+      "exercises": "التمارين",
+      "sets": "إجمالي المجموعات",
+      "duration": "المدة",
+      "topWeight": "أعلى وزن",
+      "done": "تم"
     },
     "nutrition": {
       "title": "التغذية",

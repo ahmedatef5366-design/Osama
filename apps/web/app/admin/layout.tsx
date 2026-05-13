@@ -1,6 +1,7 @@
 import { redirect } from "next/navigation";
 import { Sidebar } from "@/components/admin/sidebar";
 import { Topbar } from "@/components/admin/topbar";
+import { CommandPaletteWrapper } from "@/components/admin/command-palette-wrapper";
 import { PageTransition } from "@/components/motion";
 import { getCurrentUser } from "@/lib/auth";
 
@@ -24,6 +25,7 @@ export default async function AdminLayout({
           <PageTransition>{children}</PageTransition>
         </div>
       </div>
+      <CommandPaletteWrapper />
     </div>
   );
 }

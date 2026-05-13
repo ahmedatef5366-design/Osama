@@ -1,12 +1,19 @@
 import type { HTMLAttributes } from "react";
 import { cn } from "@/lib/utils";
 
-export function Card({ className, ...props }: HTMLAttributes<HTMLDivElement>) {
+type CardProps = HTMLAttributes<HTMLDivElement> & {
+  glass?: boolean;
+  interactive?: boolean;
+};
+
+export function Card({ className, glass, interactive, ...props }: CardProps) {
   return (
     <div
       className={cn(
-        "bg-surface border border-border rounded-lg",
-        "transition-colors duration-200 ease-[var(--ease-in-out-soft)]",
+        "rounded-lg border border-border",
+        glass ? "glass-elevated" : "bg-surface",
+        interactive && "card-interactive cursor-pointer",
+        "transition-colors duration-200 ease-[var(--ease-in-out)]",
         className,
       )}
       {...props}

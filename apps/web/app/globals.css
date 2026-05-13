@@ -8,7 +8,8 @@
    are a code smell; use these CSS variables (or the matching Tailwind
    theme.extend entries in tailwind.config.ts) instead.
    ═══════════════════════════════════════════════════════════════════ */
-:root {
+:root,
+[data-theme="dark"] {
   /* Surfaces — near-black with a hint of cool grey to feel premium, not bleak. */
   --bg:           #080B0F;
   --surface:      #0F1419;
@@ -33,7 +34,41 @@
   --danger:  #FF4444;
   --info:    #4BA3FF;
 
-  /* Typography — fluid via clamp so things scale on mobile without media queries. */
+  /* Glass */
+  --glass-bg: color-mix(in srgb, var(--surface) 70%, transparent);
+
+  color-scheme: dark;
+}
+
+/* ─── Light theme ─────────────────────────────────────────────────── */
+[data-theme="light"] {
+  --bg:           #F5F7FA;
+  --surface:      #FFFFFF;
+  --surface-high: #EEF1F5;
+  --border:       rgba(0, 0, 0, 0.08);
+  --border-hover: rgba(0, 0, 0, 0.16);
+
+  --accent:      #7CB518;
+  --accent-dim:  rgba(124, 181, 24, 0.10);
+  --accent-glow: rgba(124, 181, 24, 0.22);
+  --accent-text: #5A8A12;
+
+  --text-1: #1A202C;
+  --text-2: #6B7A8D;
+  --text-3: #A0AEC0;
+
+  --success: #00A86B;
+  --warning: #E69500;
+  --danger:  #D63031;
+  --info:    #2B6CB0;
+
+  --glass-bg: rgba(255, 255, 255, 0.75);
+
+  color-scheme: light;
+}
+
+/* Typography — fluid via clamp so things scale on mobile without media queries. */
+:root {
   --text-xs:   clamp(0.7rem,  1.5vw, 0.75rem);
   --text-sm:   clamp(0.8rem,  2vw,   0.875rem);
   --text-base: clamp(0.9rem,  2vw,   1rem);
@@ -56,8 +91,6 @@
   /* Motion */
   --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
   --ease-in-out:   cubic-bezier(0.4, 0, 0.2, 1);
-
-  color-scheme: dark;
 }
 
 /* ─── Base resets ────────────────────────────────────────────────── */
@@ -71,6 +104,7 @@ html, body {
 
 html {
   background: var(--bg);
+  transition: background 300ms var(--ease-in-out);
 }
 
 body {
@@ -81,6 +115,7 @@ body {
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  transition: background 300ms var(--ease-in-out), color 300ms var(--ease-in-out);
 }
 
 html[dir="rtl"] body {
@@ -133,15 +168,24 @@ html[dir="rtl"] body {
 
   /* Frosted-glass card — used by the bottom nav and floating hero badges. */
   .glass {
-    background: color-mix(in srgb, var(--surface) 70%, transparent);
-    backdrop-filter: blur(20px) saturate(140%);
-    -webkit-backdrop-filter: blur(20px) saturate(140%);
+    background: var(--glass-bg);
+    backdrop-filter: blur(24px) saturate(160%);
+    -webkit-backdrop-filter: blur(24px) saturate(160%);
     border: 1px solid var(--border);
+  }
+
+  /* Elevated glass card — stronger blur with subtle gradient. */
+  .glass-elevated {
+    background: var(--glass-bg);
+    backdrop-filter: blur(32px) saturate(180%);
+    -webkit-backdrop-filter: blur(32px) saturate(180%);
+    border: 1px solid var(--border);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
   }
 
   /* The signature electric-lime CTA. Glow grows on hover. */
   .btn-accent {
-    background: var(--accent);
+    background: linear-gradient(135deg, var(--accent) 0%, #A8D12F 100%);
     color: var(--bg);
     box-shadow: 0 0 0 0 var(--accent-glow);
     transition:
@@ -153,7 +197,7 @@ html[dir="rtl"] body {
     transform: translateY(-1px);
   }
   .btn-accent:active {
-    transform: translateY(0);
+    transform: scale(0.97);
   }
 
   .btn-ghost {
@@ -172,7 +216,7 @@ html[dir="rtl"] body {
     background: var(--surface);
     border: 1px solid var(--border);
     color: var(--text-1);
-    transition: border-color 200ms var(--ease-in-out), background 200ms var(--ease-in-out);
+    transition: border-color 200ms var(--ease-in-out), background 200ms var(--ease-in-out), box-shadow 200ms var(--ease-in-out);
   }
   .input-base::placeholder { color: var(--text-3); }
   .input-base:hover { border-color: var(--border-hover); }
@@ -193,6 +237,27 @@ html[dir="rtl"] body {
     background-size: 400% 100%;
     animation: shimmer 1.6s linear infinite;
     border-radius: var(--radius-sm);
+  }
+
+  /* Interactive card — micro-interaction on hover. */
+  .card-interactive {
+    transition: transform 200ms var(--ease-out-expo), box-shadow 200ms var(--ease-out-expo), border-color 200ms var(--ease-in-out);
+  }
+  .card-interactive:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+    border-color: var(--border-hover);
+  }
+  .card-interactive:active {
+    transform: translateY(0) scale(0.99);
+  }
+
+  /* Tap feedback for mobile. */
+  .tap-target {
+    transition: transform 100ms var(--ease-out-expo);
+  }
+  .tap-target:active {
+    transform: scale(0.96);
   }
 }
 
