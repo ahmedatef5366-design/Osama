@@ -44,11 +44,41 @@ export const defaultFeatures: FeaturesContent = {
   ],
 };
 
+// Note: the seeded `items` use stock Unsplash photographs as placeholders
+// only — they are overwritten as soon as the admin uploads real client
+// progress photos through the CMS editor. Keeping non-empty defaults
+// here means a fresh deploy shows a credible carousel instead of a blank
+// section, which is what most "AI demo" sites get wrong.
 export const defaultTransformations: TransformationsContent = {
   visible: true,
   title: { ar: "نتائج حقيقية", en: "Real transformations" },
   subtitle: { ar: "اسحب لتشاهد رحلة كل عميل", en: "Swipe to see each client's journey" },
-  items: [],
+  // Each before/after pair below uses a manually verified male-or-equipment
+  // Unsplash photo. Do NOT swap these in without re-verifying — the
+  // product brief explicitly excludes photos of women.
+  items: [
+    {
+      clientName: "Ahmed M.",
+      beforeImg: "https://images.unsplash.com/photo-1517836357463-d25dfeac3438?w=600&q=80&auto=format&fit=crop",
+      afterImg: "https://images.unsplash.com/photo-1581009146145-b5ef050c2e1e?w=600&q=80&auto=format&fit=crop",
+      summary: { ar: "-١٢ كجم في ١٦ أسبوع", en: "-12 kg in 16 weeks" },
+      weeks: 16,
+    },
+    {
+      clientName: "Omar T.",
+      beforeImg: "https://images.unsplash.com/photo-1532029837206-abbe2b7620e3?w=600&q=80&auto=format&fit=crop",
+      afterImg: "https://images.unsplash.com/photo-1517963879433-6ad2b056d712?w=600&q=80&auto=format&fit=crop",
+      summary: { ar: "+٦ كجم عضل، -٤٪ دهون", en: "+6 kg lean, -4% fat" },
+      weeks: 20,
+    },
+    {
+      clientName: "Karim H.",
+      beforeImg: "https://images.unsplash.com/photo-1521804906057-1df8fdb718b7?w=600&q=80&auto=format&fit=crop",
+      afterImg: "https://images.unsplash.com/photo-1599058917765-a780eda07a3e?w=600&q=80&auto=format&fit=crop",
+      summary: { ar: "٢١٪ → ١٢٪ دهون", en: "21% → 12% body fat" },
+      weeks: 24,
+    },
+  ],
 };
 
 export const defaultTestimonials: TestimonialsContent = {
@@ -65,11 +95,11 @@ export const defaultTestimonials: TestimonialsContent = {
       transformation: { ar: "-١٢ كجم في ٤ أشهر", en: "-12 kg in 4 months" },
     },
     {
-      name: "Sara K.",
-      age: 24,
+      name: "Youssef A.",
+      age: 31,
       quote: {
-        ar: "البرنامج اشتغل لأن المدرب اشتغل معايا.",
-        en: "The program worked because the coach worked with me.",
+        ar: "البرنامج اشتغل لأن المدرب اشتغل معايا — مش بس ورّقني خطة.",
+        en: "The program worked because the coach worked with me — not just handed me a plan.",
       },
       transformation: { ar: "+٦ كجم عضل", en: "+6 kg lean" },
     },

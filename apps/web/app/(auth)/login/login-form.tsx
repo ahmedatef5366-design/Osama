@@ -64,13 +64,18 @@ export function LoginForm() {
 
   return (
     <form
-      className="w-full max-w-md space-y-6 rounded-xl border border-border bg-surface/80 backdrop-blur p-8 sm:p-10"
+      className="w-full max-w-md space-y-7 rounded-2xl border border-border bg-surface/80 backdrop-blur p-8 sm:p-10 shadow-[0_30px_80px_-30px_rgba(0,0,0,0.6)]"
       onSubmit={handleSubmit(onSubmit)}
       noValidate
     >
-      <header className="space-y-2">
-        <h1 className="font-display text-text-1 text-4xl font-extrabold">{t("title")}</h1>
-        <p className="text-text-2 text-sm">{t("subtitle")}</p>
+      <header className="space-y-3">
+        <div className="flex items-center gap-2 font-mono text-text-3 text-[10px] uppercase tracking-[0.3em]">
+          <span className="h-1 w-1 rounded-full bg-accent" />
+          <span>OSAMA</span>
+          <span className="h-px w-6 bg-border" />
+          <span>{t("subtitle")}</span>
+        </div>
+        <h1 className="font-display text-text-1 text-4xl font-extrabold leading-tight">{t("title")}</h1>
       </header>
 
       <div className="space-y-4">

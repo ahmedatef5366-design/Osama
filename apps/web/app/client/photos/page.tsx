@@ -59,7 +59,29 @@ export default function PhotosPage() {
               ))}
             </div>
           ) : photos.length === 0 ? (
-            <p className="text-text-2 text-sm">{t("empty")}</p>
+            <div className="flex flex-col items-center justify-center gap-4 rounded-xl border border-dashed border-border bg-surface/50 py-12 px-6 text-center">
+              <span
+                aria-hidden
+                className="grid h-14 w-14 place-items-center rounded-full bg-accent/10 text-accent ring-1 ring-accent/30"
+              >
+                <svg
+                  width="22"
+                  height="22"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="1.6"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  aria-hidden
+                >
+                  <rect x="3" y="5" width="18" height="14" rx="2" />
+                  <circle cx="12" cy="12" r="3.2" />
+                  <path d="M8 5l1.5-2h5L16 5" />
+                </svg>
+              </span>
+              <p className="max-w-xs text-text-2 text-sm">{t("empty")}</p>
+            </div>
           ) : (
             <div className="grid grid-cols-2 gap-3 sm:grid-cols-3">
               {photos.map((photo) => (

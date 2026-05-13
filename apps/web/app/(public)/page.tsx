@@ -4,6 +4,7 @@ import { Features } from "@/components/landing/features";
 import { Footer } from "@/components/landing/footer";
 import { Hero } from "@/components/landing/hero";
 import { Pricing } from "@/components/landing/pricing";
+import { Studio } from "@/components/landing/studio";
 import { Testimonials } from "@/components/landing/testimonials";
 import { Transformations } from "@/components/landing/transformations";
 import { getSection } from "@/lib/cms";
@@ -30,6 +31,7 @@ export default async function LandingPage() {
   return (
     <>
       <Hero content={hero} locale={locale} />
+      <Studio locale={locale} />
       <Features content={features} locale={locale} />
       <Transformations content={transformations} locale={locale} />
       <Testimonials content={testimonials} locale={locale} />
