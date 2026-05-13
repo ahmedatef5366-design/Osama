@@ -2,6 +2,8 @@ module github.com/ahmedatef5366-design/Osama/apps/api
 
 go 1.25.0
 
+toolchain go1.25.10
+
 require (
 	github.com/gofiber/fiber/v2 v2.52.13
 	github.com/golang-jwt/jwt/v5 v5.3.1

@@ -27,6 +27,9 @@ func ErrorHandler(log *zap.Logger) fiber.ErrorHandler {
 					zap.Error(err),
 				)
 			}
+			for k, v := range apiErr.Headers {
+				c.Set(k, v)
+			}
 			return c.Status(apiErr.Status).JSON(httpx.Response{
 				Error: apiErr.Message,
 				Code:  apiErr.Code,

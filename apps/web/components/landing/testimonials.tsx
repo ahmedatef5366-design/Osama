@@ -51,27 +51,51 @@ export function Testimonials({ content, locale }: TestimonialsProps) {
           {content.items.map((item, i) => (
             <motion.figure
               key={i}
-              className="mb-8 break-inside-avoid border-s-2 border-accent ps-6"
+              className="mb-8 break-inside-avoid rounded-xl border border-border bg-surface/60 p-6 transition-colors duration-300 hover:border-accent/40"
               variants={quoteVariants}
             >
+              <div className="mb-4 flex items-center gap-3">
+                <span
+                  aria-hidden
+                  className="grid h-10 w-10 place-items-center rounded-full bg-gradient-to-br from-accent/30 to-accent/5 font-mono text-text-1 text-sm font-medium ring-1 ring-accent/20"
+                >
+                  {monogram(item.name)}
+                </span>
+                <div className="leading-tight">
+                  <p className="text-text-1 text-sm font-medium">
+                    {item.name}
+                    {typeof item.age === "number" ? (
+                      <span className="text-text-3"> · {item.age}</span>
+                    ) : null}
+                  </p>
+                  {item.transformation ? (
+                    <p className="font-mono text-accent text-[11px] uppercase tracking-widest">
+                      {t(item.transformation, loc)}
+                    </p>
+                  ) : null}
+                </div>
+              </div>
               <blockquote className="font-display text-text-1 text-xl sm:text-2xl leading-snug">
                 &ldquo;{t(item.quote, loc)}&rdquo;
               </blockquote>
-              <figcaption className="mt-4 flex items-center justify-between text-sm">
-                <span className="text-text-1 font-medium">
-                  {item.name}
-                  {typeof item.age === "number" ? <span className="text-text-3"> · {item.age}</span> : null}
-                </span>
-                {item.transformation ? (
-                  <span className="font-mono text-accent text-xs uppercase tracking-widest">
-                    {t(item.transformation, loc)}
-                  </span>
-                ) : null}
-              </figcaption>
             </motion.figure>
           ))}
         </motion.div>
       </div>
     </section>
   );
+}
+
+/**
+ * Pulls the two-letter monogram from a display name (e.g. "Ahmed M." → "AM").
+ * Used as the tiny avatar stand-in next to each quote — keeps the design
+ * editorial without committing to either a) photographing real clients
+ * or b) using AI-generated faces.
+ */
+function monogram(name: string): string {
+  const parts = name.trim().split(/\s+/).filter(Boolean);
+  if (parts.length === 0) return "·";
+  const first = parts[0]?.[0] ?? "";
+  const last = parts[parts.length - 1]?.[0] ?? "";
+  return (first + last).toUpperCase();
 }

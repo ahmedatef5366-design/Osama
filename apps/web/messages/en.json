@@ -40,6 +40,44 @@
         "4": "Direct coach messaging",
         "5": "Detailed weekly reports"
       }
+    },
+    "nav": {
+      "brand": "Osama",
+      "features": "Method",
+      "work": "Results",
+      "pricing": "Plans",
+      "faq": "FAQ",
+      "login": "Log in",
+      "start": "Start"
+    },
+    "methodology": {
+      "eyebrow": "02 / The method",
+      "title": "3 steps — nothing else.",
+      "subtitle": "No vague promises. A clear process that keeps working as long as you do.",
+      "steps": {
+        "1": {
+          "label": "Step one",
+          "title": "Full assessment",
+          "body": "Discovery call, measurements, and a deep look at your training and nutrition history — before any plan is written."
+        },
+        "2": {
+          "label": "Step two",
+          "title": "A plan built for you",
+          "body": "Training and nutrition written specifically for your body, schedule, and goals — adjusted weekly based on actual check-ins."
+        },
+        "3": {
+          "label": "Step three",
+          "title": "Daily follow-up",
+          "body": "You log. I read. We adjust. No week passes without someone looking at your numbers."
+        }
+      }
+    },
+    "cta": {
+      "eyebrow": "07 / Let's start",
+      "title": "Real change starts with one decision.",
+      "subtitle": "Take 15 minutes — we'll talk, see if the fit is right, and map out your plan.",
+      "primary": "Book a call",
+      "secondary": "Read the method"
     }
   },
   "login": {

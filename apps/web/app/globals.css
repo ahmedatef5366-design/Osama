@@ -198,3 +198,7 @@ html[dir="rtl"] body {
 
 /* ─── RTL polish ──────────────────────────────────────────────────── */
 html[dir="rtl"] .ghost-num { font-family: var(--font-display), "Syne", sans-serif; }
+
+/* Smooth anchor scrolling with offset for the sticky nav. */
+html { scroll-behavior: smooth; }
+section[id] { scroll-margin-top: 80px; }

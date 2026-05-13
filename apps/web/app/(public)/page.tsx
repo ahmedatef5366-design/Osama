@@ -1,11 +1,16 @@
 import { getLocale } from "next-intl/server";
+import { CtaBanner } from "@/components/landing/cta-banner";
 import { Faq } from "@/components/landing/faq";
 import { Features } from "@/components/landing/features";
 import { Footer } from "@/components/landing/footer";
 import { Hero } from "@/components/landing/hero";
+import { Methodology } from "@/components/landing/methodology";
 import { Pricing } from "@/components/landing/pricing";
+import { SiteNav } from "@/components/landing/site-nav";
+import { Studio } from "@/components/landing/studio";
 import { Testimonials } from "@/components/landing/testimonials";
 import { Transformations } from "@/components/landing/transformations";
+import type { Locale } from "@/types/cms";
 import { getSection } from "@/lib/cms";
 
 /**
@@ -27,14 +32,20 @@ export default async function LandingPage() {
       getSection("footer"),
     ]);
 
+  const loc = (locale === "en" ? "en" : "ar") as Locale;
+
   return (
     <>
+      <SiteNav locale={loc} />
       <Hero content={hero} locale={locale} />
+      <Studio locale={locale} />
+      <Methodology locale={loc} />
       <Features content={features} locale={locale} />
       <Transformations content={transformations} locale={locale} />
       <Testimonials content={testimonials} locale={locale} />
       <Pricing content={pricing} locale={locale} />
       <Faq content={faq} locale={locale} />
+      <CtaBanner />
       <Footer content={footer} locale={locale} />
     </>
   );

@@ -65,9 +65,9 @@ export async function getSection<K extends SectionKey>(
 export async function getSectionAdmin<K extends SectionKey>(
   key: K,
 ): Promise<Section<K> | null> {
-  const cookieHeader = cookies()
+  const cookieHeader = (await cookies())
     .getAll()
-    .map((c) => `${c.name}=${c.value}`)
+    .map((c: { name: string; value: string }) => `${c.name}=${c.value}`)
     .join("; ");
   const res = await fetchSectionInner(key, { cookie: cookieHeader });
   return res as Section<K> | null;
