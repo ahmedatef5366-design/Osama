@@ -12,8 +12,10 @@ type Props = {
 };
 
 const SECTIONS = [
+  { id: "coach", key: "coach" },
   { id: "features", key: "features" },
   { id: "transformations", key: "work" },
+  { id: "calculator", key: "calculator" },
   { id: "pricing", key: "pricing" },
   { id: "faq", key: "faq" },
 ] as const;

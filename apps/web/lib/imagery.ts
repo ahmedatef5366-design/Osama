@@ -82,3 +82,54 @@ export const equipmentRack: UnsplashAsset = {
     en: "Row of dumbbells on a rack",
   },
 };
+
+// Coach editorial — same subject as login split but bigger and tighter
+// crop. Used in the CoachBio section. Reuses the verified photo id.
+export const coachEditorial: UnsplashAsset = {
+  id: "photo-1567013127542-490d757e51fc",
+  src: unsplash("photo-1567013127542-490d757e51fc", 1400),
+  alt: {
+    ar: "أسامة المدرّب في صالة التدريب",
+    en: "Osama the coach in the training studio",
+  },
+};
+
+// Article 1 — periodisation / programming. A barbell rack closeup.
+export const articleProgramming: UnsplashAsset = {
+  id: "photo-1534438327276-14e5300c3a48",
+  src: unsplash("photo-1534438327276-14e5300c3a48", 1200),
+  alt: {
+    ar: "بار حديد للأوزان الثقيلة",
+    en: "Loaded barbell ready to lift",
+  },
+};
+
+// Article 2 — nutrition. A meal-prep flatlay (no people).
+export const articleNutrition: UnsplashAsset = {
+  id: "photo-1490645935967-10de6ba17061",
+  src: unsplash("photo-1490645935967-10de6ba17061", 1200),
+  alt: {
+    ar: "وجبة متوازنة بالبروتين والكارب",
+    en: "Balanced plate with protein and carbs",
+  },
+};
+
+// Article 3 — recovery / sleep. Empty gym at low light.
+export const articleRecovery: UnsplashAsset = {
+  id: "photo-1540497077202-7c8a3999166f",
+  src: unsplash("photo-1540497077202-7c8a3999166f", 1200),
+  alt: {
+    ar: "صالة جيم هادئة بعد التدريب",
+    en: "Quiet gym after a session",
+  },
+};
+
+// Results page hero — wide locker-room / studio shot.
+export const resultsHero: UnsplashAsset = {
+  id: "photo-1571019613454-1cb2f99b2d8b",
+  src: unsplash("photo-1571019613454-1cb2f99b2d8b", 1800),
+  alt: {
+    ar: "صالة تدريب مفتوحة بضوء طبيعي",
+    en: "Open training floor with natural light",
+  },
+};

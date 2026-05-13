@@ -116,7 +116,7 @@ export const defaultTestimonials: TestimonialsContent = {
 };
 
 export const defaultPricing: PricingContent = {
-  visible: false,
+  visible: true,
   title: { ar: "اختر الباقة المناسبة", en: "Pick the right plan" },
   subtitle: { ar: "ابدأ بأي خطة — التحويل في أي وقت", en: "Start anywhere — switch any time" },
   tiers: [
@@ -203,6 +203,8 @@ export const defaultFooter: FooterContent = {
       title: { ar: "الموقع", en: "Site" },
       links: [
         { label: { ar: "الرئيسية", en: "Home" }, href: "/" },
+        { label: { ar: "النتائج", en: "Results" }, href: "/results" },
+        { label: { ar: "المقالات", en: "Articles" }, href: "/articles" },
         { label: { ar: "تسجيل الدخول", en: "Log in" }, href: "/login" },
       ],
     },
