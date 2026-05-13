@@ -26,7 +26,9 @@ import (
 	db "github.com/ahmedatef5366-design/Osama/apps/api/internal/db/generated"
 	"github.com/ahmedatef5366-design/Osama/apps/api/internal/logger"
 	"github.com/ahmedatef5366-design/Osama/apps/api/internal/middleware"
+	"github.com/ahmedatef5366-design/Osama/apps/api/internal/nutrition"
 	"github.com/ahmedatef5366-design/Osama/apps/api/internal/routes"
+	"github.com/ahmedatef5366-design/Osama/apps/api/internal/workouts"
 )
 
 func main() {
@@ -79,6 +81,12 @@ func main() {
 	contentSvc := content.NewService(pool, queries, rdb, revalidator)
 	contentH := content.NewHandler(contentSvc)
 
+	workoutsSvc := workouts.NewService(pool, queries)
+	workoutsH := workouts.NewHandler(workoutsSvc)
+
+	nutritionSvc := nutrition.NewService(pool, queries)
+	nutritionH := nutrition.NewHandler(nutritionSvc)
+
 	if err := bootstrapAdmin(ctx, cfg, queries, log); err != nil {
 		log.Warn("bootstrap_admin_skipped", zap.Error(err))
 	}
@@ -99,11 +107,13 @@ func main() {
 	app.Use(middleware.RateLimit(rdb, cfg.RateLimitPerMinute))
 
 	routes.Register(app, routes.Deps{
-		Queries: queries,
-		Tokens:  tokens,
-		Auth:    authH,
-		Clients: clientsH,
-		Content: contentH,
+		Queries:   queries,
+		Tokens:    tokens,
+		Auth:      authH,
+		Clients:   clientsH,
+		Content:   contentH,
+		Workouts:  workoutsH,
+		Nutrition: nutritionH,
 	})
 
 	// Serve in a goroutine so we can listen for shutdown signals.

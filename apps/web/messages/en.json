@@ -108,6 +108,126 @@
         "faq": "FAQ",
         "footer": "Footer"
       }
+    },
+    "clientDetail": {
+      "backToList": "Clients",
+      "active": "Active",
+      "inactive": "Inactive",
+      "tabs": {
+        "overview": "Overview",
+        "workout": "Workout",
+        "nutrition": "Nutrition",
+        "progress": "Progress"
+      },
+      "stats": {
+        "weight": "Weight",
+        "height": "Height",
+        "age": "Age",
+        "startDate": "Started"
+      },
+      "goals": {
+        "fat_loss": "Fat loss",
+        "muscle_gain": "Muscle gain",
+        "recomposition": "Recomposition",
+        "athletic": "Athletic"
+      },
+      "overview": {
+        "identity": "Identity",
+        "metrics": "Metrics",
+        "dates": "Dates",
+        "notes": "Health notes",
+        "noNotes": "No notes recorded.",
+        "name": "Name",
+        "sex": "Sex",
+        "age": "Age",
+        "experienceLevel": "Experience",
+        "currentWeightKg": "Weight (kg)",
+        "heightCm": "Height (cm)",
+        "goal": "Goal",
+        "activityLevel": "Activity level",
+        "startDate": "Start date",
+        "targetDate": "Target date",
+        "createdAt": "Created at"
+      },
+      "workout": {
+        "plans": "Workout plans",
+        "newPlan": "New plan",
+        "noPlanYet": "No workout plan yet.",
+        "active": "active",
+        "addDay": "Add day",
+        "saveAsTemplate": "Save as template",
+        "noDaysYet": "No days yet — add one to start.",
+        "searchExercise": "Search exercise library…",
+        "exercisesShort": "exercises",
+        "removeDay": "Remove day"
+      },
+      "nutrition": {
+        "plans": "Nutrition plans",
+        "newPlan": "New plan",
+        "noPlanYet": "No nutrition plan yet.",
+        "active": "active",
+        "targets": "Targets",
+        "mode": "Mode",
+        "calories": "Calories",
+        "protein": "Protein (g)",
+        "carbs": "Carbs (g)",
+        "fat": "Fat (g)",
+        "meals": "Meals",
+        "addMeal": "Add meal",
+        "removeMeal": "Remove",
+        "noMealsYet": "No meals yet.",
+        "items": "items",
+        "searchFood": "Search food database…",
+        "calc": {
+          "title": "Macro calculator",
+          "activity": "Activity",
+          "goal": "Goal",
+          "submit": "Calculate",
+          "applyToPlan": "Apply to plan",
+          "calories": "Calories",
+          "protein": "Protein",
+          "fat": "Fat",
+          "missingProfileData": "Client needs weight, height, age and sex."
+        }
+      },
+      "progress": {
+        "title": "Progress",
+        "comingSoon": "Weight & body-measurement charts arrive with Phase 4."
+      }
+    },
+    "plans": {
+      "title": "Plans",
+      "subtitle": "Manage the exercise library and reusable workout templates.",
+      "exerciseLibrary": "Exercise library",
+      "newExercise": "New exercise",
+      "cancel": "Cancel",
+      "save": "Save",
+      "search": "Search…",
+      "noResults": "No results.",
+      "templates": "Templates",
+      "noTemplates": "No templates yet — save a client plan to reuse it.",
+      "delete": "Delete"
+    },
+    "nutrition": {
+      "title": "Nutrition",
+      "subtitle": "Manage the global food database and bulk-import entries.",
+      "foodDatabase": "Food database",
+      "newFood": "New food",
+      "importCsv": "Import CSV",
+      "imported": "Imported {count} entries.",
+      "search": "Search foods…",
+      "noResults": "No foods yet.",
+      "delete": "Delete",
+      "cancel": "Cancel",
+      "save": "Save",
+      "page": "Page {page} of {totalPages}",
+      "col": {
+        "name": "Name",
+        "kcal": "kcal/100g",
+        "p": "P",
+        "c": "C",
+        "f": "F"
+      }
     }
   },
   "client": {

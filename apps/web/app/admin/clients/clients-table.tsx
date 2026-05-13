@@ -2,6 +2,7 @@
 
 import { useQuery } from "@tanstack/react-query";
 import { useTranslations } from "next-intl";
+import { useRouter } from "next/navigation";
 import { useMemo, useState } from "react";
 import { api } from "@/lib/api";
 import { Input } from "@/components/ui/input";
@@ -13,6 +14,7 @@ type Filter = "all" | "active" | "inactive";
 
 export function ClientsTable() {
   const t = useTranslations("admin.clients");
+  const router = useRouter();
   const [search, setSearch] = useState("");
   const [filter, setFilter] = useState<Filter>("all");
 
@@ -86,7 +88,11 @@ export function ClientsTable() {
             </thead>
             <tbody>
               {data.data.map((c) => (
-                <tr key={c.id} className="border-t border-border hover:bg-surface/60 transition-colors">
+                <tr
+                  key={c.id}
+                  onClick={() => router.push(`/admin/clients/${c.id}`)}
+                  className="border-t border-border hover:bg-surface/60 transition-colors cursor-pointer"
+                >
                   <td className="px-4 py-3 text-text-1">{c.name}</td>
                   <td className="px-4 py-3 text-text-2 text-sm">{c.goal ?? "—"}</td>
                   <td className="px-4 py-3 font-mono text-text-2 text-sm tabular-nums">
