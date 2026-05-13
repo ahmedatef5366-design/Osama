@@ -10,6 +10,7 @@ sql:
       - migrations/0005_progress.up.sql
       - migrations/0006_checkin_messages.up.sql
       - migrations/0007_cms.up.sql
+      - migrations/0008_cms_seed.up.sql
     gen:
       go:
         package: db

@@ -12,16 +12,23 @@ import (
 
 type Querier interface {
 	CountClients(ctx context.Context, arg CountClientsParams) (int64, error)
+	CountSiteContentHistory(ctx context.Context, sectionKey string) (int64, error)
 	CountUsersByRole(ctx context.Context, role string) (int64, error)
 	CreateClient(ctx context.Context, arg CreateClientParams) (Client, error)
 	CreateUser(ctx context.Context, arg CreateUserParams) (User, error)
 	GetClient(ctx context.Context, id pgtype.UUID) (Client, error)
 	GetClientByUserID(ctx context.Context, userID pgtype.UUID) (Client, error)
+	GetSiteContent(ctx context.Context, sectionKey string) (GetSiteContentRow, error)
+	GetSiteContentHistory(ctx context.Context, id pgtype.UUID) (SiteContentHistory, error)
 	GetUserByEmail(ctx context.Context, email string) (User, error)
 	GetUserByID(ctx context.Context, id pgtype.UUID) (User, error)
+	InsertSiteContentHistory(ctx context.Context, arg InsertSiteContentHistoryParams) (SiteContentHistory, error)
 	ListClients(ctx context.Context, arg ListClientsParams) ([]Client, error)
+	ListSiteContent(ctx context.Context) ([]ListSiteContentRow, error)
+	ListSiteContentHistory(ctx context.Context, arg ListSiteContentHistoryParams) ([]SiteContentHistory, error)
 	TouchUserLastLogin(ctx context.Context, id pgtype.UUID) error
 	UpdateClient(ctx context.Context, arg UpdateClientParams) (Client, error)
+	UpsertSiteContent(ctx context.Context, arg UpsertSiteContentParams) (UpsertSiteContentRow, error)
 }
 
 var _ Querier = (*Queries)(nil)
