@@ -214,7 +214,7 @@ function DayCard({
     const newIndex = day.exercises.findIndex((x) => x.id === over.id);
     if (oldIndex < 0 || newIndex < 0) return;
     const reordered = arrayMove(day.exercises, oldIndex, newIndex);
-    reordered.forEach((ex, i) => {
+    reordered.forEach((ex: WorkoutExercise, i: number) => {
       if (ex.sortOrder !== i + 1) {
         patchExercise.mutate({ id: ex.id, body: { sortOrder: i + 1 } });
       }

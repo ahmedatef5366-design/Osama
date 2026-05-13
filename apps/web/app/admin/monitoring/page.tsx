@@ -4,6 +4,7 @@ import { useCallback, useEffect, useState } from "react";
 import { useTranslations } from "next-intl";
 import { apiData } from "@/lib/api";
 import { Card, CardHeader, CardBody, CardTitle } from "@/components/ui/card";
+import { StaggerReveal, RevealItem } from "@/components/motion";
 import type {
   DashboardStats,
   ComplianceTrend,
@@ -55,18 +56,20 @@ function StatsSection() {
       <h1 className="mb-4 font-display text-4xl font-extrabold text-text-1">
         {t("title")}
       </h1>
-      <div className="grid grid-cols-2 gap-4 md:grid-cols-4">
+      <StaggerReveal className="grid grid-cols-2 gap-4 md:grid-cols-4">
         {items.map(({ key, value, suffix }) => (
-          <Card key={key}>
-            <CardBody className="text-center">
-              <p className="font-mono text-3xl font-bold text-accent">
-                {value != null ? `${value}${suffix ?? ""}` : "—"}
-              </p>
-              <p className="mt-1 text-xs text-text-2">{t(key)}</p>
-            </CardBody>
-          </Card>
+          <RevealItem key={key}>
+            <Card>
+              <CardBody className="text-center">
+                <p className="font-mono text-3xl font-bold text-accent">
+                  {value != null ? `${value}${suffix ?? ""}` : "—"}
+                </p>
+                <p className="mt-1 text-xs text-text-2">{t(key)}</p>
+              </CardBody>
+            </Card>
+          </RevealItem>
         ))}
-      </div>
+      </StaggerReveal>
     </div>
   );
 }

@@ -1,3 +1,5 @@
+import { PageTransition } from "@/components/motion";
+
 export default function AuthLayout({
   children,
 }: {
@@ -5,7 +7,7 @@ export default function AuthLayout({
 }) {
   return (
     <main className="relative isolate min-h-screen bg-mesh flex items-center justify-center px-6 py-12">
-      {children}
+      <PageTransition>{children}</PageTransition>
     </main>
   );
 }

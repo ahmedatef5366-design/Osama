@@ -1,3 +1,6 @@
+"use client";
+
+import { motion, type Variants } from "framer-motion";
 import { t, asLocale } from "@/lib/i18n-helpers";
 import type { TestimonialsContent } from "@/types/cms";
 
@@ -6,12 +9,21 @@ type TestimonialsProps = {
   locale: string;
 };
 
-/**
- * 2-up masonry-ish layout (`columns-1 sm:columns-2`) so quotes of varying
- * length tile without leaving the awkward white gaps a CSS grid would.
- * Each card is purely typographic — no avatars by default, no card chrome,
- * just letterforms doing the work.
- */
+const headingVariants: Variants = {
+  hidden: { opacity: 0, y: 20 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: "easeOut" } },
+};
+
+const stagger: Variants = {
+  hidden: {},
+  visible: { transition: { staggerChildren: 0.1, delayChildren: 0.15 } },
+};
+
+const quoteVariants: Variants = {
+  hidden: { opacity: 0, y: 16 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.4, ease: "easeOut" } },
+};
+
 export function Testimonials({ content, locale }: TestimonialsProps) {
   if (!content.visible || content.items.length === 0) return null;
   const loc = asLocale(locale);
@@ -19,18 +31,31 @@ export function Testimonials({ content, locale }: TestimonialsProps) {
   return (
     <section className="bg-bg py-24 sm:py-32" id="testimonials">
       <div className="mx-auto max-w-6xl px-6">
-        <h2 className="mb-12 font-display text-text-1 text-4xl sm:text-5xl font-extrabold sm:mb-16">
+        <motion.h2
+          className="mb-12 font-display text-text-1 text-4xl sm:text-5xl font-extrabold sm:mb-16"
+          variants={headingVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-60px" }}
+        >
           {t(content.title, loc)}
-        </h2>
+        </motion.h2>
 
-        <div className="columns-1 gap-8 sm:columns-2">
+        <motion.div
+          className="columns-1 gap-8 sm:columns-2"
+          variants={stagger}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-40px" }}
+        >
           {content.items.map((item, i) => (
-            <figure
+            <motion.figure
               key={i}
               className="mb-8 break-inside-avoid border-s-2 border-accent ps-6"
+              variants={quoteVariants}
             >
               <blockquote className="font-display text-text-1 text-xl sm:text-2xl leading-snug">
-                “{t(item.quote, loc)}”
+                &ldquo;{t(item.quote, loc)}&rdquo;
               </blockquote>
               <figcaption className="mt-4 flex items-center justify-between text-sm">
                 <span className="text-text-1 font-medium">
@@ -43,9 +68,9 @@ export function Testimonials({ content, locale }: TestimonialsProps) {
                   </span>
                 ) : null}
               </figcaption>
-            </figure>
+            </motion.figure>
           ))}
-        </div>
+        </motion.div>
       </div>
     </section>
   );
