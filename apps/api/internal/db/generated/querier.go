@@ -11,23 +11,110 @@ import (
 )
 
 type Querier interface {
+	// One row per element in the parallel arrays. Used when the client submits
+	// a finished session (all sets at once) — saves N round-trips.
+	BulkInsertWorkoutLogs(ctx context.Context, arg BulkInsertWorkoutLogsParams) error
 	CountClients(ctx context.Context, arg CountClientsParams) (int64, error)
+	CountExerciseLibrary(ctx context.Context, arg CountExerciseLibraryParams) (int64, error)
+	CountFood(ctx context.Context, search *string) (int64, error)
+	CountPlanTemplates(ctx context.Context) (int64, error)
 	CountSiteContentHistory(ctx context.Context, sectionKey string) (int64, error)
 	CountUsersByRole(ctx context.Context, role string) (int64, error)
 	CreateClient(ctx context.Context, arg CreateClientParams) (Client, error)
+	CreateExercise(ctx context.Context, arg CreateExerciseParams) (Exercise, error)
+	CreateExerciseLibraryEntry(ctx context.Context, arg CreateExerciseLibraryEntryParams) (CreateExerciseLibraryEntryRow, error)
+	CreateFood(ctx context.Context, arg CreateFoodParams) (CreateFoodRow, error)
+	CreateFoodLog(ctx context.Context, arg CreateFoodLogParams) (FoodLog, error)
+	CreateMeal(ctx context.Context, arg CreateMealParams) (Meal, error)
+	CreateNutritionPlan(ctx context.Context, arg CreateNutritionPlanParams) (NutritionPlan, error)
+	CreatePlanTemplate(ctx context.Context, arg CreatePlanTemplateParams) (PlanTemplate, error)
 	CreateUser(ctx context.Context, arg CreateUserParams) (User, error)
+	CreateWorkoutDay(ctx context.Context, arg CreateWorkoutDayParams) (WorkoutDay, error)
+	CreateWorkoutLog(ctx context.Context, arg CreateWorkoutLogParams) (WorkoutLog, error)
+	CreateWorkoutPlan(ctx context.Context, arg CreateWorkoutPlanParams) (WorkoutPlan, error)
+	DeactivateOtherNutritionPlans(ctx context.Context, arg DeactivateOtherNutritionPlansParams) error
+	// Used inside a transaction when activating a plan to enforce one-active rule.
+	DeactivateOtherWorkoutPlans(ctx context.Context, arg DeactivateOtherWorkoutPlansParams) error
+	DeleteExercise(ctx context.Context, id pgtype.UUID) error
+	DeleteExerciseLibraryEntry(ctx context.Context, id pgtype.UUID) error
+	DeleteFood(ctx context.Context, id pgtype.UUID) error
+	DeleteFoodLog(ctx context.Context, arg DeleteFoodLogParams) error
+	DeleteMeal(ctx context.Context, id pgtype.UUID) error
+	DeleteNutritionPlan(ctx context.Context, id pgtype.UUID) error
+	DeletePlanTemplate(ctx context.Context, id pgtype.UUID) error
+	DeleteWorkoutDay(ctx context.Context, id pgtype.UUID) error
+	DeleteWorkoutPlan(ctx context.Context, id pgtype.UUID) error
+	GetActiveNutritionPlanForClient(ctx context.Context, clientID pgtype.UUID) (NutritionPlan, error)
+	GetActiveWorkoutPlanForClient(ctx context.Context, clientID pgtype.UUID) (WorkoutPlan, error)
 	GetClient(ctx context.Context, id pgtype.UUID) (Client, error)
 	GetClientByUserID(ctx context.Context, userID pgtype.UUID) (Client, error)
+	GetExercise(ctx context.Context, id pgtype.UUID) (Exercise, error)
+	GetExerciseLibraryEntry(ctx context.Context, id pgtype.UUID) (GetExerciseLibraryEntryRow, error)
+	GetFoodByBarcode(ctx context.Context, barcode *string) (GetFoodByBarcodeRow, error)
+	GetFoodByID(ctx context.Context, id pgtype.UUID) (GetFoodByIDRow, error)
+	GetLatestLogForExercise(ctx context.Context, arg GetLatestLogForExerciseParams) (WorkoutLog, error)
+	GetMeal(ctx context.Context, id pgtype.UUID) (Meal, error)
+	GetNutritionPlan(ctx context.Context, id pgtype.UUID) (NutritionPlan, error)
+	GetPlanTemplate(ctx context.Context, id pgtype.UUID) (PlanTemplate, error)
 	GetSiteContent(ctx context.Context, sectionKey string) (GetSiteContentRow, error)
 	GetSiteContentHistory(ctx context.Context, id pgtype.UUID) (SiteContentHistory, error)
 	GetUserByEmail(ctx context.Context, email string) (User, error)
 	GetUserByID(ctx context.Context, id pgtype.UUID) (User, error)
+	GetWorkoutDay(ctx context.Context, id pgtype.UUID) (WorkoutDay, error)
+	GetWorkoutPlan(ctx context.Context, id pgtype.UUID) (WorkoutPlan, error)
 	InsertSiteContentHistory(ctx context.Context, arg InsertSiteContentHistoryParams) (SiteContentHistory, error)
 	ListClients(ctx context.Context, arg ListClientsParams) ([]Client, error)
+	ListExerciseLibrary(ctx context.Context, arg ListExerciseLibraryParams) ([]ListExerciseLibraryRow, error)
+	// ════════════════════════════════════════
+	// Exercises (rows inside a day)
+	// ════════════════════════════════════════
+	ListExercisesForDay(ctx context.Context, dayID pgtype.UUID) ([]Exercise, error)
+	ListExercisesForPlan(ctx context.Context, planID pgtype.UUID) ([]Exercise, error)
+	// ════════════════════════════════════════
+	// Food log (client logs intake)
+	// ════════════════════════════════════════
+	ListFoodLogForClient(ctx context.Context, arg ListFoodLogForClientParams) ([]FoodLog, error)
+	// ════════════════════════════════════════
+	// Meals (rows inside a plan)
+	// ════════════════════════════════════════
+	ListMealsForPlan(ctx context.Context, planID pgtype.UUID) ([]Meal, error)
+	// ════════════════════════════════════════
+	// Nutrition plans
+	// ════════════════════════════════════════
+	ListNutritionPlansForClient(ctx context.Context, clientID pgtype.UUID) ([]NutritionPlan, error)
+	// ════════════════════════════════════════
+	// Plan templates
+	// ════════════════════════════════════════
+	ListPlanTemplates(ctx context.Context, arg ListPlanTemplatesParams) ([]PlanTemplate, error)
 	ListSiteContent(ctx context.Context) ([]ListSiteContentRow, error)
 	ListSiteContentHistory(ctx context.Context, arg ListSiteContentHistoryParams) ([]SiteContentHistory, error)
+	// ════════════════════════════════════════
+	// Workout days
+	// ════════════════════════════════════════
+	ListWorkoutDaysForPlan(ctx context.Context, planID pgtype.UUID) ([]WorkoutDay, error)
+	// ════════════════════════════════════════
+	// Workout logs
+	// ════════════════════════════════════════
+	ListWorkoutLogsForClient(ctx context.Context, arg ListWorkoutLogsForClientParams) ([]WorkoutLog, error)
+	// ════════════════════════════════════════
+	// Workout plans
+	// ════════════════════════════════════════
+	ListWorkoutPlansForClient(ctx context.Context, clientID pgtype.UUID) ([]WorkoutPlan, error)
+	// ════════════════════════════════════════
+	// Food database (global, reusable)
+	// ════════════════════════════════════════
+	SearchFood(ctx context.Context, arg SearchFoodParams) ([]SearchFoodRow, error)
+	// Calorie / macro totals for a client between two timestamps.
+	SumFoodLogForDay(ctx context.Context, arg SumFoodLogForDayParams) (SumFoodLogForDayRow, error)
 	TouchUserLastLogin(ctx context.Context, id pgtype.UUID) error
 	UpdateClient(ctx context.Context, arg UpdateClientParams) (Client, error)
+	UpdateExercise(ctx context.Context, arg UpdateExerciseParams) (Exercise, error)
+	UpdateExerciseLibraryEntry(ctx context.Context, arg UpdateExerciseLibraryEntryParams) (UpdateExerciseLibraryEntryRow, error)
+	UpdateFood(ctx context.Context, arg UpdateFoodParams) (UpdateFoodRow, error)
+	UpdateMeal(ctx context.Context, arg UpdateMealParams) (Meal, error)
+	UpdateNutritionPlan(ctx context.Context, arg UpdateNutritionPlanParams) (NutritionPlan, error)
+	UpdateWorkoutDay(ctx context.Context, arg UpdateWorkoutDayParams) (WorkoutDay, error)
+	UpdateWorkoutPlan(ctx context.Context, arg UpdateWorkoutPlanParams) (WorkoutPlan, error)
 	UpsertSiteContent(ctx context.Context, arg UpsertSiteContentParams) (UpsertSiteContentRow, error)
 }
 
