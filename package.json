@@ -1,0 +1,28 @@
+{
+  "name": "osama",
+  "version": "0.1.0",
+  "private": true,
+  "packageManager": "pnpm@9.15.1",
+  "workspaces": [
+    "apps/*"
+  ],
+  "scripts": {
+    "dev:web": "pnpm --filter @osama/web dev",
+    "build:web": "pnpm --filter @osama/web build",
+    "lint:web": "pnpm --filter @osama/web lint",
+    "typecheck:web": "pnpm --filter @osama/web typecheck",
+    "dev:api": "make -C apps/api dev",
+    "build:api": "make -C apps/api build",
+    "lint:api": "make -C apps/api lint",
+    "test:api": "make -C apps/api test",
+    "migrate:up": "make -C apps/api migrate-up",
+    "migrate:down": "make -C apps/api migrate-down",
+    "db:up": "docker compose up -d postgres redis",
+    "db:down": "docker compose down",
+    "db:reset": "docker compose down -v && docker compose up -d postgres redis"
+  },
+  "engines": {
+    "node": ">=20.11.1",
+    "pnpm": ">=9.0.0"
+  }
+}

@@ -1,0 +1,102 @@
+{
+  "meta": {
+    "title": "Osama — Personal Coaching Platform",
+    "description": "Tailor-made training and nutrition programs, led by a real coach."
+  },
+  "nav": {
+    "home": "Home",
+    "login": "Log in",
+    "logout": "Log out",
+    "dashboard": "Dashboard",
+    "clients": "Clients",
+    "plans": "Plans",
+    "nutrition": "Nutrition",
+    "monitoring": "Monitoring",
+    "cms": "Content",
+    "settings": "Settings",
+    "today": "Today",
+    "progress": "Progress",
+    "photos": "Photos",
+    "checkin": "Check-in"
+  },
+  "landing": {
+    "hero": {
+      "headlineL1": "Transform your body.",
+      "headlineL2": "Transform your life.",
+      "subheadline": "Training and nutrition programs designed just for you",
+      "cta": "Start your journey",
+      "metrics": {
+        "clients": "+2,400 clients",
+        "satisfaction": "98% satisfaction",
+        "rating": "4.9★ rating"
+      }
+    },
+    "features": {
+      "title": "Everything you need — in one place",
+      "items": {
+        "1": "Custom training plan",
+        "2": "Flexible nutrition system",
+        "3": "Daily check-ins",
+        "4": "Direct coach messaging",
+        "5": "Detailed weekly reports"
+      }
+    }
+  },
+  "login": {
+    "title": "Log in",
+    "subtitle": "Sign in to access your program",
+    "email": "Email",
+    "password": "Password",
+    "submit": "Sign in",
+    "submitting": "Signing in…",
+    "errors": {
+      "invalidEmail": "Invalid email address",
+      "invalidPassword": "Password is too short",
+      "invalidCredentials": "Incorrect email or password",
+      "network": "Could not reach the server"
+    }
+  },
+  "admin": {
+    "dashboard": {
+      "title": "Overview",
+      "stats": {
+        "activeClients": "Active clients",
+        "avgCompliance": "Avg compliance",
+        "atRisk": "At risk",
+        "todayCheckins": "Today's check-ins"
+      },
+      "soon": "Coming soon — Phase 5"
+    },
+    "clients": {
+      "title": "Clients",
+      "newClient": "New client",
+      "search": "Search by name…",
+      "empty": "No clients yet",
+      "columns": {
+        "name": "Name",
+        "goal": "Goal",
+        "weight": "Weight",
+        "active": "Active",
+        "joined": "Joined"
+      },
+      "filters": {
+        "all": "All",
+        "activeOnly": "Active only",
+        "inactiveOnly": "Inactive only"
+      }
+    }
+  },
+  "client": {
+    "today": {
+      "title": "Today's workout",
+      "soon": "Coming soon — Phase 4"
+    }
+  },
+  "common": {
+    "loading": "Loading…",
+    "error": "Something went wrong",
+    "retry": "Retry",
+    "save": "Save",
+    "cancel": "Cancel"
+  }
+}

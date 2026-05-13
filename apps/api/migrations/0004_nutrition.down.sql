@@ -1,0 +1,4 @@
+DROP TABLE IF EXISTS food_log;
+DROP TABLE IF EXISTS food_database;
+DROP TABLE IF EXISTS meals;
+DROP TABLE IF EXISTS nutrition_plans;
