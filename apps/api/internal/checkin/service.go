@@ -189,3 +189,127 @@ func (s *Service) AtRisk(ctx context.Context) ([]AtRiskClient, error) {
 	}
 	return out, nil
 }
+
+// Summary returns a roll-up of the client's last 7 days plus the
+// current consecutive-day streak. The streak window is computed by
+// pulling the distinct checkin dates and walking backwards from today
+// (or yesterday, if today isn't logged yet) over contiguous days.
+func (s *Service) Summary(ctx context.Context, clientID pgtype.UUID) (Summary, error) {
+	var sm Summary
+
+	// 1) Weekly aggregates over the last 7 calendar days.
+	err := s.pool.QueryRow(ctx,
+		`SELECT
+			COUNT(*)::int                                                  AS week_checkins,
+			COALESCE(AVG(diet_compliance), 0)::int                         AS week_compliance,
+			COALESCE(SUM(water_intake_cups), 0)::int                       AS week_water,
+			COALESCE(SUM(sleep_hours), 0)::int                             AS week_sleep,
+			COALESCE(SUM(cardio_minutes), 0)::int                          AS week_cardio,
+			BOOL_OR(checkin_date = CURRENT_DATE)                           AS checked_today
+		 FROM daily_checkin
+		 WHERE client_id = $1
+		   AND checkin_date >= CURRENT_DATE - INTERVAL '6 days'
+		   AND checkin_date <= CURRENT_DATE`,
+		clientID,
+	).Scan(
+		&sm.WeekCheckins, &sm.WeekCompliance, &sm.WeekWaterCups,
+		&sm.WeekSleepHours, &sm.WeekCardioMins, &sm.CheckedInToday,
+	)
+	if err != nil {
+		return sm, httpx.Internal("summary_week_failed", err)
+	}
+
+	// 2) Current streak — walk distinct checkin dates from today backwards.
+	rows, err := s.pool.Query(ctx,
+		`SELECT DISTINCT checkin_date
+		 FROM daily_checkin
+		 WHERE client_id = $1
+		   AND checkin_date <= CURRENT_DATE
+		 ORDER BY checkin_date DESC
+		 LIMIT 400`,
+		clientID,
+	)
+	if err != nil {
+		return sm, httpx.Internal("summary_dates_failed", err)
+	}
+	defer rows.Close()
+
+	var dates []time.Time
+	for rows.Next() {
+		var d pgtype.Date
+		if err := rows.Scan(&d); err != nil {
+			return sm, httpx.Internal("summary_date_scan_failed", err)
+		}
+		if d.Valid {
+			dates = append(dates, d.Time)
+		}
+	}
+
+	sm.CurrentStreak = computeCurrentStreak(dates, time.Now().UTC())
+	sm.LongestStreak = computeLongestStreak(dates)
+	return sm, nil
+}
+
+// computeCurrentStreak counts the consecutive days ending at today (or
+// yesterday if today isn't in the set). Dates are expected newest-first.
+func computeCurrentStreak(dates []time.Time, now time.Time) int {
+	if len(dates) == 0 {
+		return 0
+	}
+	today := time.Date(now.Year(), now.Month(), now.Day(), 0, 0, 0, 0, now.Location())
+	cursor := today
+	gotToday := sameDay(dates[0], today)
+	if !gotToday {
+		// Today missing — start from yesterday so a missed day TODAY
+		// doesn't show a 0 streak when yesterday is logged.
+		cursor = today.AddDate(0, 0, -1)
+		if !sameDay(dates[0], cursor) {
+			return 0
+		}
+	}
+	streak := 0
+	for _, d := range dates {
+		if sameDay(d, cursor) {
+			streak++
+			cursor = cursor.AddDate(0, 0, -1)
+		} else if d.Before(cursor) {
+			break
+		}
+	}
+	return streak
+}
+
+// computeLongestStreak walks the (newest-first) date set and tracks
+// the longest run of contiguous days.
+func computeLongestStreak(dates []time.Time) int {
+	if len(dates) == 0 {
+		return 0
+	}
+	// Sort ascending for a single forward pass. Avoid sort.Slice import
+	// pressure — small N (<=400), simple insertion is fine.
+	asc := make([]time.Time, len(dates))
+	copy(asc, dates)
+	for i := 1; i < len(asc); i++ {
+		for j := i; j > 0 && asc[j].Before(asc[j-1]); j-- {
+			asc[j], asc[j-1] = asc[j-1], asc[j]
+		}
+	}
+	longest, run := 1, 1
+	for i := 1; i < len(asc); i++ {
+		if asc[i].Sub(asc[i-1]) == 24*time.Hour {
+			run++
+			if run > longest {
+				longest = run
+			}
+		} else if !sameDay(asc[i], asc[i-1]) {
+			run = 1
+		}
+	}
+	return longest
+}
+
+func sameDay(a, b time.Time) bool {
+	ay, am, ad := a.Date()
+	by, bm, bd := b.Date()
+	return ay == by && am == bm && ad == bd
+}

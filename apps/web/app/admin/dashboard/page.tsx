@@ -5,6 +5,7 @@ import { useTranslations } from "next-intl";
 import { apiData } from "@/lib/api";
 import { Card, CardBody, CardHeader, CardTitle } from "@/components/ui/card";
 import { StaggerReveal, RevealItem } from "@/components/motion";
+import { AtRiskStrip } from "@/components/admin/at-risk-strip";
 import type { DashboardStats } from "@/types/api";
 
 export default function AdminDashboardPage() {
@@ -58,6 +59,8 @@ function DashboardContent() {
           </RevealItem>
         ))}
       </StaggerReveal>
+
+      <AtRiskStrip />
     </div>
   );
 }

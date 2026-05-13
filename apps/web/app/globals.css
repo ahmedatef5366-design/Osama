@@ -11,27 +11,37 @@
 :root {
   /* Surfaces — near-black with a hint of cool grey to feel premium, not bleak. */
   --bg:           #080B0F;
+  --surface-low:  #0B0F14;
   --surface:      #0F1419;
   --surface-high: #161C23;
+  --surface-edge: #1D262F;
   --border:       rgba(255, 255, 255, 0.07);
   --border-hover: rgba(255, 255, 255, 0.14);
+  --ring:         rgba(200, 241, 53, 0.45);
 
   /* Accent — electric lime. The platform's signature. Used sparingly. */
   --accent:      #C8F135;
+  --accent-soft: #DDF87A;
   --accent-dim:  rgba(200, 241, 53, 0.10);
   --accent-glow: rgba(200, 241, 53, 0.22);
   --accent-text: #9DC429;
+  --accent-mute: rgba(200, 241, 53, 0.55);
 
   /* Text — never pure white. Pure white on black hurts. */
   --text-1: #F0F4F8;
   --text-2: #7A8B9A;
   --text-3: #3D4F5C;
+  --text-on-accent: #080B0F;
 
-  /* Semantic */
+  /* Semantic — used by alerts, badges, and chart series. */
   --success: #00D68F;
+  --success-dim: rgba(0, 214, 143, 0.14);
   --warning: #FFB020;
+  --warning-dim: rgba(255, 176, 32, 0.14);
   --danger:  #FF4444;
+  --danger-dim: rgba(255, 68, 68, 0.14);
   --info:    #4BA3FF;
+  --info-dim: rgba(75, 163, 255, 0.14);
 
   /* Typography — fluid via clamp so things scale on mobile without media queries. */
   --text-xs:   clamp(0.7rem,  1.5vw, 0.75rem);
@@ -73,18 +83,49 @@ html {
   background: var(--bg);
 }
 
+/* The body itself carries the global grain so every section feels
+   hand-finished, not stamped out by a renderer. We inline the SVG as a
+   data-URI so there's no extra HTTP request and the texture loads with
+   the first paint. Pointer-events: none on the overlay child so it
+   never intercepts clicks. */
 body {
   background: var(--bg);
   color: var(--text-1);
   font-family: var(--font-body), "DM Sans", system-ui, sans-serif;
-  font-feature-settings: "ss01", "cv11";
+  font-feature-settings: "ss01", "cv11", "ss02";
+  font-optical-sizing: auto;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  letter-spacing: -0.005em;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
+  opacity: 0.04;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0.6 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+  mix-blend-mode: overlay;
 }
 
 html[dir="rtl"] body {
   font-family: var(--font-arabic), "Cairo", system-ui, sans-serif;
+  letter-spacing: 0;
+}
+
+/* Display headings get a tighter stack: less negative tracking in Arabic
+   so curves like ر, ل, ن don't visually collide. */
+h1, h2, h3, h4 {
+  letter-spacing: -0.02em;
+}
+html[dir="rtl"] h1,
+html[dir="rtl"] h2,
+html[dir="rtl"] h3,
+html[dir="rtl"] h4 {
+  letter-spacing: -0.005em;
 }
 
 ::selection {

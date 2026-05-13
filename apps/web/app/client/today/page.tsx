@@ -1,10 +1,13 @@
 "use client";
 
-import { useEffect, useState } from "react";
-import { useTranslations } from "next-intl";
+import { useEffect, useMemo, useState } from "react";
+import Link from "next/link";
+import { useLocale, useTranslations } from "next-intl";
 import { apiData } from "@/lib/api";
 import { Card, CardBody, CardHeader, CardTitle } from "@/components/ui/card";
-import type { WorkoutPlanFull } from "@/types/api";
+import { StreakStrip } from "@/components/client/streak-strip";
+import { HabitsCard } from "@/components/client/habits-card";
+import type { CheckinSummary, WorkoutPlanFull } from "@/types/api";
 
 export default function TodayPage() {
   return <TodayContent />;
@@ -12,34 +15,92 @@ export default function TodayPage() {
 
 function TodayContent() {
   const t = useTranslations("client.today");
+  const tSum = useTranslations("client.todaySummary");
+  const locale = useLocale();
   const [plan, setPlan] = useState<WorkoutPlanFull | null>(null);
+  const [summary, setSummary] = useState<CheckinSummary | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
 
   useEffect(() => {
+    let alive = true;
     (async () => {
       try {
-        const client = await apiData<{ id: string }>("/api/clients/me");
-        const data = await apiData<WorkoutPlanFull>(
-          `/api/clients/${client.id}/workout-plan`,
-        );
-        setPlan(data);
+        const [me, sum] = await Promise.allSettled([
+          apiData<{ id: string }>("/api/clients/me"),
+          apiData<CheckinSummary>("/api/checkin/summary"),
+        ]);
+        if (!alive) return;
+        if (sum.status === "fulfilled") setSummary(sum.value);
+        if (me.status === "fulfilled") {
+          try {
+            const data = await apiData<WorkoutPlanFull>(
+              `/api/clients/${me.value.id}/workout-plan`,
+            );
+            if (alive) setPlan(data);
+          } catch {
+            if (alive) setError(true);
+          }
+        } else {
+          setError(true);
+        }
       } catch {
-        setError(true);
+        if (alive) setError(true);
       } finally {
-        setLoading(false);
+        if (alive) setLoading(false);
       }
     })();
+    return () => {
+      alive = false;
+    };
   }, []);
 
   const dayIndex = new Date().getDay();
   const todayDay = plan?.days?.find((d) => d.dayOrder === dayIndex);
 
+  // Today's habit checklist mirrors the metrics the daily check-in form
+  // collects (water, sleep, training, diet, cardio). Ticking habits here
+  // is local-only — they're persisted when the user opens /client/checkin.
+  const habitDefaults = useMemo(
+    () => ({
+      water: false,
+      sleep: false,
+      training: false,
+      diet: false,
+      cardio: false,
+    }),
+    [],
+  );
+
   return (
     <div className="space-y-6">
-      <h1 className="font-display text-4xl font-extrabold text-text-1">
-        {t("title")}
-      </h1>
+      <header className="flex flex-wrap items-end justify-between gap-3">
+        <div>
+          <p className="font-mono text-[11px] uppercase tracking-[0.32em] text-text-3">
+            {new Date().toLocaleDateString(locale === "ar" ? "ar-EG" : "en-US", {
+              weekday: "long",
+              year: "numeric",
+              month: "long",
+              day: "numeric",
+            })}
+          </p>
+          <h1 className="font-display text-4xl font-extrabold text-text-1 mt-1">
+            {t("title")}
+          </h1>
+        </div>
+        {summary && !summary.checkedInToday ? (
+          <Link
+            href="/client/checkin"
+            className="btn-accent rounded-md px-4 py-2 text-sm font-semibold"
+          >
+            {tSum("checkinCta")}
+          </Link>
+        ) : null}
+      </header>
+
+      <StreakStrip summary={summary} loading={loading} />
+
+      <HabitsCard defaults={habitDefaults} />
 
       {loading ? (
         <div className="space-y-4">
@@ -64,9 +125,7 @@ function TodayContent() {
         </Card>
       ) : (
         <div className="space-y-3">
-          <h2 className="text-lg font-semibold text-text-1">
-            {todayDay.name}
-          </h2>
+          <h2 className="text-lg font-semibold text-text-1">{todayDay.name}</h2>
           {todayDay.exercises.map((ex) => (
             <Card key={ex.id}>
               <CardHeader>

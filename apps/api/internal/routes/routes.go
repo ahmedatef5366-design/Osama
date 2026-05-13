@@ -266,6 +266,7 @@ func Register(app *fiber.App, d Deps) {
 		checkinGroup.Post("", d.Checkin.Submit)
 		checkinGroup.Get("", d.Checkin.Get)
 		checkinGroup.Get("/history", d.Checkin.List)
+		checkinGroup.Get("/summary", d.Checkin.Summary)
 
 		// Admin: at-risk
 		api.Get("/admin/at-risk",

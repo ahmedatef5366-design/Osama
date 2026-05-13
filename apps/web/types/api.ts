@@ -230,6 +230,21 @@ export type AtRiskClient = {
   checkinCount: number;
 };
 
+/**
+ * Single-roundtrip summary the /client/today page reads to render its
+ * streak chip, weekly compliance gauge, and "checked-in today?" callout.
+ */
+export type CheckinSummary = {
+  currentStreak: number;
+  longestStreak: number;
+  weekCheckins: number;
+  weekCompliance: number;
+  weekWaterCups: number;
+  weekSleepHours: number;
+  weekCardioMins: number;
+  checkedInToday: boolean;
+};
+
 // ════════════════════════════════════════
 // Messages & Notifications
 // ════════════════════════════════════════

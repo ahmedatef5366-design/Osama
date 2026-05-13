@@ -18,27 +18,45 @@ const config: Config = {
         bg: "var(--bg)",
         surface: {
           DEFAULT: "var(--surface)",
+          low: "var(--surface-low)",
           high: "var(--surface-high)",
+          edge: "var(--surface-edge)",
         },
         accent: {
           DEFAULT: "var(--accent)",
+          soft: "var(--accent-soft)",
           dim: "var(--accent-dim)",
           glow: "var(--accent-glow)",
           text: "var(--accent-text)",
+          mute: "var(--accent-mute)",
         },
         text: {
           1: "var(--text-1)",
           2: "var(--text-2)",
           3: "var(--text-3)",
+          "on-accent": "var(--text-on-accent)",
         },
         border: {
           DEFAULT: "var(--border)",
           hover: "var(--border-hover)",
         },
-        success: "var(--success)",
-        warning: "var(--warning)",
-        danger: "var(--danger)",
-        info: "var(--info)",
+        ring: "var(--ring)",
+        success: {
+          DEFAULT: "var(--success)",
+          dim: "var(--success-dim)",
+        },
+        warning: {
+          DEFAULT: "var(--warning)",
+          dim: "var(--warning-dim)",
+        },
+        danger: {
+          DEFAULT: "var(--danger)",
+          dim: "var(--danger-dim)",
+        },
+        info: {
+          DEFAULT: "var(--info)",
+          dim: "var(--info-dim)",
+        },
       },
       borderRadius: {
         sm: "var(--radius-sm)",
