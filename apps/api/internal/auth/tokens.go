@@ -48,13 +48,13 @@ type RefreshSession struct {
 // secret (defense-in-depth: redis-dump alone can't be used to fingerprint
 // tokens via offline lookup of unrelated hashes).
 type TokenManager struct {
-	priv      *rsa.PrivateKey
-	pub       *rsa.PublicKey
-	issuer    string
-	accessTL  time.Duration
-	refrTL    time.Duration
-	rdb       *redis.Client
-	hmacKey   []byte // HMAC-SHA256 key for the refresh-token lookup hash
+	priv     *rsa.PrivateKey
+	pub      *rsa.PublicKey
+	issuer   string
+	accessTL time.Duration
+	refrTL   time.Duration
+	rdb      *redis.Client
+	hmacKey  []byte // HMAC-SHA256 key for the refresh-token lookup hash
 }
 
 func NewTokenManager(

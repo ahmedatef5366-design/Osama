@@ -134,5 +134,5 @@ func normalizeIdentifier(s string) string {
 	return strings.ToLower(strings.TrimSpace(s))
 }
 
-func failKey(id string) string  { return "login:fail:" + normalizeIdentifier(id) }
-func lockKey(id string) string  { return "login:lock:" + normalizeIdentifier(id) }
+func failKey(id string) string { return "login:fail:" + normalizeIdentifier(id) }
+func lockKey(id string) string { return "login:lock:" + normalizeIdentifier(id) }
