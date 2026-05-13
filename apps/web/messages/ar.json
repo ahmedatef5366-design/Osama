@@ -67,6 +67,21 @@
       },
       "soon": "قريباً — Phase 5"
     },
+    "monitoring": {
+      "title": "المتابعة",
+      "activeClients": "العملاء النشطون",
+      "avgCompliance": "متوسّط الالتزام",
+      "atRisk": "في خطر",
+      "todayCheckins": "متابعات اليوم",
+      "complianceTrend": "اتّجاه الالتزام (30 يوم)",
+      "topClients": "أفضل العملاء (7 أيام)",
+      "checkinsPerDay": "المتابعات في اليوم",
+      "atRiskClients": "العملاء المعرّضون للخطر",
+      "noData": "لا توجد بيانات بعد",
+      "clientName": "الاسم",
+      "compliance": "الالتزام",
+      "checkins": "المتابعات"
+    },
     "clients": {
       "title": "العملاء",
       "newClient": "عميل جديد",
@@ -84,12 +99,221 @@
         "activeOnly": "النشطون فقط",
         "inactiveOnly": "غير النشطين"
       }
+    },
+    "cms": {
+      "title": "إدارة المحتوى",
+      "subtitle": "عدّل أقسام الصفحة الرئيسية. أي تعديل يحفظ نسخة جديدة في السجل.",
+      "save": "حفظ ونشر",
+      "saving": "جارٍ الحفظ…",
+      "saved": "تم الحفظ والنشر",
+      "reset": "تراجع",
+      "history": "السجل",
+      "historyEmpty": "لا يوجد سجل بعد",
+      "restore": "استعادة",
+      "confirmRestore": "هل أنت متأكد من استعادة هذه النسخة؟",
+      "errors": {
+        "invalidJson": "محتوى JSON غير صالح"
+      },
+      "sections": {
+        "hero": "الواجهة",
+        "features": "المزايا",
+        "transformations": "التحوّلات",
+        "testimonials": "الشهادات",
+        "pricing": "الباقات",
+        "faq": "الأسئلة الشائعة",
+        "footer": "التذييل"
+      }
+    },
+    "clientDetail": {
+      "backToList": "العملاء",
+      "active": "نشط",
+      "inactive": "غير نشط",
+      "tabs": {
+        "overview": "نظرة عامة",
+        "workout": "التمرين",
+        "nutrition": "التغذية",
+        "progress": "التقدّم"
+      },
+      "stats": {
+        "weight": "الوزن",
+        "height": "الطول",
+        "age": "العمر",
+        "startDate": "تاريخ البدء"
+      },
+      "goals": {
+        "fat_loss": "حرق الدهون",
+        "muscle_gain": "بناء العضلات",
+        "recomposition": "إعادة تكوين",
+        "athletic": "أداء رياضي"
+      },
+      "overview": {
+        "identity": "البيانات الشخصية",
+        "metrics": "القياسات",
+        "dates": "التواريخ",
+        "notes": "ملاحظات صحية",
+        "noNotes": "لا توجد ملاحظات.",
+        "name": "الاسم",
+        "sex": "النوع",
+        "age": "العمر",
+        "experienceLevel": "مستوى الخبرة",
+        "currentWeightKg": "الوزن (كجم)",
+        "heightCm": "الطول (سم)",
+        "goal": "الهدف",
+        "activityLevel": "مستوى النشاط",
+        "startDate": "تاريخ البدء",
+        "targetDate": "التاريخ المستهدف",
+        "createdAt": "تاريخ الإنشاء"
+      },
+      "workout": {
+        "plans": "خطط التمرين",
+        "newPlan": "خطة جديدة",
+        "noPlanYet": "لا توجد خطة تمرين بعد.",
+        "active": "نشطة",
+        "addDay": "إضافة يوم",
+        "saveAsTemplate": "حفظ كنموذج",
+        "noDaysYet": "لا توجد أيام بعد — أضف يوماً لتبدأ.",
+        "searchExercise": "ابحث في مكتبة التمارين…",
+        "exercisesShort": "تمارين",
+        "removeDay": "حذف اليوم"
+      },
+      "nutrition": {
+        "plans": "خطط التغذية",
+        "newPlan": "خطة جديدة",
+        "noPlanYet": "لا توجد خطة تغذية بعد.",
+        "active": "نشطة",
+        "targets": "الأهداف",
+        "mode": "الوضع",
+        "calories": "السعرات",
+        "protein": "البروتين (جم)",
+        "carbs": "الكربوهيدرات (جم)",
+        "fat": "الدهون (جم)",
+        "meals": "الوجبات",
+        "addMeal": "إضافة وجبة",
+        "removeMeal": "حذف",
+        "noMealsYet": "لا توجد وجبات بعد.",
+        "items": "صنف",
+        "searchFood": "ابحث في قاعدة الأطعمة…",
+        "calc": {
+          "title": "حاسبة الماكروز",
+          "activity": "النشاط",
+          "goal": "الهدف",
+          "submit": "احسب",
+          "applyToPlan": "تطبيق على الخطة",
+          "calories": "السعرات",
+          "protein": "البروتين",
+          "fat": "الدهون",
+          "missingProfileData": "يلزم وزن العميل وطوله وعمره ونوعه."
+        }
+      },
+      "progress": {
+        "title": "التقدّم",
+        "comingSoon": "مخططات الوزن والقياسات تأتي مع Phase 4."
+      }
+    },
+    "plans": {
+      "title": "البرامج",
+      "subtitle": "إدارة مكتبة التمارين والنماذج الجاهزة.",
+      "exerciseLibrary": "مكتبة التمارين",
+      "newExercise": "تمرين جديد",
+      "cancel": "إلغاء",
+      "save": "حفظ",
+      "search": "بحث…",
+      "noResults": "لا توجد نتائج.",
+      "templates": "النماذج",
+      "noTemplates": "لا توجد نماذج بعد — احفظ خطة عميل لإعادة استخدامها.",
+      "delete": "حذف"
+    },
+    "nutrition": {
+      "title": "التغذية",
+      "subtitle": "إدارة قاعدة الأطعمة الموحّدة والاستيراد الجماعي.",
+      "foodDatabase": "قاعدة الأطعمة",
+      "newFood": "صنف جديد",
+      "importCsv": "استيراد CSV",
+      "imported": "تم استيراد {count} صنفاً.",
+      "search": "ابحث في الأطعمة…",
+      "noResults": "لا توجد أطعمة بعد.",
+      "delete": "حذف",
+      "cancel": "إلغاء",
+      "save": "حفظ",
+      "page": "صفحة {page} من {totalPages}",
+      "col": {
+        "name": "الاسم",
+        "kcal": "سعرات/100جم",
+        "p": "ب",
+        "c": "ك",
+        "f": "د"
+      }
     }
   },
   "client": {
     "today": {
       "title": "تمرين اليوم",
-      "soon": "قيد التطوير — Phase 4"
+      "soon": "قيد التطوير — Phase 4",
+      "noActivePlan": "لا توجد خطة تمرين نشطة.",
+      "restDay": "يوم راحة",
+      "sets": "مجموعات",
+      "reps": "تكرارات",
+      "rest": "راحة",
+      "secs": "ث"
+    },
+    "progress": {
+      "title": "التقدّم",
+      "weight": "سجل الوزن",
+      "measurements": "القياسات",
+      "logWeight": "تسجيل الوزن",
+      "logMeasurement": "تسجيل القياسات",
+      "weightKg": "الوزن (كجم)",
+      "notes": "ملاحظات",
+      "empty": "لا توجد بيانات بعد — سجّل أول قراءة.",
+      "save": "حفظ",
+      "cancel": "إلغاء",
+      "waist": "الخصر",
+      "chest": "الصدر",
+      "shoulders": "الأكتاف",
+      "hips": "الأرداف",
+      "leftArm": "الذراع الأيسر",
+      "rightArm": "الذراع الأيمن",
+      "leftThigh": "الفخذ الأيسر",
+      "rightThigh": "الفخذ الأيمن",
+      "bodyFat": "نسبة الدهون %"
+    },
+    "photos": {
+      "title": "صور التقدّم",
+      "upload": "رفع صورة",
+      "empty": "لا توجد صور بعد.",
+      "delete": "حذف",
+      "confirmDelete": "هل تريد حذف هذه الصورة؟",
+      "pose": "الوضعية",
+      "note": "ملاحظة",
+      "front": "أمامي",
+      "side": "جانبي",
+      "back": "خلفي"
+    },
+    "checkin": {
+      "title": "المتابعة اليومية",
+      "streak": "سلسلة",
+      "days": "أيام",
+      "submit": "إرسال",
+      "submitting": "جارٍ الإرسال…",
+      "submitted": "تم الإرسال!",
+      "workoutStatus": "حالة التمرين",
+      "completed": "مكتمل",
+      "partial": "جزئي",
+      "skipped": "تم التخطي",
+      "dietCompliance": "الالتزام بالحمية",
+      "sleepQuality": "جودة النوم",
+      "sleepHours": "ساعات النوم",
+      "waterCups": "الماء (أكواب)",
+      "cardio": "كارديو",
+      "cardioMinutes": "دقائق الكارديو",
+      "notes": "ملاحظات",
+      "history": "السجل"
+    },
+    "messages": {
+      "title": "الرسائل",
+      "send": "إرسال",
+      "placeholder": "اكتب رسالة…",
+      "empty": "لا توجد رسائل بعد."
     }
   },
   "common": {

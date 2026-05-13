@@ -19,13 +19,22 @@ import (
 
 	"github.com/ahmedatef5366-design/Osama/apps/api/internal/auth"
 	"github.com/ahmedatef5366-design/Osama/apps/api/internal/cache"
+	"github.com/ahmedatef5366-design/Osama/apps/api/internal/checkin"
 	"github.com/ahmedatef5366-design/Osama/apps/api/internal/clients"
 	"github.com/ahmedatef5366-design/Osama/apps/api/internal/config"
+	"github.com/ahmedatef5366-design/Osama/apps/api/internal/content"
 	"github.com/ahmedatef5366-design/Osama/apps/api/internal/database"
 	db "github.com/ahmedatef5366-design/Osama/apps/api/internal/db/generated"
+	"github.com/ahmedatef5366-design/Osama/apps/api/internal/jobs"
 	"github.com/ahmedatef5366-design/Osama/apps/api/internal/logger"
+	"github.com/ahmedatef5366-design/Osama/apps/api/internal/messaging"
 	"github.com/ahmedatef5366-design/Osama/apps/api/internal/middleware"
+	"github.com/ahmedatef5366-design/Osama/apps/api/internal/monitoring"
+	"github.com/ahmedatef5366-design/Osama/apps/api/internal/nutrition"
+	"github.com/ahmedatef5366-design/Osama/apps/api/internal/progress"
 	"github.com/ahmedatef5366-design/Osama/apps/api/internal/routes"
+	"github.com/ahmedatef5366-design/Osama/apps/api/internal/workouts"
+	"github.com/ahmedatef5366-design/Osama/apps/api/internal/ws"
 )
 
 func main() {
@@ -74,6 +83,33 @@ func main() {
 	clientsSvc := clients.NewService(pool, queries)
 	clientsH := clients.NewHandler(clientsSvc)
 
+	revalidator := content.NewRevalidator(cfg.RevalidateURL, cfg.RevalidateSecret, log)
+	contentSvc := content.NewService(pool, queries, rdb, revalidator)
+	contentH := content.NewHandler(contentSvc)
+
+	workoutsSvc := workouts.NewService(pool, queries)
+	workoutsH := workouts.NewHandler(workoutsSvc)
+
+	nutritionSvc := nutrition.NewService(pool, queries)
+	nutritionH := nutrition.NewHandler(nutritionSvc)
+
+	progressSvc := progress.NewService(pool)
+	progressH := progress.NewHandler(progressSvc)
+
+	checkinSvc := checkin.NewService(pool)
+	checkinH := checkin.NewHandler(checkinSvc)
+
+	messagingSvc := messaging.NewService(pool)
+	messagingH := messaging.NewHandler(messagingSvc)
+
+	monitoringH := monitoring.NewHandler(pool)
+
+	hub := ws.NewHub()
+	go hub.Run()
+
+	scheduler := jobs.NewScheduler(pool, hub, log)
+	scheduler.Start()
+
 	if err := bootstrapAdmin(ctx, cfg, queries, log); err != nil {
 		log.Warn("bootstrap_admin_skipped", zap.Error(err))
 	}
@@ -94,10 +130,18 @@ func main() {
 	app.Use(middleware.RateLimit(rdb, cfg.RateLimitPerMinute))
 
 	routes.Register(app, routes.Deps{
-		Queries: queries,
-		Tokens:  tokens,
-		Auth:    authH,
-		Clients: clientsH,
+		Queries:    queries,
+		Tokens:     tokens,
+		Auth:       authH,
+		Clients:    clientsH,
+		Content:    contentH,
+		Workouts:   workoutsH,
+		Nutrition:  nutritionH,
+		Progress:   progressH,
+		Checkin:    checkinH,
+		Messaging:  messagingH,
+		Monitoring: monitoringH,
+		Hub:        hub,
 	})
 
 	// Serve in a goroutine so we can listen for shutdown signals.

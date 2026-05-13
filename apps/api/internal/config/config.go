@@ -35,6 +35,10 @@ type Config struct {
 
 	BootstrapAdminEmail    string
 	BootstrapAdminPassword string
+
+	// CMS→Web revalidate webhook. Empty URL = feature disabled.
+	RevalidateURL    string
+	RevalidateSecret string
 }
 
 func Load() (*Config, error) {
@@ -56,6 +60,9 @@ func Load() (*Config, error) {
 
 		BootstrapAdminEmail:    os.Getenv("BOOTSTRAP_ADMIN_EMAIL"),
 		BootstrapAdminPassword: os.Getenv("BOOTSTRAP_ADMIN_PASSWORD"),
+
+		RevalidateURL:    os.Getenv("NEXT_REVALIDATE_URL"),
+		RevalidateSecret: os.Getenv("NEXT_REVALIDATE_SECRET"),
 	}
 
 	if c.DatabaseURL == "" {
