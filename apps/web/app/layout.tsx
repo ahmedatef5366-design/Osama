@@ -1,27 +1,27 @@
 import type { Metadata } from "next";
 import { NextIntlClientProvider } from "next-intl";
 import { getLocale, getMessages, getTranslations } from "next-intl/server";
-import { Cairo, DM_Sans, JetBrains_Mono, Syne } from "next/font/google";
+import { Bebas_Neue, Inter, JetBrains_Mono, Tajawal } from "next/font/google";
 import { Providers } from "./providers";
 import "./globals.css";
 
-const syne = Syne({
+const bebasNeue = Bebas_Neue({
   subsets: ["latin"],
-  weight: ["700", "800"],
+  weight: ["400"],
   variable: "--font-display",
   display: "swap",
 });
 
-const dmSans = DM_Sans({
+const inter = Inter({
   subsets: ["latin"],
-  weight: ["400", "500", "600"],
+  weight: ["400", "500", "600", "700"],
   variable: "--font-body",
   display: "swap",
 });
 
-const cairo = Cairo({
+const tajawal = Tajawal({
   subsets: ["arabic"],
-  weight: ["400", "600", "700"],
+  weight: ["400", "500", "700"],
   variable: "--font-arabic",
   display: "swap",
 });
@@ -56,7 +56,7 @@ export default async function RootLayout({
     <html
       lang={locale}
       dir={dir}
-      className={`${syne.variable} ${dmSans.variable} ${cairo.variable} ${jbMono.variable}`}
+      className={`${bebasNeue.variable} ${inter.variable} ${tajawal.variable} ${jbMono.variable}`}
     >
       <body>
         <NextIntlClientProvider locale={locale} messages={messages}>

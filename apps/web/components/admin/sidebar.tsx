@@ -5,7 +5,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
 
-type Item = { href: string; key: "dashboard" | "clients" | "plans" | "nutrition" | "monitoring" | "cms" | "settings" };
+type Item = { href: string; key: "dashboard" | "clients" | "plans" | "nutrition" | "monitoring" | "inbox" | "calendar" | "cms" | "settings" };
 
 const items: Item[] = [
   { href: "/admin/dashboard", key: "dashboard" },
@@ -13,6 +13,8 @@ const items: Item[] = [
   { href: "/admin/plans", key: "plans" },
   { href: "/admin/nutrition", key: "nutrition" },
   { href: "/admin/monitoring", key: "monitoring" },
+  { href: "/admin/inbox", key: "inbox" },
+  { href: "/admin/calendar", key: "calendar" },
   { href: "/admin/cms", key: "cms" },
   { href: "/admin/settings", key: "settings" },
 ];

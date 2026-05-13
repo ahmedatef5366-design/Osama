@@ -1,0 +1,43 @@
+# Render Blueprint — deploys the Go API and Next.js frontend.
+# Supabase is used as the external Postgres provider; set DATABASE_URL
+# in the Render dashboard under each service's environment tab.
+
+services:
+  # ─── Go API ───
+  - type: web
+    name: osama-api
+    runtime: go
+    rootDir: apps/api
+    buildCommand: go build -o ./bin/server ./cmd/server
+    startCommand: ./bin/server
+    healthCheckPath: /api/health
+    envVars:
+      - key: PORT
+        value: "8080"
+      - key: APP_ENV
+        value: production
+      - key: DATABASE_URL
+        sync: false  # set manually — Supabase connection string
+      - key: REDIS_URL
+        sync: false  # set manually — e.g. Upstash or Render Redis
+      - key: JWT_ACCESS_SECRET
+        generateValue: true
+      - key: JWT_REFRESH_SECRET
+        generateValue: true
+      - key: CORS_ORIGINS
+        sync: false  # set to your frontend URL
+      - key: RATE_LIMIT_PER_MINUTE
+        value: "100"
+
+  # ─── Next.js Frontend ───
+  - type: web
+    name: osama-web
+    runtime: node
+    rootDir: apps/web
+    buildCommand: pnpm install --frozen-lockfile && pnpm build
+    startCommand: pnpm start
+    envVars:
+      - key: NEXT_PUBLIC_API_URL
+        sync: false  # set to osama-api URL
+      - key: NODE_ENV
+        value: production

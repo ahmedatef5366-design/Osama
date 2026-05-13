@@ -125,6 +125,7 @@ func main() {
 	})
 
 	app.Use(middleware.RequestID())
+	app.Use(middleware.SecurityHeaders())
 	app.Use(middleware.CORS(cfg))
 	app.Use(middleware.RequestLogger(log))
 	app.Use(middleware.RateLimit(rdb, cfg.RateLimitPerMinute))

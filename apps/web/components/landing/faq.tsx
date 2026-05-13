@@ -10,112 +10,115 @@ type FaqProps = {
   locale: string;
 };
 
-const headingVariants: Variants = {
-  hidden: { opacity: 0, y: 20 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: "easeOut" } },
-};
-
-const stagger: Variants = {
+const containerVariants: Variants = {
   hidden: {},
-  visible: { transition: { staggerChildren: 0.08, delayChildren: 0.1 } },
+  visible: { transition: { staggerChildren: 0.08, delayChildren: 0.15 } },
 };
 
-const itemVariants: Variants = {
-  hidden: { opacity: 0, y: 12 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.35, ease: "easeOut" } },
+const cardVariants: Variants = {
+  hidden: { opacity: 0, y: 20, rotateX: -10 },
+  visible: { opacity: 1, y: 0, rotateX: 0, transition: { duration: 0.5, ease: [0.16, 1, 0.3, 1] } },
 };
 
 export function Faq({ content, locale }: FaqProps) {
-  const [open, setOpen] = useState<number | null>(0);
+  const [activeIndex, setActiveIndex] = useState<number | null>(0);
   if (!content.visible || content.items.length === 0) return null;
   const loc = asLocale(locale);
 
   return (
-    <section className="bg-bg py-24 sm:py-32" id="faq">
-      <div className="mx-auto max-w-3xl px-6">
-        <motion.h2
-          className="mb-10 font-display text-text-1 text-4xl sm:text-5xl font-extrabold"
-          variants={headingVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: "-60px" }}
-        >
-          {t(content.title, loc)}
-        </motion.h2>
+    <section className="relative bg-surface py-28 sm:py-36 snap-section" id="faq">
+      <div className="mx-auto max-w-5xl px-6">
+        <div className="mb-16 grid sm:grid-cols-[1fr_2fr] gap-8 items-start">
+          {/* Left sticky heading */}
+          <motion.div
+            className="sm:sticky sm:top-32"
+            initial={{ opacity: 0, x: -30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+          >
+            <span className="font-mono text-accent text-sm uppercase tracking-[0.2em] block mb-3">
+              {loc === "ar" ? "\u0623\u0633\u0626\u0644\u0629" : "FAQ"}
+            </span>
+            <h2 className="font-display text-text-1 text-5xl sm:text-6xl uppercase tracking-tight">
+              {t(content.title, loc)}
+            </h2>
+            <p className="mt-4 text-text-2 text-sm leading-relaxed max-w-xs">
+              {loc === "ar"
+                ? "\u0645\u0634 \u0644\u0627\u0642\u064A \u0633\u0624\u0627\u0644\u0643\u061F \u0643\u0644\u0645\u0646\u0627 \u0645\u0628\u0627\u0634\u0631\u0629."
+                : "Can\u2019t find your question? Message us directly."}
+            </p>
+          </motion.div>
 
-        <motion.ul
-          className="space-y-3"
-          variants={stagger}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: "-40px" }}
-        >
-          {content.items.map((item, i) => {
-            const isOpen = open === i;
-            const panelId = `faq-panel-${i}`;
-            const buttonId = `faq-button-${i}`;
-            return (
-              <motion.li key={i} className="border-b border-border" variants={itemVariants}>
-                <h3>
+          {/* Right - interactive cards */}
+          <motion.div
+            className="space-y-3"
+            variants={containerVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-40px" }}
+          >
+            {content.items.map((item, i) => {
+              const isActive = activeIndex === i;
+              return (
+                <motion.div
+                  key={i}
+                  variants={cardVariants}
+                  className={`rounded-xl border transition-all duration-300 ${
+                    isActive
+                      ? "border-accent/40 bg-bg shadow-lg shadow-accent/5"
+                      : "border-border bg-bg hover:border-border-hover"
+                  }`}
+                >
                   <button
-                    id={buttonId}
                     type="button"
-                    aria-expanded={isOpen}
-                    aria-controls={panelId}
-                    onClick={() => setOpen(isOpen ? null : i)}
-                    className="flex w-full items-center justify-between gap-4 py-5 text-start font-display text-text-1 text-lg sm:text-xl"
+                    onClick={() => setActiveIndex(isActive ? null : i)}
+                    className="flex w-full items-center gap-4 p-6 text-start"
                   >
-                    <span>{t(item.q, loc)}</span>
-                    <motion.span
-                      aria-hidden
-                      className="size-6 shrink-0 text-text-2"
-                      animate={{ rotate: isOpen ? 180 : 0 }}
-                      transition={{ duration: 0.3 }}
+                    <span
+                      className={`flex size-10 shrink-0 items-center justify-center rounded-lg font-display text-lg transition-colors duration-300 ${
+                        isActive
+                          ? "bg-accent text-bg"
+                          : "bg-surface-high text-text-2"
+                      }`}
                     >
-                      <Chevron />
+                      {String(i + 1).padStart(2, "0")}
+                    </span>
+                    <span className="flex-1 font-body text-text-1 text-base font-medium">
+                      {t(item.q, loc)}
+                    </span>
+                    <motion.span
+                      animate={{ rotate: isActive ? 45 : 0 }}
+                      transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
+                      className="text-text-2 text-xl shrink-0"
+                    >
+                      +
                     </motion.span>
                   </button>
-                </h3>
-                <AnimatePresence initial={false}>
-                  {isOpen && (
-                    <motion.div
-                      id={panelId}
-                      role="region"
-                      aria-labelledby={buttonId}
-                      initial={{ height: 0, opacity: 0 }}
-                      animate={{ height: "auto", opacity: 1 }}
-                      exit={{ height: 0, opacity: 0 }}
-                      transition={{ duration: 0.3, ease: "easeInOut" }}
-                      className="overflow-hidden"
-                    >
-                      <p className="pb-5 text-text-2 text-base">
-                        {t(item.a, loc)}
-                      </p>
-                    </motion.div>
-                  )}
-                </AnimatePresence>
-              </motion.li>
-            );
-          })}
-        </motion.ul>
+
+                  <AnimatePresence initial={false}>
+                    {isActive && (
+                      <motion.div
+                        initial={{ height: 0, opacity: 0 }}
+                        animate={{ height: "auto", opacity: 1 }}
+                        exit={{ height: 0, opacity: 0 }}
+                        transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
+                        className="overflow-hidden"
+                      >
+                        <div className="px-6 pb-6 ps-[4.5rem]">
+                          <p className="text-text-2 text-sm leading-relaxed">
+                            {t(item.a, loc)}
+                          </p>
+                        </div>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </motion.div>
+              );
+            })}
+          </motion.div>
+        </div>
       </div>
     </section>
-  );
-}
-
-function Chevron() {
-  return (
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      className="size-full"
-    >
-      <polyline points="6 9 12 15 18 9" />
-    </svg>
   );
 }
