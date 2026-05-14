@@ -1,0 +1,13 @@
+# Don't ship local dev artifacts into the Docker build context.
+.git
+.github
+node_modules
+**/node_modules
+.next
+**/.next
+apps/api/bin
+apps/api/keys
+apps/api/.env
+apps/web/.env*
+*.log
+.DS_Store

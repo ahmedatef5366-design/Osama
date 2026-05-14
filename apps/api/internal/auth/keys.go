@@ -15,14 +15,20 @@ func LoadKeys(privatePath, publicPath string) (*rsa.PrivateKey, *rsa.PublicKey, 
 	if err != nil {
 		return nil, nil, fmt.Errorf("read jwt private key: %w", err)
 	}
-	priv, err := jwt.ParseRSAPrivateKeyFromPEM(privPEM)
-	if err != nil {
-		return nil, nil, fmt.Errorf("parse jwt private key: %w", err)
-	}
-
 	pubPEM, err := os.ReadFile(publicPath)
 	if err != nil {
 		return nil, nil, fmt.Errorf("read jwt public key: %w", err)
+	}
+	return ParseKeys(privPEM, pubPEM)
+}
+
+// ParseKeys parses an RS256 keypair from raw PEM bytes. Useful in hosting
+// environments where the keys are injected via env vars instead of mounted
+// to the filesystem (e.g. Render, Fly.io, Railway).
+func ParseKeys(privPEM, pubPEM []byte) (*rsa.PrivateKey, *rsa.PublicKey, error) {
+	priv, err := jwt.ParseRSAPrivateKeyFromPEM(privPEM)
+	if err != nil {
+		return nil, nil, fmt.Errorf("parse jwt private key: %w", err)
 	}
 	pub, err := jwt.ParseRSAPublicKeyFromPEM(pubPEM)
 	if err != nil {

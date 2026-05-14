@@ -21,7 +21,12 @@ type Config struct {
 
 	JWTPrivateKeyPath string
 	JWTPublicKeyPath  string
-	JWTIssuer         string
+	// JWTPrivateKey / JWTPublicKey carry the PEM-encoded keypair when it's
+	// injected via env vars instead of mounted to the filesystem. If both
+	// are set, they take precedence over the *Path fields.
+	JWTPrivateKey []byte
+	JWTPublicKey  []byte
+	JWTIssuer     string
 
 	AccessTokenTTL  time.Duration
 	RefreshTokenTTL time.Duration
@@ -54,6 +59,8 @@ func Load() (*Config, error) {
 		RedisURL:           os.Getenv("REDIS_URL"),
 		JWTPrivateKeyPath:  getEnv("JWT_PRIVATE_KEY_PATH", "./keys/jwt_private.pem"),
 		JWTPublicKeyPath:   getEnv("JWT_PUBLIC_KEY_PATH", "./keys/jwt_public.pem"),
+		JWTPrivateKey:      []byte(os.Getenv("JWT_PRIVATE_KEY")),
+		JWTPublicKey:       []byte(os.Getenv("JWT_PUBLIC_KEY")),
 		JWTIssuer:          getEnv("JWT_ISSUER", "osama-api"),
 		AccessTokenTTL:     getEnvDuration("ACCESS_TOKEN_TTL", 15*time.Minute),
 		RefreshTokenTTL:    getEnvDuration("REFRESH_TOKEN_TTL", 30*24*time.Hour),
@@ -85,6 +92,12 @@ func Load() (*Config, error) {
 		return nil, fmt.Errorf("COOKIE_SECURE must be true in production")
 	}
 	return c, nil
+}
+
+// HasInlineJWTKeys reports whether the RS256 keypair was supplied directly
+// via env vars (JWT_PRIVATE_KEY / JWT_PUBLIC_KEY) instead of file paths.
+func (c *Config) HasInlineJWTKeys() bool {
+	return len(c.JWTPrivateKey) > 0 && len(c.JWTPublicKey) > 0
 }
 
 // IsProd reports whether we're running in production mode.

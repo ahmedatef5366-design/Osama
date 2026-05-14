@@ -6,6 +6,7 @@ package main
 
 import (
 	"context"
+	"crypto/rsa"
 	"errors"
 	"os"
 	"os/signal"
@@ -76,7 +77,7 @@ func main() {
 	defer func() { _ = rdb.Close() }()
 	log.Info("redis_connected")
 
-	priv, pub, err := auth.LoadKeys(cfg.JWTPrivateKeyPath, cfg.JWTPublicKeyPath)
+	priv, pub, err := loadJWTKeys(cfg)
 	if err != nil {
 		log.Fatal("jwt_keys_load_failed", zap.Error(err))
 	}
@@ -242,4 +243,15 @@ func bootstrapAdmin(ctx context.Context, cfg *config.Config, q *db.Queries, log 
 	}
 	log.Info("bootstrap_admin_created", zap.String("email", u.Email))
 	return nil
+}
+
+// loadJWTKeys returns the RS256 keypair, preferring inline PEM env vars
+// (JWT_PRIVATE_KEY / JWT_PUBLIC_KEY) over file paths. Inline vars make
+// it easy to deploy to hosts without a writable filesystem (Render,
+// Fly.io, Railway).
+func loadJWTKeys(cfg *config.Config) (*rsa.PrivateKey, *rsa.PublicKey, error) {
+	if cfg.HasInlineJWTKeys() {
+		return auth.ParseKeys(cfg.JWTPrivateKey, cfg.JWTPublicKey)
+	}
+	return auth.LoadKeys(cfg.JWTPrivateKeyPath, cfg.JWTPublicKeyPath)
 }
