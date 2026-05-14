@@ -1,0 +1,102 @@
+# Render Blueprint — defines how the Osama monorepo deploys to Render.
+#
+# To deploy:
+#   1. Push this file to the default branch on GitHub.
+#   2. In the Render dashboard: New → Blueprint → pick this repo.
+#   3. Fill in the prompted secrets (marked `sync: false` below):
+#        - DATABASE_URL            (Supabase pooler — Transaction mode, port 6543, sslmode=require)
+#        - MIGRATE_DATABASE_URL    (Supabase direct — port 5432, sslmode=require — needed for DDL)
+#        - JWT_PRIVATE_KEY         (PEM contents of jwt_private.pem)
+#        - JWT_PUBLIC_KEY          (PEM contents of jwt_public.pem)
+#        - NEXT_REVALIDATE_SECRET  (long random string, shared between api + web)
+#
+# The blueprint also creates a Render Key Value instance (Redis-compatible)
+# in the same region and wires REDIS_URL into the API automatically.
+#
+# Public URLs assumed below (osama-api.onrender.com / osama-web.onrender.com)
+# match Render's default `<service-name>.onrender.com` pattern. If you attach
+# custom domains, update CORS_ORIGINS / WEB_BASE_URL / NEXT_PUBLIC_API_URL
+# accordingly in the Render dashboard.
+
+services:
+  # ─── API (Go + Fiber, Dockerized) ────────────────────────────────────────
+  - type: web
+    runtime: docker
+    name: osama-api
+    plan: starter
+    region: frankfurt
+    dockerfilePath: ./apps/api/Dockerfile
+    dockerContext: .
+    healthCheckPath: /health
+    autoDeployTrigger: commit
+    envVars:
+      - key: ENV
+        value: production
+      - key: PORT
+        value: 8080
+      - key: DATABASE_URL
+        sync: false
+      - key: MIGRATE_DATABASE_URL
+        sync: false
+      - key: REDIS_URL
+        fromService:
+          type: keyvalue
+          name: osama-redis
+          property: connectionString
+      - key: JWT_PRIVATE_KEY
+        sync: false
+      - key: JWT_PUBLIC_KEY
+        sync: false
+      - key: JWT_ISSUER
+        value: osama-api
+      - key: ACCESS_TOKEN_TTL
+        value: 15m
+      - key: REFRESH_TOKEN_TTL
+        value: 720h
+      - key: COOKIE_DOMAIN
+        value: .onrender.com
+      - key: COOKIE_SECURE
+        value: "true"
+      - key: COOKIE_SAMESITE
+        value: none
+      - key: CORS_ORIGINS
+        value: https://osama-web.onrender.com
+      - key: WEB_BASE_URL
+        value: https://osama-web.onrender.com
+      - key: NEXT_REVALIDATE_URL
+        value: https://osama-web.onrender.com/api/revalidate
+      - key: NEXT_REVALIDATE_SECRET
+        sync: false
+      - key: RATE_LIMIT_PER_MINUTE
+        value: 100
+
+  # ─── Web (Next.js 15 on Node) ────────────────────────────────────────────
+  - type: web
+    runtime: node
+    name: osama-web
+    plan: starter
+    region: frankfurt
+    rootDir: .
+    buildCommand: corepack enable && corepack prepare pnpm@9.15.1 --activate && pnpm install --frozen-lockfile && pnpm --filter @osama/web build
+    startCommand: pnpm --filter @osama/web exec next start -p $PORT
+    healthCheckPath: /
+    autoDeployTrigger: commit
+    envVars:
+      - key: NODE_VERSION
+        value: 20.11.1
+      - key: NODE_ENV
+        value: production
+      - key: NEXT_TELEMETRY_DISABLED
+        value: "1"
+      - key: NEXT_PUBLIC_API_URL
+        value: https://osama-api.onrender.com
+      - key: NEXT_REVALIDATE_SECRET
+        sync: false
+
+  # ─── Redis-compatible Key Value (Valkey 8) ──────────────────────────────
+  - type: keyvalue
+    name: osama-redis
+    plan: free
+    region: frankfurt
+    ipAllowList: []  # private network only — accessible from other Render services
+    maxmemoryPolicy: allkeys-lru

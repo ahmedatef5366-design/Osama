@@ -104,6 +104,43 @@ pnpm db:down
 pnpm db:reset         # nuke volumes and restart
 ```
 
+## Deploy to Render + Supabase
+
+The repo ships with a [`render.yaml`](./render.yaml) Blueprint that provisions
+three Render services in one shot:
+
+- `osama-api` — Docker web service built from [`apps/api/Dockerfile`](./apps/api/Dockerfile). Applies migrations on boot via the entrypoint, then runs the Go binary.
+- `osama-web` — Node web service that builds and runs the Next.js app.
+- `osama-redis` — Render Key Value (Valkey 8) instance, private to the workspace.
+
+Postgres is **not** managed by Render — it points at an external Supabase
+project. Migrations are designed to run cleanly on Supabase: the only
+extensions required are `pgcrypto` and `citext`, both available out of the
+box. The `timescaledb` extension is detected at runtime and skipped if
+missing (see [migration 0005](./apps/api/migrations/0005_progress.up.sql)).
+
+### One-time setup
+
+1. **Supabase**: create a project, then from *Settings → Database → Connection pooling* copy two URIs:
+   - `DATABASE_URL` — *Transaction* pooler (port `6543`), append `?sslmode=require`.
+   - `MIGRATE_DATABASE_URL` — *Direct connection* (port `5432`), append `?sslmode=require`. Migrations need this because the pooler rejects DDL statements like `CREATE EXTENSION`.
+
+2. **JWT keypair**: generate locally with the snippet from [First-time setup](#first-time-setup) and keep the PEM contents handy. You'll paste them into Render as `JWT_PRIVATE_KEY` / `JWT_PUBLIC_KEY` env vars (no filesystem mount required — the API loads them from env when set).
+
+3. **Render**: New → Blueprint → connect this repo. When prompted, fill in:
+   - `DATABASE_URL`, `MIGRATE_DATABASE_URL`
+   - `JWT_PRIVATE_KEY`, `JWT_PUBLIC_KEY`
+   - `NEXT_REVALIDATE_SECRET` (any long random string — paste the **same** value into both `osama-api` and `osama-web`)
+
+4. The blueprint assumes the default `<service>.onrender.com` URLs. If you attach custom domains, update `CORS_ORIGINS`, `WEB_BASE_URL`, `NEXT_REVALIDATE_URL` (on `osama-api`) and `NEXT_PUBLIC_API_URL` (on `osama-web`) in the dashboard.
+
+### How keys / secrets flow
+
+The API supports two ways to load the RS256 keypair:
+
+- `JWT_PRIVATE_KEY_PATH` + `JWT_PUBLIC_KEY_PATH` (default — file paths, used in local dev)
+- `JWT_PRIVATE_KEY` + `JWT_PUBLIC_KEY` (PEM contents in env vars — used on Render and any host without a writable disk). When both are set, the inline env vars win.
+
 ## Build order
 
 ```
