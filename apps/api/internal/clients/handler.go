@@ -106,3 +106,47 @@ func (h *Handler) Patch(c *fiber.Ctx) error {
 	}
 	return httpx.OK(c, client)
 }
+
+// GetContact: GET /api/clients/:id/contact — admin OR the client themselves.
+func (h *Handler) GetContact(c *fiber.Ctx) error {
+	id, err := pgxutil.UUIDFromString(c.Params("id"))
+	if err != nil {
+		return httpx.BadRequest("invalid_id", "id must be a UUID")
+	}
+	// Authorisation parity with Get: admins can read any client, the
+	// client themselves can read their own, no-one else.
+	role, _ := c.Locals(auth.LocalsUserRole).(string)
+	if role != string(auth.RoleAdmin) {
+		userIDStr, _ := c.Locals(auth.LocalsUserID).(string)
+		uid, _ := pgxutil.UUIDFromString(userIDStr)
+		self, err := h.svc.GetByUserID(c.UserContext(), uid)
+		if err != nil {
+			return err
+		}
+		if self.ID != c.Params("id") {
+			return httpx.Forbidden("forbidden", "cannot read contact for another client")
+		}
+	}
+	contact, err := h.svc.GetContact(c.UserContext(), id)
+	if err != nil {
+		return err
+	}
+	return httpx.OK(c, contact)
+}
+
+// PatchContact: PATCH /api/clients/:id/contact — admin only.
+func (h *Handler) PatchContact(c *fiber.Ctx) error {
+	id, err := pgxutil.UUIDFromString(c.Params("id"))
+	if err != nil {
+		return httpx.BadRequest("invalid_id", "id must be a UUID")
+	}
+	var req ContactPatch
+	if err := c.BodyParser(&req); err != nil {
+		return httpx.BadRequest("invalid_body", "request body could not be parsed")
+	}
+	contact, err := h.svc.UpdateContact(c.UserContext(), id, req)
+	if err != nil {
+		return err
+	}
+	return httpx.OK(c, contact)
+}

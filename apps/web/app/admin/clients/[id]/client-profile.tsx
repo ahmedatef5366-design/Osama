@@ -14,14 +14,24 @@ import { OverviewTab } from "./tabs/overview";
 import { WorkoutTab } from "./tabs/workout";
 import { NutritionTab } from "./tabs/nutrition";
 import { ProgressTab } from "./tabs/progress";
+import { ContactTab } from "./tabs/contact";
+import { SubscriptionTab } from "./tabs/subscription";
 
-type TabKey = "overview" | "workout" | "nutrition" | "progress";
+type TabKey =
+  | "overview"
+  | "workout"
+  | "nutrition"
+  | "progress"
+  | "contact"
+  | "subscription";
 
 const tabs: Array<{ key: TabKey }> = [
   { key: "overview" },
   { key: "workout" },
   { key: "nutrition" },
   { key: "progress" },
+  { key: "contact" },
+  { key: "subscription" },
 ];
 
 export function ClientProfile({ clientId }: { clientId: string }) {
@@ -73,6 +83,8 @@ export function ClientProfile({ clientId }: { clientId: string }) {
         {tab === "workout" && <WorkoutTab clientId={clientId} />}
         {tab === "nutrition" && <NutritionTab clientId={clientId} />}
         {tab === "progress" && <ProgressTab clientId={clientId} />}
+        {tab === "contact" && client && <ContactTab client={client} />}
+        {tab === "subscription" && client && <SubscriptionTab client={client} />}
       </div>
     </div>
   );

@@ -34,6 +34,8 @@ import (
 	"github.com/ahmedatef5366-design/Osama/apps/api/internal/nutrition"
 	"github.com/ahmedatef5366-design/Osama/apps/api/internal/progress"
 	"github.com/ahmedatef5366-design/Osama/apps/api/internal/routes"
+	"github.com/ahmedatef5366-design/Osama/apps/api/internal/subscriptions"
+	"github.com/ahmedatef5366-design/Osama/apps/api/internal/templates"
 	"github.com/ahmedatef5366-design/Osama/apps/api/internal/workouts"
 	"github.com/ahmedatef5366-design/Osama/apps/api/internal/ws"
 )
@@ -111,6 +113,12 @@ func main() {
 
 	monitoringH := monitoring.NewHandler(pool)
 
+	subscriptionsSvc := subscriptions.NewService(pool)
+	subscriptionsH := subscriptions.NewHandler(subscriptionsSvc, resolver)
+
+	templatesSvc := templates.NewService(pool)
+	templatesH := templates.NewHandler(templatesSvc)
+
 	hub := ws.NewHub()
 	go hub.Run()
 
@@ -139,18 +147,20 @@ func main() {
 	app.Use(middleware.RateLimit(rdb, cfg.RateLimitPerMinute))
 
 	routes.Register(app, routes.Deps{
-		Queries:    queries,
-		Tokens:     tokens,
-		Auth:       authH,
-		Clients:    clientsH,
-		Content:    contentH,
-		Workouts:   workoutsH,
-		Nutrition:  nutritionH,
-		Progress:   progressH,
-		Checkin:    checkinH,
-		Messaging:  messagingH,
-		Monitoring: monitoringH,
-		Hub:        hub,
+		Queries:       queries,
+		Tokens:        tokens,
+		Auth:          authH,
+		Clients:       clientsH,
+		Content:       contentH,
+		Workouts:      workoutsH,
+		Nutrition:     nutritionH,
+		Progress:      progressH,
+		Checkin:       checkinH,
+		Messaging:     messagingH,
+		Monitoring:    monitoringH,
+		Subscriptions: subscriptionsH,
+		Templates:     templatesH,
+		Hub:           hub,
 	})
 
 	// Serve in a goroutine so we can listen for shutdown signals.

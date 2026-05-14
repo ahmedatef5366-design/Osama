@@ -17,7 +17,10 @@
     "today": "Today",
     "progress": "Progress",
     "photos": "Photos",
-    "checkin": "Check-in"
+    "checkin": "Check-in",
+    "subscriptions": "Subscriptions",
+    "templates": "Templates",
+    "subscription": "My plan"
   },
   "landing": {
     "hero": {
@@ -330,7 +333,9 @@
         "overview": "Overview",
         "workout": "Workout",
         "nutrition": "Nutrition",
-        "progress": "Progress"
+        "progress": "Progress",
+        "contact": "Contact",
+        "subscription": "Plan"
       },
       "stats": {
         "weight": "Weight",
@@ -406,6 +411,44 @@
       "progress": {
         "title": "Progress",
         "comingSoon": "Weight & body-measurement charts arrive with Phase 4."
+      },
+      "contact": {
+        "title": "Contact channels",
+        "subtitle": "Used to launch WhatsApp / Instagram from this profile. Nothing is sent automatically.",
+        "phone": "Phone",
+        "whatsapp": "WhatsApp number",
+        "instagram": "Instagram handle",
+        "phoneHint": "International format, e.g. +201001234567",
+        "whatsappHint": "Digits only (no spaces, no leading 00)",
+        "instagramHint": "Handle without the @",
+        "save": "Save contact",
+        "openWhatsApp": "Open WhatsApp",
+        "openInstagram": "Open Instagram",
+        "noWhatsapp": "Add a WhatsApp number first",
+        "templates": "Send template",
+        "templatesEmpty": "No templates yet. Add some on /admin/templates.",
+        "savedToast": "Contact saved"
+      },
+      "subscription": {
+        "title": "Subscription",
+        "currentPlan": "Current plan",
+        "status": "Status",
+        "expiresAt": "Renewal date",
+        "trialUntil": "Trial ends",
+        "notes": "Notes",
+        "noPlan": "No plan assigned yet",
+        "assignPlan": "Assign plan",
+        "changePlan": "Change plan",
+        "renewMonths": "Renew (months)",
+        "cancel": "Cancel",
+        "reason": "Reason",
+        "history": "History",
+        "statuses": {
+          "trial": "Trial",
+          "active": "Active",
+          "expired": "Expired",
+          "canceled": "Canceled"
+        }
       }
     },
     "plans": {
@@ -440,6 +483,46 @@
         "p": "P",
         "c": "C",
         "f": "F"
+      }
+    },
+    "nav": {
+      "subscriptions": "Subscriptions",
+      "templates": "Message templates"
+    },
+    "subscriptions": {
+      "title": "Subscriptions",
+      "subtitle": "All active and recent subscriptions. Click a row to edit.",
+      "empty": "No subscriptions yet. Create a client and a plan will be auto-trialled.",
+      "th": {
+        "client": "Client",
+        "plan": "Plan",
+        "status": "Status",
+        "renews": "Renews",
+        "trial": "Trial ends"
+      }
+    },
+    "templates": {
+      "title": "Message templates",
+      "subtitle": "Pre-canned WhatsApp follow-ups. Use {name}, {weight}, {streak}, {days} as placeholders.",
+      "new": "New template",
+      "slug": "Slug",
+      "category": "Category",
+      "labelEn": "Label (EN)",
+      "labelAr": "Label (AR)",
+      "bodyEn": "Body (EN)",
+      "bodyAr": "Body (AR)",
+      "sortOrder": "Sort order",
+      "isActive": "Active",
+      "save": "Save",
+      "delete": "Delete",
+      "deleteConfirm": "Delete this template?",
+      "edit": "Edit",
+      "categories": {
+        "checkin_reminder": "Check-in reminder",
+        "missed_checkin": "Missed check-in",
+        "milestone": "Milestone",
+        "welcome": "Welcome",
+        "custom": "Custom"
       }
     }
   },
@@ -537,6 +620,20 @@
       "diet": "On-plan eating",
       "cardio": "Cardio session",
       "save": "Save habits"
+    },
+    "subscription": {
+      "title": "Your subscription",
+      "currentPlan": "Current plan",
+      "noPlan": "No active plan. Contact your coach.",
+      "renews": "Renews on",
+      "trialUntil": "Trial ends on",
+      "status": {
+        "trial": "Trial",
+        "active": "Active",
+        "expired": "Expired",
+        "canceled": "Canceled"
+      },
+      "features": "Features"
     }
   },
   "common": {

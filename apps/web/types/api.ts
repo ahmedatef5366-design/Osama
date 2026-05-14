@@ -290,3 +290,91 @@ export type TopClient = {
   name: string;
   avgCompliance: number;
 };
+
+// ────────────────────────────────────────────────────────────────────────
+// Subscriptions / plans
+// ────────────────────────────────────────────────────────────────────────
+
+export type LocalizedString = {
+  ar: string;
+  en: string;
+};
+
+export type PlanFeature = {
+  ar: string;
+  en: string;
+};
+
+export type Plan = {
+  id: string;
+  slug: string;
+  name: LocalizedString;
+  description?: LocalizedString;
+  monthlyPriceEgp: number;
+  features: PlanFeature[];
+  maxClients: number;
+  sortOrder: number;
+  isActive: boolean;
+  createdAt: string;
+  updatedAt: string;
+};
+
+export type SubscriptionStatus = "trial" | "active" | "expired" | "canceled";
+
+export type Subscription = {
+  id: string;
+  clientId: string;
+  planId: string;
+  planSlug: string;
+  planName: LocalizedString;
+  status: SubscriptionStatus;
+  startedAt: string;
+  expiresAt?: string | null;
+  trialUntil?: string | null;
+  cancelReason?: string | null;
+  notes?: string | null;
+  createdAt: string;
+  updatedAt: string;
+};
+
+export type SubscriptionWithClient = Subscription & {
+  clientName: string;
+  clientEmail: string;
+};
+
+export type SubscriptionHistoryEntry = {
+  id: string;
+  clientId: string;
+  planId: string;
+  planSlug: string;
+  status: SubscriptionStatus;
+  startedAt: string;
+  expiresAt?: string | null;
+  changedBy?: string | null;
+  changedAt: string;
+  note?: string | null;
+};
+
+// ────────────────────────────────────────────────────────────────────────
+// Contact channels + templates
+// ────────────────────────────────────────────────────────────────────────
+
+export type ClientContact = {
+  phone?: string | null;
+  whatsapp?: string | null;
+  instagram?: string | null;
+};
+
+export type MessageTemplate = {
+  id: string;
+  slug: string;
+  category: string;
+  labelAr: string;
+  labelEn: string;
+  bodyAr: string;
+  bodyEn: string;
+  sortOrder: number;
+  isActive: boolean;
+  createdAt: string;
+  updatedAt: string;
+};

@@ -17,7 +17,10 @@
     "today": "اليوم",
     "progress": "التقدّم",
     "photos": "الصور",
-    "checkin": "المتابعة اليومية"
+    "checkin": "المتابعة اليومية",
+    "subscriptions": "الاشتراكات",
+    "templates": "القوالب",
+    "subscription": "خطتي"
   },
   "landing": {
     "hero": {
@@ -330,7 +333,9 @@
         "overview": "نظرة عامة",
         "workout": "التمرين",
         "nutrition": "التغذية",
-        "progress": "التقدّم"
+        "progress": "التقدّم",
+        "contact": "تواصل",
+        "subscription": "الباقة"
       },
       "stats": {
         "weight": "الوزن",
@@ -406,6 +411,44 @@
       "progress": {
         "title": "التقدّم",
         "comingSoon": "مخططات الوزن والقياسات تأتي مع Phase 4."
+      },
+      "contact": {
+        "title": "قنوات التواصل",
+        "subtitle": "تظهر كروابط مباشرة من هذا الملف. مفيش رسائل بتتبعت تلقائياً.",
+        "phone": "موبايل",
+        "whatsapp": "رقم واتساب",
+        "instagram": "إنستجرام",
+        "phoneHint": "بصيغة دولية، مثال: +201001234567",
+        "whatsappHint": "أرقام فقط (بدون مسافات، بدون 00 ابتدائية)",
+        "instagramHint": "اسم المستخدم بدون @",
+        "save": "حفظ التواصل",
+        "openWhatsApp": "فتح واتساب",
+        "openInstagram": "فتح إنستجرام",
+        "noWhatsapp": "اضف رقم واتساب أولاً",
+        "templates": "ارسل قالب",
+        "templatesEmpty": "مفيش قوالب لسه. ضيف من /admin/templates.",
+        "savedToast": "تم الحفظ"
+      },
+      "subscription": {
+        "title": "الاشتراك",
+        "currentPlan": "الخطة الحالية",
+        "status": "الحالة",
+        "expiresAt": "تاريخ التجديد",
+        "trialUntil": "نهاية التجربة",
+        "notes": "ملاحظات",
+        "noPlan": "لم يتم تعيين خطة",
+        "assignPlan": "تعيين خطة",
+        "changePlan": "تغيير الخطة",
+        "renewMonths": "تجديد (شهور)",
+        "cancel": "إلغاء",
+        "reason": "السبب",
+        "history": "السجل",
+        "statuses": {
+          "trial": "تجربة",
+          "active": "نشطة",
+          "expired": "منتهية",
+          "canceled": "ملغية"
+        }
       }
     },
     "plans": {
@@ -440,6 +483,46 @@
         "p": "ب",
         "c": "ك",
         "f": "د"
+      }
+    },
+    "nav": {
+      "subscriptions": "الاشتراكات",
+      "templates": "قوالب الرسائل"
+    },
+    "subscriptions": {
+      "title": "الاشتراكات",
+      "subtitle": "كل الاشتراكات النشطة والحديثة. اضغط على صف لتعديله.",
+      "empty": "مفيش اشتراكات لسه. أضف عميل وهيتفتحله ترايل تلقائي.",
+      "th": {
+        "client": "العميل",
+        "plan": "الخطة",
+        "status": "الحالة",
+        "renews": "تجديد",
+        "trial": "نهاية التجربة"
+      }
+    },
+    "templates": {
+      "title": "قوالب الرسائل",
+      "subtitle": "قوالب رسائل واتساب جاهزة. استخدم {name}، {weight}، {streak}، {days} كمتغيرات.",
+      "new": "قالب جديد",
+      "slug": "الرمز",
+      "category": "النوع",
+      "labelEn": "العنوان (إنجليزي)",
+      "labelAr": "العنوان (عربي)",
+      "bodyEn": "النص (إنجليزي)",
+      "bodyAr": "النص (عربي)",
+      "sortOrder": "الترتيب",
+      "isActive": "مفعّل",
+      "save": "حفظ",
+      "delete": "حذف",
+      "deleteConfirm": "تحذف القالب ده؟",
+      "edit": "تعديل",
+      "categories": {
+        "checkin_reminder": "تذكير المتابعة",
+        "missed_checkin": "غاب عن المتابعة",
+        "milestone": "إنجاز",
+        "welcome": "ترحيب",
+        "custom": "مخصص"
       }
     }
   },
@@ -537,6 +620,20 @@
       "diet": "أكل على الخطة",
       "cardio": "جلسة كارديو",
       "save": "احفظ"
+    },
+    "subscription": {
+      "title": "اشتراكك",
+      "currentPlan": "الخطة الحالية",
+      "noPlan": "مفيش خطة نشطة. تواصل مع المدرّب.",
+      "renews": "تجدد في",
+      "trialUntil": "تنتهي التجربة في",
+      "status": {
+        "trial": "تجربة",
+        "active": "نشطة",
+        "expired": "منتهية",
+        "canceled": "ملغية"
+      },
+      "features": "المميزات"
     }
   },
   "common": {

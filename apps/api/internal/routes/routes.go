@@ -16,24 +16,28 @@ import (
 	"github.com/ahmedatef5366-design/Osama/apps/api/internal/monitoring"
 	"github.com/ahmedatef5366-design/Osama/apps/api/internal/nutrition"
 	"github.com/ahmedatef5366-design/Osama/apps/api/internal/progress"
+	"github.com/ahmedatef5366-design/Osama/apps/api/internal/subscriptions"
+	"github.com/ahmedatef5366-design/Osama/apps/api/internal/templates"
 	"github.com/ahmedatef5366-design/Osama/apps/api/internal/workouts"
 	"github.com/ahmedatef5366-design/Osama/apps/api/internal/ws"
 )
 
 // Deps bundles the runtime dependencies the route layer needs.
 type Deps struct {
-	Queries    *db.Queries
-	Tokens     *auth.TokenManager
-	Auth       *auth.Handler
-	Clients    *clients.Handler
-	Content    *content.Handler
-	Workouts   *workouts.Handler
-	Nutrition  *nutrition.Handler
-	Progress   *progress.Handler
-	Checkin    *checkin.Handler
-	Messaging  *messaging.Handler
-	Monitoring *monitoring.Handler
-	Hub        *ws.Hub
+	Queries       *db.Queries
+	Tokens        *auth.TokenManager
+	Auth          *auth.Handler
+	Clients       *clients.Handler
+	Content       *content.Handler
+	Workouts      *workouts.Handler
+	Nutrition     *nutrition.Handler
+	Progress      *progress.Handler
+	Checkin       *checkin.Handler
+	Messaging     *messaging.Handler
+	Monitoring    *monitoring.Handler
+	Subscriptions *subscriptions.Handler
+	Templates     *templates.Handler
+	Hub           *ws.Hub
 }
 
 // Register mounts every route on the supplied app.
@@ -75,6 +79,12 @@ func Register(app *fiber.App, d Deps) {
 	clientsGroup.Patch("/:id",
 		middleware.RequireRole(auth.RoleAdmin),
 		d.Clients.Patch,
+	)
+
+	clientsGroup.Get("/:id/contact", d.Clients.GetContact)
+	clientsGroup.Patch("/:id/contact",
+		middleware.RequireRole(auth.RoleAdmin),
+		d.Clients.PatchContact,
 	)
 
 	// Client-scoped workout + nutrition shortcuts. These live under
@@ -303,6 +313,41 @@ func Register(app *fiber.App, d Deps) {
 		adminGroup.Get("/monitoring/compliance-trend", d.Monitoring.ComplianceTrend)
 		adminGroup.Get("/monitoring/top-clients", d.Monitoring.TopClients)
 		adminGroup.Get("/monitoring/checkins-per-day", d.Monitoring.CheckinsPerDay)
+	}
+
+	// ── Subscriptions / Plans ──────────────────────────────────
+	if d.Subscriptions != nil {
+		api.Get("/plans", d.Subscriptions.ListPlans)
+
+		api.Get("/subscription",
+			middleware.RequireAuth(d.Tokens, d.Queries),
+			middleware.RequireRole(auth.RoleClient),
+			d.Subscriptions.ClientGet,
+		)
+
+		subAdmin := api.Group("/admin/subscriptions",
+			middleware.RequireAuth(d.Tokens, d.Queries),
+			middleware.RequireRole(auth.RoleAdmin),
+		)
+		subAdmin.Get("", d.Subscriptions.AdminList)
+		subAdmin.Post("", d.Subscriptions.AdminUpsert)
+		subAdmin.Get("/:clientId/history", d.Subscriptions.AdminHistory)
+		subAdmin.Post("/:clientId/cancel", d.Subscriptions.AdminCancel)
+	}
+
+	// ── Message templates (admin WhatsApp follow-ups) ──────────
+	if d.Templates != nil {
+		api.Get("/templates",
+			middleware.RequireAuth(d.Tokens, d.Queries),
+			d.Templates.List,
+		)
+		tplAdmin := api.Group("/admin/templates",
+			middleware.RequireAuth(d.Tokens, d.Queries),
+			middleware.RequireRole(auth.RoleAdmin),
+		)
+		tplAdmin.Post("", d.Templates.Create)
+		tplAdmin.Patch("/:id", d.Templates.Update)
+		tplAdmin.Delete("/:id", d.Templates.Delete)
 	}
 
 	// ── SSE (real-time notifications) ──────────────────────────
