@@ -5,11 +5,25 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
 
-type Item = { href: string; key: "dashboard" | "clients" | "plans" | "nutrition" | "monitoring" | "cms" | "settings" };
+type Item = {
+  href: string;
+  key:
+    | "dashboard"
+    | "clients"
+    | "plans"
+    | "nutrition"
+    | "subscriptions"
+    | "templates"
+    | "monitoring"
+    | "cms"
+    | "settings";
+};
 
 const items: Item[] = [
   { href: "/admin/dashboard", key: "dashboard" },
   { href: "/admin/clients", key: "clients" },
+  { href: "/admin/subscriptions", key: "subscriptions" },
+  { href: "/admin/templates", key: "templates" },
   { href: "/admin/plans", key: "plans" },
   { href: "/admin/nutrition", key: "nutrition" },
   { href: "/admin/monitoring", key: "monitoring" },
