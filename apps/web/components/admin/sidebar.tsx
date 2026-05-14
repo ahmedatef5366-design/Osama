@@ -10,24 +10,32 @@ type Item = {
   key:
     | "dashboard"
     | "clients"
+    | "invites"
     | "plans"
     | "nutrition"
     | "subscriptions"
     | "templates"
     | "monitoring"
     | "cms"
+    | "branding"
+    | "exports"
+    | "audit"
     | "settings";
 };
 
 const items: Item[] = [
   { href: "/admin/dashboard", key: "dashboard" },
   { href: "/admin/clients", key: "clients" },
+  { href: "/admin/invites", key: "invites" },
   { href: "/admin/subscriptions", key: "subscriptions" },
   { href: "/admin/templates", key: "templates" },
   { href: "/admin/plans", key: "plans" },
   { href: "/admin/nutrition", key: "nutrition" },
   { href: "/admin/monitoring", key: "monitoring" },
   { href: "/admin/cms", key: "cms" },
+  { href: "/admin/branding", key: "branding" },
+  { href: "/admin/exports", key: "exports" },
+  { href: "/admin/audit", key: "audit" },
   { href: "/admin/settings", key: "settings" },
 ];
 

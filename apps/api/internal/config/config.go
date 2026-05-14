@@ -39,6 +39,11 @@ type Config struct {
 	// CMS→Web revalidate webhook. Empty URL = feature disabled.
 	RevalidateURL    string
 	RevalidateSecret string
+
+	// Public origin of the Next.js app, used to assemble user-facing
+	// links the API generates (invite URLs, etc.). Defaults to the
+	// first CORS origin so dev works out of the box.
+	WebBaseURL string
 }
 
 func Load() (*Config, error) {
@@ -63,6 +68,11 @@ func Load() (*Config, error) {
 
 		RevalidateURL:    os.Getenv("NEXT_REVALIDATE_URL"),
 		RevalidateSecret: os.Getenv("NEXT_REVALIDATE_SECRET"),
+
+		WebBaseURL: getEnv("WEB_BASE_URL", ""),
+	}
+	if c.WebBaseURL == "" && len(c.CORSOrigins) > 0 {
+		c.WebBaseURL = c.CORSOrigins[0]
 	}
 
 	if c.DatabaseURL == "" {

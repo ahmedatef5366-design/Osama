@@ -6,11 +6,15 @@ package routes
 import (
 	"github.com/gofiber/fiber/v2"
 
+	"github.com/ahmedatef5366-design/Osama/apps/api/internal/auditlog"
 	"github.com/ahmedatef5366-design/Osama/apps/api/internal/auth"
+	"github.com/ahmedatef5366-design/Osama/apps/api/internal/branding"
 	"github.com/ahmedatef5366-design/Osama/apps/api/internal/checkin"
 	"github.com/ahmedatef5366-design/Osama/apps/api/internal/clients"
 	"github.com/ahmedatef5366-design/Osama/apps/api/internal/content"
+	"github.com/ahmedatef5366-design/Osama/apps/api/internal/dataexport"
 	db "github.com/ahmedatef5366-design/Osama/apps/api/internal/db/generated"
+	"github.com/ahmedatef5366-design/Osama/apps/api/internal/invites"
 	"github.com/ahmedatef5366-design/Osama/apps/api/internal/messaging"
 	"github.com/ahmedatef5366-design/Osama/apps/api/internal/middleware"
 	"github.com/ahmedatef5366-design/Osama/apps/api/internal/monitoring"
@@ -37,6 +41,10 @@ type Deps struct {
 	Monitoring    *monitoring.Handler
 	Subscriptions *subscriptions.Handler
 	Templates     *templates.Handler
+	Branding      *branding.Handler
+	Invites       *invites.Handler
+	AuditLog      *auditlog.Handler
+	DataExport    *dataexport.Handler
 	Hub           *ws.Hub
 }
 
@@ -355,6 +363,57 @@ func Register(app *fiber.App, d Deps) {
 		api.Get("/sse/notifications",
 			middleware.RequireAuth(d.Tokens, d.Queries),
 			d.Hub.SSENotifications,
+		)
+	}
+
+	// ── Branding (public read, admin write) ───────────────────
+	if d.Branding != nil {
+		api.Get("/branding", d.Branding.Get)
+		api.Put("/admin/branding",
+			middleware.RequireAuth(d.Tokens, d.Queries),
+			middleware.RequireRole(auth.RoleAdmin),
+			d.Branding.Update,
+		)
+	}
+
+	// ── Client invites ─────────────────────────────────────────
+	if d.Invites != nil {
+		invAdmin := api.Group("/admin/invites",
+			middleware.RequireAuth(d.Tokens, d.Queries),
+			middleware.RequireRole(auth.RoleAdmin),
+		)
+		invAdmin.Get("", d.Invites.List)
+		invAdmin.Post("", d.Invites.Create)
+		invAdmin.Post("/:id/revoke", d.Invites.Revoke)
+
+		// Public accept flow. The token in the URL is the credential.
+		api.Get("/invites/:token", d.Invites.Lookup)
+		api.Post("/invites/:token/accept", d.Invites.Accept)
+	}
+
+	// ── Audit log (admin) ─────────────────────────────────────
+	if d.AuditLog != nil {
+		api.Get("/admin/audit-log",
+			middleware.RequireAuth(d.Tokens, d.Queries),
+			middleware.RequireRole(auth.RoleAdmin),
+			d.AuditLog.List,
+		)
+	}
+
+	// ── Data export (admin CSVs + client self-export JSON) ────
+	if d.DataExport != nil {
+		adminExp := api.Group("/admin/exports",
+			middleware.RequireAuth(d.Tokens, d.Queries),
+			middleware.RequireRole(auth.RoleAdmin),
+		)
+		adminExp.Get("/clients.csv", d.DataExport.AdminClients)
+		adminExp.Get("/checkins.csv", d.DataExport.AdminCheckins)
+		adminExp.Get("/clients/:id.csv", d.DataExport.AdminClientCSV)
+
+		api.Get("/clients/me/export.json",
+			middleware.RequireAuth(d.Tokens, d.Queries),
+			middleware.RequireRole(auth.RoleClient),
+			d.DataExport.ClientSelfExport,
 		)
 	}
 }
