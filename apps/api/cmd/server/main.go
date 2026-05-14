@@ -18,14 +18,18 @@ import (
 	"go.uber.org/zap"
 
 	"github.com/ahmedatef5366-design/Osama/apps/api/internal/access"
+	"github.com/ahmedatef5366-design/Osama/apps/api/internal/auditlog"
 	"github.com/ahmedatef5366-design/Osama/apps/api/internal/auth"
+	"github.com/ahmedatef5366-design/Osama/apps/api/internal/branding"
 	"github.com/ahmedatef5366-design/Osama/apps/api/internal/cache"
 	"github.com/ahmedatef5366-design/Osama/apps/api/internal/checkin"
 	"github.com/ahmedatef5366-design/Osama/apps/api/internal/clients"
 	"github.com/ahmedatef5366-design/Osama/apps/api/internal/config"
 	"github.com/ahmedatef5366-design/Osama/apps/api/internal/content"
 	"github.com/ahmedatef5366-design/Osama/apps/api/internal/database"
+	"github.com/ahmedatef5366-design/Osama/apps/api/internal/dataexport"
 	db "github.com/ahmedatef5366-design/Osama/apps/api/internal/db/generated"
+	"github.com/ahmedatef5366-design/Osama/apps/api/internal/invites"
 	"github.com/ahmedatef5366-design/Osama/apps/api/internal/jobs"
 	"github.com/ahmedatef5366-design/Osama/apps/api/internal/logger"
 	"github.com/ahmedatef5366-design/Osama/apps/api/internal/messaging"
@@ -119,6 +123,18 @@ func main() {
 	templatesSvc := templates.NewService(pool)
 	templatesH := templates.NewHandler(templatesSvc)
 
+	brandingSvc := branding.NewService(pool)
+	brandingH := branding.NewHandler(brandingSvc)
+
+	invitesSvc := invites.NewService(pool, queries)
+	invitesH := invites.NewHandler(invitesSvc, cfg.WebBaseURL)
+
+	auditSvc := auditlog.NewService(pool)
+	auditH := auditlog.NewHandler(auditSvc)
+
+	dataExportSvc := dataexport.NewService(pool)
+	dataExportH := dataexport.NewHandler(dataExportSvc, resolver)
+
 	hub := ws.NewHub()
 	go hub.Run()
 
@@ -143,7 +159,7 @@ func main() {
 	app.Use(middleware.SecurityHeaders(cfg))
 	app.Use(middleware.CORS(cfg))
 	app.Use(middleware.RequestLogger(log))
-	app.Use(middleware.AuditAdminWrites(log))
+	app.Use(middleware.AuditAdminWrites(log, auditSvc))
 	app.Use(middleware.RateLimit(rdb, cfg.RateLimitPerMinute))
 
 	routes.Register(app, routes.Deps{
@@ -160,6 +176,10 @@ func main() {
 		Monitoring:    monitoringH,
 		Subscriptions: subscriptionsH,
 		Templates:     templatesH,
+		Branding:      brandingH,
+		Invites:       invitesH,
+		AuditLog:      auditH,
+		DataExport:    dataExportH,
 		Hub:           hub,
 	})
 

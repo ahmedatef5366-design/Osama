@@ -20,7 +20,11 @@
     "checkin": "Check-in",
     "subscriptions": "Subscriptions",
     "templates": "Templates",
-    "subscription": "My plan"
+    "subscription": "My plan",
+    "invites": "Invites",
+    "branding": "Branding",
+    "exports": "Exports",
+    "audit": "Audit log"
   },
   "landing": {
     "hero": {
@@ -524,7 +528,89 @@
         "welcome": "Welcome",
         "custom": "Custom"
       }
+    },
+    "branding": {
+      "title": "Branding",
+      "subtitle": "Tune how the platform looks to your trainees.",
+      "coachName": "Coach name",
+      "taglineEn": "Tagline (EN)",
+      "taglineAr": "Tagline (AR)",
+      "logoUrl": "Logo URL",
+      "accentColor": "Accent color",
+      "whatsapp": "WhatsApp",
+      "supportEmail": "Support email",
+      "instagram": "Instagram URL",
+      "save": "Save changes",
+      "saved": "Saved.",
+      "preview": "Preview"
+    },
+    "invites": {
+      "title": "Client invites",
+      "subtitle": "Send a unique invite link instead of sharing passwords.",
+      "new": "New invite",
+      "name": "Trainee name",
+      "email": "Email",
+      "expiresIn": "Expires in (hours)",
+      "create": "Create invite",
+      "shareLink": "Share this link with the trainee (it won't be shown again):",
+      "copy": "Copy",
+      "copied": "Copied",
+      "revoke": "Revoke",
+      "revokeConfirm": "Revoke this invite?",
+      "empty": "No invites yet.",
+      "columns": {
+        "name": "Name",
+        "email": "Email",
+        "status": "Status",
+        "created": "Created",
+        "expires": "Expires",
+        "actions": "Actions"
+      },
+      "status": {
+        "pending": "Pending",
+        "accepted": "Accepted",
+        "revoked": "Revoked",
+        "expired": "Expired"
+      }
+    },
+    "audit": {
+      "title": "Audit log",
+      "subtitle": "Every admin write is recorded. Read here, search by action or actor.",
+      "filterAction": "Filter by action…",
+      "empty": "No audit entries yet.",
+      "columns": {
+        "when": "When",
+        "actor": "Actor",
+        "action": "Action",
+        "status": "Status",
+        "ip": "IP"
+      },
+      "prev": "Previous",
+      "next": "Next",
+      "page": "Page {page}"
+    },
+    "exports": {
+      "title": "Data export",
+      "subtitle": "Download your clients' data as CSV for backups or reporting.",
+      "clients": "Clients (CSV)",
+      "clientsHint": "Profile, contact info, and subscription status — one row per trainee.",
+      "checkins": "Daily check-ins (CSV)",
+      "checkinsHint": "All daily check-ins for the last 365 days.",
+      "download": "Download"
     }
+  },
+  "invite": {
+    "title": "You've been invited",
+    "intro": "Set a password to activate your account.",
+    "name": "Name",
+    "email": "Email",
+    "password": "Password",
+    "passwordHint": "At least 8 characters.",
+    "submit": "Create account",
+    "success": "Account created — you can now log in.",
+    "expired": "This invite is no longer valid.",
+    "notFound": "Invite not found.",
+    "goToLogin": "Go to login"
   },
   "client": {
     "today": {
