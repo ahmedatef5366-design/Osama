@@ -4,6 +4,7 @@ import { useCallback, useEffect, useState } from "react";
 import { useTranslations } from "next-intl";
 import { api, apiData } from "@/lib/api";
 import { Card, CardHeader, CardBody, CardTitle } from "@/components/ui/card";
+import { WeightTrend } from "@/components/client/weight-trend";
 import type { WeightEntry, Measurement } from "@/types/api";
 
 type Tab = "weight" | "measurements";
@@ -138,26 +139,29 @@ function WeightTab() {
         ) : entries.length === 0 ? (
           <p className="text-text-2 text-sm">{t("empty")}</p>
         ) : (
-          <div className="space-y-2">
-            {entries.map((e, i) => (
-              <div
-                key={i}
-                className="flex items-center justify-between rounded-md bg-surface-high px-3 py-2"
-              >
-                <div>
-                  <span className="font-mono text-lg font-bold text-accent">
-                    {e.weightKg}
+          <div className="space-y-4">
+            <WeightTrend entries={entries} />
+            <div className="space-y-2">
+              {entries.map((e, i) => (
+                <div
+                  key={i}
+                  className="flex items-center justify-between rounded-md bg-surface-high px-3 py-2"
+                >
+                  <div>
+                    <span className="font-mono text-lg font-bold text-accent">
+                      {e.weightKg}
+                    </span>
+                    <span className="ml-1 text-xs text-text-2">kg</span>
+                    {e.notes && (
+                      <p className="mt-0.5 text-xs text-text-3">{e.notes}</p>
+                    )}
+                  </div>
+                  <span className="text-xs text-text-3">
+                    {new Date(e.loggedAt).toLocaleDateString()}
                   </span>
-                  <span className="ml-1 text-xs text-text-2">kg</span>
-                  {e.notes && (
-                    <p className="mt-0.5 text-xs text-text-3">{e.notes}</p>
-                  )}
                 </div>
-                <span className="text-xs text-text-3">
-                  {new Date(e.loggedAt).toLocaleDateString()}
-                </span>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
         )}
       </CardBody>

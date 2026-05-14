@@ -39,3 +39,17 @@ type AtRiskClient struct {
 	AvgCompliance int    `json:"avgCompliance"`
 	CheckinCount  int    `json:"checkinCount"`
 }
+
+// Summary is what the client today-page reads to render its streak,
+// weekly compliance, and "checked-in today" widgets. Single roundtrip
+// keeps the page paint count down.
+type Summary struct {
+	CurrentStreak  int  `json:"currentStreak"`
+	LongestStreak  int  `json:"longestStreak"`
+	WeekCheckins   int  `json:"weekCheckins"`
+	WeekCompliance int  `json:"weekCompliance"`
+	WeekWaterCups  int  `json:"weekWaterCups"`
+	WeekSleepHours int  `json:"weekSleepHours"`
+	WeekCardioMins int  `json:"weekCardioMins"`
+	CheckedInToday bool `json:"checkedInToday"`
+}

@@ -9,12 +9,18 @@ const withNextIntl = createNextIntlPlugin("./i18n/request.ts");
  */
 const API_ORIGIN = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8080";
 
+const isProd = process.env.NODE_ENV === "production";
+
 /**
  * Content-Security-Policy. Tight enough to block trivial XSS payloads,
  * loose enough for Next.js's runtime expectations:
  *  - `script-src 'self' 'unsafe-inline'` — Next ships small inline
  *    bootstrap scripts (hydration markers, RSC chunks). Pinning hashes
  *    is more brittle than the marginal security gain.
+ *  - **Dev only:** we also allow `'unsafe-eval'` because Next.js HMR
+ *    relies on `eval()`-style runtime compilation. Without it, every
+ *    `"use client"` component fails to hydrate in `pnpm dev`. Stripped
+ *    in production builds.
  *  - `style-src 'self' 'unsafe-inline'` — Tailwind + framer-motion both
  *    emit inline styles at runtime.
  *  - `img-src` allows Cloudinary + Unsplash + data: + blob: (for
@@ -27,7 +33,9 @@ const csp = [
   "form-action 'self'",
   "frame-ancestors 'none'",
   "object-src 'none'",
-  "script-src 'self' 'unsafe-inline'",
+  isProd
+    ? "script-src 'self' 'unsafe-inline'"
+    : "script-src 'self' 'unsafe-inline' 'unsafe-eval'",
   "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com",
   "font-src 'self' https://fonts.gstatic.com data:",
   "img-src 'self' data: blob: https://*.cloudinary.com https://res.cloudinary.com https://images.unsplash.com",
@@ -37,8 +45,6 @@ const csp = [
   "manifest-src 'self'",
   "upgrade-insecure-requests",
 ].join("; ");
-
-const isProd = process.env.NODE_ENV === "production";
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {

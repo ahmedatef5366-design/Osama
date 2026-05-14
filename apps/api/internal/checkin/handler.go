@@ -72,3 +72,17 @@ func (h *Handler) AtRisk(c *fiber.Ctx) error {
 	}
 	return httpx.OK(c, clients)
 }
+
+// Summary returns the per-client streak + weekly compliance roll-up.
+// Used by /client/today's hero strip.
+func (h *Handler) Summary(c *fiber.Ctx) error {
+	cid, err := h.resolver.ClientID(c)
+	if err != nil {
+		return err
+	}
+	sm, err := h.svc.Summary(c.UserContext(), cid)
+	if err != nil {
+		return err
+	}
+	return httpx.OK(c, sm)
+}

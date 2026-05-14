@@ -254,7 +254,16 @@
         "atRisk": "At risk",
         "todayCheckins": "Today's check-ins"
       },
-      "soon": "Coming soon — Phase 5"
+      "soon": "Coming soon — Phase 5",
+      "atRiskStrip": {
+        "title": "Needs your attention",
+        "subtitle": "Clients with low 7-day compliance — message them today.",
+        "empty": "Everyone's on track. Nice work coach.",
+        "compliance": "compliance",
+        "checks": "check-ins",
+        "open": "Open profile",
+        "message": "Message"
+      }
     },
     "monitoring": {
       "title": "Monitoring",
@@ -503,6 +512,31 @@
       "send": "Send",
       "placeholder": "Type a message…",
       "empty": "No messages yet."
+    },
+    "todaySummary": {
+      "streak": "Day streak",
+      "longest": "Longest",
+      "weekChecks": "Check-ins this week",
+      "weekCompliance": "Avg compliance",
+      "weekWater": "Cups of water",
+      "weekSleep": "Hours of sleep",
+      "weekCardio": "Cardio min",
+      "checkedIn": "Checked in today",
+      "notChecked": "Haven't checked in today",
+      "checkinCta": "Open today's check-in",
+      "noStreak": "Start a streak today",
+      "fireOnce": "1 day",
+      "fireMany": "{count} days"
+    },
+    "habits": {
+      "title": "Today's habits",
+      "subtitle": "Tick each as you finish. Tonight's check-in is auto-pre-filled.",
+      "water": "8 cups of water",
+      "sleep": "7+ hours of sleep last night",
+      "training": "Today's training",
+      "diet": "On-plan eating",
+      "cardio": "Cardio session",
+      "save": "Save habits"
     }
   },
   "common": {
