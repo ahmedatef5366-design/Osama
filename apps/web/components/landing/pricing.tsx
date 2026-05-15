@@ -63,8 +63,8 @@ export function Pricing({ content, locale }: PricingProps) {
   const loc = asLocale(locale);
 
   return (
-    <section className="bg-surface py-24 sm:py-32" id="pricing">
-      <div className="mx-auto max-w-6xl px-6">
+    <section className="bg-surface py-16 sm:py-24 md:py-32" id="pricing">
+      <div className="mx-auto max-w-6xl px-4 sm:px-6">
         <motion.div
           className="mb-10 text-center sm:mb-14"
           variants={headingVariants}
@@ -75,11 +75,11 @@ export function Pricing({ content, locale }: PricingProps) {
           <span className="font-mono text-text-3 text-[11px] uppercase tracking-[0.32em]">
             {pt("eyebrow")}
           </span>
-          <h2 className="mt-3 font-display text-text-1 text-4xl sm:text-5xl font-extrabold">
+          <h2 className="mt-3 font-display text-text-1 text-3xl sm:text-4xl md:text-5xl font-extrabold">
             {tt(content.title, loc)}
           </h2>
           {content.subtitle ? (
-            <p className="mx-auto mt-3 max-w-xl text-text-2 text-lg">{tt(content.subtitle, loc)}</p>
+            <p className="mx-auto mt-3 max-w-xl text-text-2 text-base sm:text-lg">{tt(content.subtitle, loc)}</p>
           ) : null}
 
           <div className="mt-8 inline-flex rounded-full border border-border bg-bg p-1">

@@ -29,10 +29,10 @@ export function Features({ content, locale }: FeaturesProps) {
   const loc = asLocale(locale);
 
   return (
-    <section className="bg-bg py-24 sm:py-32" id="features">
-      <div className="mx-auto max-w-5xl px-6">
+    <section className="bg-bg py-16 sm:py-24 md:py-32" id="features">
+      <div className="mx-auto max-w-5xl px-4 sm:px-6">
         <motion.h2
-          className="font-display text-text-1 text-4xl sm:text-5xl font-extrabold mb-16"
+          className="font-display text-text-1 text-3xl sm:text-4xl md:text-5xl font-extrabold mb-10 sm:mb-16"
           variants={headingVariants}
           initial="hidden"
           whileInView="visible"

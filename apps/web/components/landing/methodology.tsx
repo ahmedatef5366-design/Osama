@@ -34,8 +34,8 @@ export function Methodology({ locale: _locale }: Props) {
   const t = useTranslations("landing.methodology");
 
   return (
-    <section className="relative bg-bg py-24 sm:py-32" id="methodology">
-      <div className="mx-auto max-w-7xl px-6">
+    <section className="relative bg-bg py-16 sm:py-24 md:py-32" id="methodology">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6">
         <motion.div
           variants={headingVariants}
           initial="hidden"
@@ -46,7 +46,7 @@ export function Methodology({ locale: _locale }: Props) {
           <span className="font-mono text-text-3 text-[11px] uppercase tracking-[0.32em]">
             {t("eyebrow")}
           </span>
-          <h2 className="mt-3 font-display text-text-1 text-4xl sm:text-5xl font-extrabold leading-[1.05]">
+          <h2 className="mt-3 font-display text-text-1 text-3xl sm:text-4xl md:text-5xl font-extrabold leading-[1.05]">
             {t("title")}
           </h2>
           <p className="mt-4 max-w-xl text-text-2 text-base sm:text-lg">

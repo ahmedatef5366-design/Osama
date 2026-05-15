@@ -35,8 +35,8 @@ export function ProcessSteps({ content, locale }: ProcessStepsProps) {
   if (!title) return null;
 
   return (
-    <section className="bg-surface py-24 sm:py-32" id="process-steps">
-      <div className="mx-auto max-w-7xl px-6">
+    <section className="bg-surface py-16 sm:py-24 md:py-32" id="process-steps">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6">
         <motion.div
           className="mb-12 sm:mb-16 max-w-3xl"
           variants={headingVariants}
@@ -49,11 +49,11 @@ export function ProcessSteps({ content, locale }: ProcessStepsProps) {
               {t(content.eyebrow, loc)}
             </span>
           ) : null}
-          <h2 className="mt-3 font-display text-text-1 text-4xl sm:text-5xl font-extrabold">
+          <h2 className="mt-3 font-display text-text-1 text-3xl sm:text-4xl md:text-5xl font-extrabold">
             {title}
           </h2>
           {content.subtitle ? (
-            <p className="mt-4 text-text-2 text-lg">{t(content.subtitle, loc)}</p>
+            <p className="mt-4 text-text-2 text-base sm:text-lg">{t(content.subtitle, loc)}</p>
           ) : null}
         </motion.div>
 

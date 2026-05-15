@@ -42,7 +42,7 @@ export function Hero({ content, locale }: HeroProps) {
         <span>{loc === "ar" ? "هذا أنت" : "this is you"}</span>
       </div>
 
-      <div className="mx-auto grid min-h-[88vh] max-w-7xl gap-12 px-6 py-24 sm:py-32 md:grid-cols-[1.4fr_1fr] md:items-center">
+      <div className="mx-auto grid min-h-[75vh] max-w-7xl gap-8 px-4 py-16 sm:min-h-[88vh] sm:gap-12 sm:px-6 sm:py-32 md:grid-cols-[1.4fr_1fr] md:items-center">
         <motion.div
           className="space-y-8"
           variants={stagger}

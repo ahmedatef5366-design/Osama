@@ -31,10 +31,10 @@ export function Faq({ content, locale }: FaqProps) {
   const loc = asLocale(locale);
 
   return (
-    <section className="bg-bg py-24 sm:py-32" id="faq">
-      <div className="mx-auto max-w-3xl px-6">
+    <section className="bg-bg py-16 sm:py-24 md:py-32" id="faq">
+      <div className="mx-auto max-w-3xl px-4 sm:px-6">
         <motion.h2
-          className="mb-10 font-display text-text-1 text-4xl sm:text-5xl font-extrabold"
+          className="mb-8 font-display text-text-1 text-3xl sm:text-4xl md:text-5xl font-extrabold sm:mb-10"
           variants={headingVariants}
           initial="hidden"
           whileInView="visible"

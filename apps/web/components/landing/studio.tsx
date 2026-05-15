@@ -41,7 +41,7 @@ export function Studio({ locale }: StudioProps) {
         />
         <div className="absolute inset-0 bg-gradient-to-t from-bg via-bg/30 to-transparent" />
 
-        <div className="relative flex h-full flex-col justify-between p-6 sm:p-10 md:p-14">
+        <div className="relative flex h-full flex-col justify-between p-4 sm:p-10 md:p-14">
           <div className="flex items-center gap-3 font-mono text-text-3 text-xs uppercase tracking-[0.25em]">
             <span className="h-1.5 w-1.5 rounded-full bg-accent" />
             <span>{loc === "ar" ? "الاستوديو" : "studio"}</span>
