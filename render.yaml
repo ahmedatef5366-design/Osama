@@ -23,7 +23,7 @@ services:
   - type: web
     runtime: docker
     name: osama-api
-    plan: starter
+    plan: free
     region: frankfurt
     dockerfilePath: ./apps/api/Dockerfile
     dockerContext: .
@@ -74,7 +74,7 @@ services:
   - type: web
     runtime: node
     name: osama-web
-    plan: starter
+    plan: free
     region: frankfurt
     rootDir: .
     buildCommand: corepack enable && corepack prepare pnpm@9.15.1 --activate && pnpm install --frozen-lockfile && pnpm --filter @osama/web build
