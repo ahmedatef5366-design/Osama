@@ -1,6 +1,10 @@
 import type { Envelope } from "@/types/api";
 
-const API_BASE = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8080";
+// Default to same-origin ("") so browser requests go through the Next.js
+// rewrite in next.config.mjs and cookies stay first-party. Override with
+// NEXT_PUBLIC_API_URL only when you specifically want the browser to hit the
+// API host directly (e.g. local dev without a Next.js server).
+const API_BASE = process.env.NEXT_PUBLIC_API_URL ?? "";
 
 export class APIError extends Error {
   constructor(

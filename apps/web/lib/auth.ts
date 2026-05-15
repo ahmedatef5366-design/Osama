@@ -3,7 +3,10 @@ import "server-only";
 import { cookies } from "next/headers";
 import type { User } from "@/types/api";
 
-const API_BASE = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8080";
+// Server-side calls bypass the Next.js rewrite, so they must hit the API
+// host directly. Use the same `API_INTERNAL_URL` env that next.config.mjs
+// uses for the public proxy.
+const API_BASE = process.env.API_INTERNAL_URL ?? "http://localhost:8080";
 
 /**
  * Server-side: hit /api/auth/me with the incoming cookies, return the user

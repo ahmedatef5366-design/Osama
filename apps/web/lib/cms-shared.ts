@@ -7,7 +7,9 @@ import type { Section, SectionKey } from "@/types/cms";
 
 export const CMS_TAG = "site-content";
 
-const API_BASE = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8080";
+// Server-side fetcher — bypasses the Next.js rewrite, so it must hit the API
+// host directly via the server-only `API_INTERNAL_URL` env.
+const API_BASE = process.env.API_INTERNAL_URL ?? "http://localhost:8080";
 
 type FetchOpts = {
   /** If set, included as a Cookie header (used by admin auth). */

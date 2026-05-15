@@ -21,9 +21,13 @@
 # in the same region and wires REDIS_URL into the API automatically.
 #
 # Public URLs assumed below (osama-api.onrender.com / osama-web.onrender.com)
-# match Render's default `<service-name>.onrender.com` pattern. If you attach
-# custom domains, update CORS_ORIGINS / WEB_BASE_URL / NEXT_PUBLIC_API_URL
-# accordingly in the Render dashboard.
+# match Render's default `<service-name>.onrender.com` pattern. Render may
+# append a `-XXXX` suffix when the slug is taken (e.g. `osama-api-sq1f`); the
+# blueprint defaults below assume the suffix-free names but the live Render
+# env vars must point at whatever URL Render actually assigns.
+#
+# If you attach custom domains, update CORS_ORIGINS / WEB_BASE_URL /
+# API_INTERNAL_URL accordingly in the Render dashboard.
 
 services:
   # ─── API (Go + Fiber, Dockerized) ────────────────────────────────────────
@@ -60,12 +64,20 @@ services:
         value: 15m
       - key: REFRESH_TOKEN_TTL
         value: 720h
+      # `onrender.com` is on the Public Suffix List, so browsers silently drop
+      # any Set-Cookie with `Domain=.onrender.com`. Leave COOKIE_DOMAIN empty so
+      # auth cookies are host-only and ride back to the browser through the
+      # Next.js /api rewrite (see apps/web/next.config.mjs) as first-party
+      # cookies on the web origin.
       - key: COOKIE_DOMAIN
-        value: .onrender.com
+        value: ""
       - key: COOKIE_SECURE
         value: "true"
+      # Cookies are first-party (web origin) thanks to the same-origin rewrite,
+      # so SameSite=Lax is the safer default. Switch to `none` only if you
+      # later expose the API directly to a different domain.
       - key: COOKIE_SAMESITE
-        value: none
+        value: lax
       - key: CORS_ORIGINS
         value: https://osama-web.onrender.com
       - key: WEB_BASE_URL
@@ -110,8 +122,18 @@ services:
         value: production
       - key: NEXT_TELEMETRY_DISABLED
         value: "1"
-      - key: NEXT_PUBLIC_API_URL
-        value: https://osama-api.onrender.com
+      # Server-only URL the Next.js rewrite/proxy forwards `/api/*` and `/healthz`
+      # requests to. Keep it as the actual Render API URL (suffix and all). The
+      # browser never sees this value, so cookies stay first-party on the web
+      # origin and the Public Suffix List rules about `*.onrender.com` cookies
+      # don't apply.
+      - key: API_INTERNAL_URL
+        value: https://osama-api-sq1f.onrender.com
+      # Intentionally left unset: same-origin ("") is the production default in
+      # apps/web/lib/api.ts. Set it only when you specifically need the browser
+      # to talk to the API host directly (e.g. local dev without the rewrite).
+      # - key: NEXT_PUBLIC_API_URL
+      #   value: ""
       - key: NEXT_REVALIDATE_SECRET
         sync: false
 
