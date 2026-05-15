@@ -1,0 +1,3788 @@
+# Egyptian + Arab staple foods, ~300 entries.
+# Macros sourced from USDA FoodData Central where applicable, and from
+# Egyptian National Nutrition Institute / FAO INFOODS for composite
+# dishes that don't exist in USDA.
+#
+# Editing tips:
+#   - Pick a stable `source_id` (don't renumber existing entries).
+#   - Per-100g macros for the edible portion (raw weight unless the name
+#     says "cooked" / "boiled" / "grilled" — pick the form a coach will
+#     most often log).
+#   - Keep names_ar concise (what a client would type in the search box).
+
+# ─────────────────────────────────────────────────────────────────────
+# 1. Grains, rice, pasta, oats
+# ─────────────────────────────────────────────────────────────────────
+
+- name: "White rice, cooked"
+  name_ar: "أرز أبيض مطبوخ"
+  category: grain
+  calories_per_100g: 130
+  protein_per_100g: 2.7
+  carbs_per_100g: 28.2
+  fat_per_100g: 0.3
+  fiber_per_100g: 0.4
+  serving_size_grams: 150
+  serving_label: "1 cup cooked"
+  serving_label_ar: "كوب مطبوخ"
+  source_id: egy_food_001
+  locale_tags: [eg, ar, global]
+
+- name: "Egyptian short-grain rice, cooked"
+  name_ar: "أرز مصري قصير الحبة مطبوخ"
+  category: grain
+  calories_per_100g: 135
+  protein_per_100g: 2.6
+  carbs_per_100g: 29.5
+  fat_per_100g: 0.4
+  fiber_per_100g: 0.4
+  serving_size_grams: 150
+  serving_label: "1 cup cooked"
+  serving_label_ar: "كوب مطبوخ"
+  source_id: egy_food_002
+  locale_tags: [eg, ar]
+
+- name: "Brown rice, cooked"
+  name_ar: "أرز بني مطبوخ"
+  category: grain
+  calories_per_100g: 112
+  protein_per_100g: 2.6
+  carbs_per_100g: 23.5
+  fat_per_100g: 0.9
+  fiber_per_100g: 1.8
+  serving_size_grams: 150
+  source_id: egy_food_003
+  locale_tags: [eg, ar, global]
+
+- name: "Basmati rice, cooked"
+  name_ar: "أرز بسمتي مطبوخ"
+  category: grain
+  calories_per_100g: 121
+  protein_per_100g: 3.0
+  carbs_per_100g: 25.2
+  fat_per_100g: 0.4
+  fiber_per_100g: 0.4
+  serving_size_grams: 150
+  source_id: egy_food_004
+  locale_tags: [eg, ar, global]
+
+- name: "Egyptian rice, dry (uncooked)"
+  name_ar: "أرز مصري ناشف"
+  category: grain
+  calories_per_100g: 360
+  protein_per_100g: 6.7
+  carbs_per_100g: 79.0
+  fat_per_100g: 0.6
+  fiber_per_100g: 1.0
+  serving_size_grams: 50
+  source_id: egy_food_005
+  locale_tags: [eg, ar]
+
+- name: "Pasta, cooked"
+  name_ar: "مكرونة مطبوخة"
+  category: grain
+  calories_per_100g: 131
+  protein_per_100g: 5.0
+  carbs_per_100g: 25.0
+  fat_per_100g: 1.1
+  fiber_per_100g: 1.8
+  serving_size_grams: 150
+  source_id: egy_food_006
+  locale_tags: [eg, ar, global]
+
+- name: "Spaghetti, cooked"
+  name_ar: "اسباجتي مطبوخة"
+  category: grain
+  calories_per_100g: 158
+  protein_per_100g: 5.8
+  carbs_per_100g: 31.0
+  fat_per_100g: 0.9
+  fiber_per_100g: 1.8
+  serving_size_grams: 150
+  source_id: egy_food_007
+  locale_tags: [eg, ar, global]
+
+- name: "Whole-wheat pasta, cooked"
+  name_ar: "مكرونة قمح كامل مطبوخة"
+  category: grain
+  calories_per_100g: 124
+  protein_per_100g: 5.3
+  carbs_per_100g: 26.5
+  fat_per_100g: 0.5
+  fiber_per_100g: 3.9
+  serving_size_grams: 150
+  source_id: egy_food_008
+  locale_tags: [eg, ar, global]
+
+- name: "Couscous, cooked"
+  name_ar: "كسكسي مطبوخ"
+  category: grain
+  calories_per_100g: 112
+  protein_per_100g: 3.8
+  carbs_per_100g: 23.2
+  fat_per_100g: 0.2
+  fiber_per_100g: 1.4
+  serving_size_grams: 150
+  source_id: egy_food_009
+  locale_tags: [eg, ar, global]
+
+- name: "Bulgur, cooked"
+  name_ar: "برغل مطبوخ"
+  category: grain
+  calories_per_100g: 83
+  protein_per_100g: 3.1
+  carbs_per_100g: 18.6
+  fat_per_100g: 0.2
+  fiber_per_100g: 4.5
+  serving_size_grams: 150
+  source_id: egy_food_010
+  locale_tags: [eg, ar, global]
+
+- name: "Freekeh, cooked"
+  name_ar: "فريك مطبوخ"
+  category: grain
+  calories_per_100g: 110
+  protein_per_100g: 4.5
+  carbs_per_100g: 22.0
+  fat_per_100g: 0.6
+  fiber_per_100g: 6.0
+  serving_size_grams: 150
+  source_id: egy_food_011
+  locale_tags: [eg, ar]
+
+- name: "Oats, dry rolled"
+  name_ar: "شوفان ناشف"
+  category: grain
+  calories_per_100g: 389
+  protein_per_100g: 16.9
+  carbs_per_100g: 66.3
+  fat_per_100g: 6.9
+  fiber_per_100g: 10.6
+  serving_size_grams: 40
+  serving_label: "1/2 cup dry"
+  serving_label_ar: "نص كوب ناشف"
+  source_id: egy_food_012
+  locale_tags: [eg, ar, global]
+
+- name: "Oats, cooked with water"
+  name_ar: "شوفان مطبوخ بالمياه"
+  category: grain
+  calories_per_100g: 71
+  protein_per_100g: 2.5
+  carbs_per_100g: 12.0
+  fat_per_100g: 1.5
+  fiber_per_100g: 1.7
+  serving_size_grams: 250
+  source_id: egy_food_013
+  locale_tags: [eg, ar, global]
+
+- name: "Corn, sweet boiled"
+  name_ar: "ذرة حلوة مسلوقة"
+  category: grain
+  calories_per_100g: 96
+  protein_per_100g: 3.4
+  carbs_per_100g: 21.0
+  fat_per_100g: 1.5
+  fiber_per_100g: 2.4
+  serving_size_grams: 165
+  source_id: egy_food_014
+  locale_tags: [eg, ar, global]
+
+- name: "Corn flour"
+  name_ar: "دقيق ذرة"
+  category: grain
+  calories_per_100g: 361
+  protein_per_100g: 6.9
+  carbs_per_100g: 76.8
+  fat_per_100g: 3.9
+  fiber_per_100g: 7.3
+  serving_size_grams: 30
+  source_id: egy_food_015
+  locale_tags: [eg, ar, global]
+
+- name: "Wheat flour, white all-purpose"
+  name_ar: "دقيق أبيض"
+  category: grain
+  calories_per_100g: 364
+  protein_per_100g: 10.3
+  carbs_per_100g: 76.3
+  fat_per_100g: 1.0
+  fiber_per_100g: 2.7
+  serving_size_grams: 30
+  source_id: egy_food_016
+  locale_tags: [eg, ar, global]
+
+- name: "Whole-wheat flour"
+  name_ar: "دقيق قمح كامل"
+  category: grain
+  calories_per_100g: 340
+  protein_per_100g: 13.2
+  carbs_per_100g: 72.0
+  fat_per_100g: 2.5
+  fiber_per_100g: 10.7
+  serving_size_grams: 30
+  source_id: egy_food_017
+  locale_tags: [eg, ar, global]
+
+- name: "Quinoa, cooked"
+  name_ar: "كينوا مطبوخة"
+  category: grain
+  calories_per_100g: 120
+  protein_per_100g: 4.4
+  carbs_per_100g: 21.3
+  fat_per_100g: 1.9
+  fiber_per_100g: 2.8
+  serving_size_grams: 150
+  source_id: egy_food_018
+  locale_tags: [eg, ar, global]
+
+# ─────────────────────────────────────────────────────────────────────
+# 2. Breads
+# ─────────────────────────────────────────────────────────────────────
+
+- name: "Aish baladi (Egyptian flatbread, whole-wheat)"
+  name_ar: "عيش بلدي"
+  category: bread
+  calories_per_100g: 246
+  protein_per_100g: 8.8
+  carbs_per_100g: 50.0
+  fat_per_100g: 1.4
+  fiber_per_100g: 7.0
+  sodium_mg_per_100g: 520
+  serving_size_grams: 90
+  serving_label: "1 loaf"
+  serving_label_ar: "رغيف"
+  source_id: egy_food_019
+  locale_tags: [eg, ar]
+
+- name: "Aish shami (white pita bread)"
+  name_ar: "عيش شامي"
+  category: bread
+  calories_per_100g: 275
+  protein_per_100g: 9.1
+  carbs_per_100g: 55.7
+  fat_per_100g: 1.2
+  fiber_per_100g: 2.2
+  sodium_mg_per_100g: 530
+  serving_size_grams: 60
+  serving_label: "1 loaf"
+  serving_label_ar: "رغيف"
+  source_id: egy_food_020
+  locale_tags: [eg, ar]
+
+- name: "Aish fino (white roll)"
+  name_ar: "عيش فينو"
+  category: bread
+  calories_per_100g: 285
+  protein_per_100g: 8.8
+  carbs_per_100g: 56.0
+  fat_per_100g: 2.5
+  fiber_per_100g: 2.3
+  sodium_mg_per_100g: 510
+  serving_size_grams: 50
+  serving_label: "1 roll"
+  serving_label_ar: "رغيف فينو"
+  source_id: egy_food_021
+  locale_tags: [eg, ar]
+
+- name: "Aish franko (French bread)"
+  name_ar: "عيش فرنساوي"
+  category: bread
+  calories_per_100g: 270
+  protein_per_100g: 8.8
+  carbs_per_100g: 51.9
+  fat_per_100g: 3.2
+  fiber_per_100g: 2.4
+  sodium_mg_per_100g: 580
+  serving_size_grams: 50
+  source_id: egy_food_022
+  locale_tags: [eg, ar]
+
+- name: "Toast bread, white sliced"
+  name_ar: "توست أبيض"
+  category: bread
+  calories_per_100g: 270
+  protein_per_100g: 9.0
+  carbs_per_100g: 49.0
+  fat_per_100g: 3.5
+  fiber_per_100g: 2.4
+  sodium_mg_per_100g: 490
+  serving_size_grams: 30
+  serving_label: "1 slice"
+  serving_label_ar: "شريحة"
+  source_id: egy_food_023
+  locale_tags: [eg, ar, global]
+
+- name: "Toast bread, whole-grain sliced"
+  name_ar: "توست قمح كامل"
+  category: bread
+  calories_per_100g: 247
+  protein_per_100g: 12.4
+  carbs_per_100g: 41.3
+  fat_per_100g: 3.4
+  fiber_per_100g: 7.0
+  sodium_mg_per_100g: 470
+  serving_size_grams: 30
+  source_id: egy_food_024
+  locale_tags: [eg, ar, global]
+
+- name: "Croissant, plain butter"
+  name_ar: "كرواسون بالزبدة"
+  category: bread
+  calories_per_100g: 406
+  protein_per_100g: 8.2
+  carbs_per_100g: 45.8
+  fat_per_100g: 21.0
+  fiber_per_100g: 2.6
+  sodium_mg_per_100g: 470
+  serving_size_grams: 60
+  source_id: egy_food_025
+  locale_tags: [eg, ar, global]
+
+- name: "Sambousek pastry (baked)"
+  name_ar: "سمبوسك مخبوزة"
+  category: bread
+  calories_per_100g: 290
+  protein_per_100g: 9.5
+  carbs_per_100g: 36.0
+  fat_per_100g: 11.5
+  fiber_per_100g: 2.0
+  serving_size_grams: 40
+  source_id: egy_food_026
+  locale_tags: [eg, ar]
+
+- name: "Feteer meshaltet (Egyptian layered pastry)"
+  name_ar: "فطير مشلتت"
+  category: bread
+  calories_per_100g: 380
+  protein_per_100g: 7.0
+  carbs_per_100g: 42.0
+  fat_per_100g: 20.0
+  fiber_per_100g: 1.5
+  serving_size_grams: 100
+  source_id: egy_food_027
+  locale_tags: [eg, ar]
+
+# ─────────────────────────────────────────────────────────────────────
+# 3. Legumes, beans, lentils
+# ─────────────────────────────────────────────────────────────────────
+
+- name: "Fava beans, cooked (foul medames base)"
+  name_ar: "فول مدمس مسلوق"
+  category: legume
+  calories_per_100g: 110
+  protein_per_100g: 7.6
+  carbs_per_100g: 19.7
+  fat_per_100g: 0.4
+  fiber_per_100g: 5.4
+  serving_size_grams: 200
+  source_id: egy_food_028
+  locale_tags: [eg, ar]
+
+- name: "Foul medames with oil (typical Egyptian breakfast)"
+  name_ar: "فول مدمس بالزيت"
+  category: dish
+  calories_per_100g: 152
+  protein_per_100g: 7.4
+  carbs_per_100g: 18.9
+  fat_per_100g: 5.2
+  fiber_per_100g: 5.2
+  serving_size_grams: 200
+  serving_label: "1 bowl"
+  serving_label_ar: "طبق"
+  source_id: egy_food_029
+  locale_tags: [eg, ar]
+
+- name: "Fava beans, dry (uncooked)"
+  name_ar: "فول ناشف"
+  category: legume
+  calories_per_100g: 341
+  protein_per_100g: 26.1
+  carbs_per_100g: 58.3
+  fat_per_100g: 1.5
+  fiber_per_100g: 25.0
+  serving_size_grams: 60
+  source_id: egy_food_030
+  locale_tags: [eg, ar]
+
+- name: "Lentils (red/yellow), cooked"
+  name_ar: "عدس أصفر مسلوق"
+  category: legume
+  calories_per_100g: 116
+  protein_per_100g: 9.0
+  carbs_per_100g: 20.1
+  fat_per_100g: 0.4
+  fiber_per_100g: 7.9
+  serving_size_grams: 200
+  source_id: egy_food_031
+  locale_tags: [eg, ar, global]
+
+- name: "Brown lentils, cooked"
+  name_ar: "عدس أسود مسلوق"
+  category: legume
+  calories_per_100g: 116
+  protein_per_100g: 9.0
+  carbs_per_100g: 20.1
+  fat_per_100g: 0.4
+  fiber_per_100g: 7.9
+  serving_size_grams: 200
+  source_id: egy_food_032
+  locale_tags: [eg, ar, global]
+
+- name: "Lentil soup, Egyptian style"
+  name_ar: "شوربة عدس"
+  category: dish
+  calories_per_100g: 68
+  protein_per_100g: 4.0
+  carbs_per_100g: 11.5
+  fat_per_100g: 0.8
+  fiber_per_100g: 3.0
+  serving_size_grams: 250
+  serving_label: "1 bowl"
+  serving_label_ar: "طبق شوربة"
+  source_id: egy_food_033
+  locale_tags: [eg, ar]
+
+- name: "Chickpeas, cooked"
+  name_ar: "حمص مسلوق"
+  category: legume
+  calories_per_100g: 164
+  protein_per_100g: 8.9
+  carbs_per_100g: 27.4
+  fat_per_100g: 2.6
+  fiber_per_100g: 7.6
+  serving_size_grams: 100
+  source_id: egy_food_034
+  locale_tags: [eg, ar, global]
+
+- name: "Hummus dip"
+  name_ar: "حمص بالطحينة"
+  category: dish
+  calories_per_100g: 166
+  protein_per_100g: 7.9
+  carbs_per_100g: 14.3
+  fat_per_100g: 9.6
+  fiber_per_100g: 6.0
+  serving_size_grams: 60
+  source_id: egy_food_035
+  locale_tags: [eg, ar, global]
+
+- name: "White beans, cooked"
+  name_ar: "فاصوليا بيضاء مسلوقة"
+  category: legume
+  calories_per_100g: 139
+  protein_per_100g: 9.7
+  carbs_per_100g: 25.1
+  fat_per_100g: 0.4
+  fiber_per_100g: 6.3
+  serving_size_grams: 150
+  source_id: egy_food_036
+  locale_tags: [eg, ar, global]
+
+- name: "Black-eyed beans (lubia), cooked"
+  name_ar: "لوبيا مسلوقة"
+  category: legume
+  calories_per_100g: 116
+  protein_per_100g: 7.7
+  carbs_per_100g: 20.8
+  fat_per_100g: 0.5
+  fiber_per_100g: 6.5
+  serving_size_grams: 150
+  source_id: egy_food_037
+  locale_tags: [eg, ar]
+
+- name: "Mash beans (mash), cooked"
+  name_ar: "مش (فاصوليا مش)"
+  category: legume
+  calories_per_100g: 105
+  protein_per_100g: 7.0
+  carbs_per_100g: 19.0
+  fat_per_100g: 0.4
+  fiber_per_100g: 7.6
+  serving_size_grams: 150
+  source_id: egy_food_038
+  locale_tags: [eg, ar]
+
+- name: "Falafel/taameya, fried"
+  name_ar: "طعمية مقلية"
+  category: dish
+  calories_per_100g: 333
+  protein_per_100g: 13.3
+  carbs_per_100g: 31.8
+  fat_per_100g: 17.8
+  fiber_per_100g: 4.9
+  serving_size_grams: 30
+  serving_label: "1 piece"
+  serving_label_ar: "قرص طعمية"
+  source_id: egy_food_039
+  locale_tags: [eg, ar]
+
+# ─────────────────────────────────────────────────────────────────────
+# 4. Vegetables
+# ─────────────────────────────────────────────────────────────────────
+
+- name: "Tomato, raw"
+  name_ar: "طماطم"
+  category: vegetable
+  calories_per_100g: 18
+  protein_per_100g: 0.9
+  carbs_per_100g: 3.9
+  fat_per_100g: 0.2
+  fiber_per_100g: 1.2
+  serving_size_grams: 120
+  serving_label: "1 medium"
+  serving_label_ar: "حبة متوسطة"
+  source_id: egy_food_040
+  locale_tags: [eg, ar, global]
+
+- name: "Cucumber, raw"
+  name_ar: "خيار"
+  category: vegetable
+  calories_per_100g: 15
+  protein_per_100g: 0.7
+  carbs_per_100g: 3.6
+  fat_per_100g: 0.1
+  fiber_per_100g: 0.5
+  serving_size_grams: 100
+  source_id: egy_food_041
+  locale_tags: [eg, ar, global]
+
+- name: "Onion, raw"
+  name_ar: "بصل"
+  category: vegetable
+  calories_per_100g: 40
+  protein_per_100g: 1.1
+  carbs_per_100g: 9.3
+  fat_per_100g: 0.1
+  fiber_per_100g: 1.7
+  serving_size_grams: 80
+  source_id: egy_food_042
+  locale_tags: [eg, ar, global]
+
+- name: "Garlic, raw"
+  name_ar: "ثوم"
+  category: vegetable
+  calories_per_100g: 149
+  protein_per_100g: 6.4
+  carbs_per_100g: 33.1
+  fat_per_100g: 0.5
+  fiber_per_100g: 2.1
+  serving_size_grams: 5
+  source_id: egy_food_043
+  locale_tags: [eg, ar, global]
+
+- name: "Lettuce, raw"
+  name_ar: "خس"
+  category: vegetable
+  calories_per_100g: 15
+  protein_per_100g: 1.4
+  carbs_per_100g: 2.9
+  fat_per_100g: 0.2
+  fiber_per_100g: 1.3
+  serving_size_grams: 50
+  source_id: egy_food_044
+  locale_tags: [eg, ar, global]
+
+- name: "Carrot, raw"
+  name_ar: "جزر"
+  category: vegetable
+  calories_per_100g: 41
+  protein_per_100g: 0.9
+  carbs_per_100g: 9.6
+  fat_per_100g: 0.2
+  fiber_per_100g: 2.8
+  serving_size_grams: 60
+  source_id: egy_food_045
+  locale_tags: [eg, ar, global]
+
+- name: "Cabbage, raw"
+  name_ar: "كرنب"
+  category: vegetable
+  calories_per_100g: 25
+  protein_per_100g: 1.3
+  carbs_per_100g: 5.8
+  fat_per_100g: 0.1
+  fiber_per_100g: 2.5
+  serving_size_grams: 80
+  source_id: egy_food_046
+  locale_tags: [eg, ar, global]
+
+- name: "Cauliflower, raw"
+  name_ar: "قرنبيط"
+  category: vegetable
+  calories_per_100g: 25
+  protein_per_100g: 1.9
+  carbs_per_100g: 5.0
+  fat_per_100g: 0.3
+  fiber_per_100g: 2.0
+  serving_size_grams: 100
+  source_id: egy_food_047
+  locale_tags: [eg, ar, global]
+
+- name: "Broccoli, raw"
+  name_ar: "بروكلي"
+  category: vegetable
+  calories_per_100g: 34
+  protein_per_100g: 2.8
+  carbs_per_100g: 6.6
+  fat_per_100g: 0.4
+  fiber_per_100g: 2.6
+  serving_size_grams: 100
+  source_id: egy_food_048
+  locale_tags: [eg, ar, global]
+
+- name: "Spinach, raw"
+  name_ar: "سبانخ"
+  category: vegetable
+  calories_per_100g: 23
+  protein_per_100g: 2.9
+  carbs_per_100g: 3.6
+  fat_per_100g: 0.4
+  fiber_per_100g: 2.2
+  serving_size_grams: 80
+  source_id: egy_food_049
+  locale_tags: [eg, ar, global]
+
+- name: "Spinach, cooked"
+  name_ar: "سبانخ مطبوخة"
+  category: vegetable
+  calories_per_100g: 23
+  protein_per_100g: 3.0
+  carbs_per_100g: 3.8
+  fat_per_100g: 0.3
+  fiber_per_100g: 2.4
+  serving_size_grams: 150
+  source_id: egy_food_050
+  locale_tags: [eg, ar, global]
+
+- name: "Molokhia (jew's mallow), cooked"
+  name_ar: "ملوخية مطبوخة"
+  category: dish
+  calories_per_100g: 60
+  protein_per_100g: 4.5
+  carbs_per_100g: 5.0
+  fat_per_100g: 2.5
+  fiber_per_100g: 2.0
+  serving_size_grams: 200
+  serving_label: "1 bowl"
+  serving_label_ar: "طبق"
+  source_id: egy_food_051
+  locale_tags: [eg, ar]
+
+- name: "Okra (bamya), cooked"
+  name_ar: "بامية مطبوخة"
+  category: vegetable
+  calories_per_100g: 33
+  protein_per_100g: 1.9
+  carbs_per_100g: 7.5
+  fat_per_100g: 0.1
+  fiber_per_100g: 3.2
+  serving_size_grams: 150
+  source_id: egy_food_052
+  locale_tags: [eg, ar]
+
+- name: "Bamya with meat stew"
+  name_ar: "بامية باللحمة"
+  category: dish
+  calories_per_100g: 125
+  protein_per_100g: 8.5
+  carbs_per_100g: 7.0
+  fat_per_100g: 7.5
+  fiber_per_100g: 2.8
+  serving_size_grams: 200
+  source_id: egy_food_053
+  locale_tags: [eg, ar]
+
+- name: "Eggplant, grilled"
+  name_ar: "باذنجان مشوي"
+  category: vegetable
+  calories_per_100g: 35
+  protein_per_100g: 0.8
+  carbs_per_100g: 8.6
+  fat_per_100g: 0.2
+  fiber_per_100g: 2.5
+  serving_size_grams: 150
+  source_id: egy_food_054
+  locale_tags: [eg, ar, global]
+
+- name: "Eggplant, fried"
+  name_ar: "باذنجان مقلي"
+  category: vegetable
+  calories_per_100g: 215
+  protein_per_100g: 1.2
+  carbs_per_100g: 8.6
+  fat_per_100g: 19.5
+  fiber_per_100g: 2.5
+  serving_size_grams: 80
+  source_id: egy_food_055
+  locale_tags: [eg, ar]
+
+- name: "Zucchini (koosa), raw"
+  name_ar: "كوسة"
+  category: vegetable
+  calories_per_100g: 17
+  protein_per_100g: 1.2
+  carbs_per_100g: 3.1
+  fat_per_100g: 0.3
+  fiber_per_100g: 1.0
+  serving_size_grams: 100
+  source_id: egy_food_056
+  locale_tags: [eg, ar]
+
+- name: "Bell pepper (green), raw"
+  name_ar: "فلفل أخضر"
+  category: vegetable
+  calories_per_100g: 20
+  protein_per_100g: 0.9
+  carbs_per_100g: 4.6
+  fat_per_100g: 0.2
+  fiber_per_100g: 1.7
+  serving_size_grams: 80
+  source_id: egy_food_057
+  locale_tags: [eg, ar, global]
+
+- name: "Bell pepper (red), raw"
+  name_ar: "فلفل أحمر"
+  category: vegetable
+  calories_per_100g: 31
+  protein_per_100g: 1.0
+  carbs_per_100g: 6.0
+  fat_per_100g: 0.3
+  fiber_per_100g: 2.1
+  serving_size_grams: 80
+  source_id: egy_food_058
+  locale_tags: [eg, ar, global]
+
+- name: "Chili pepper, green"
+  name_ar: "فلفل أخضر حار"
+  category: vegetable
+  calories_per_100g: 40
+  protein_per_100g: 2.0
+  carbs_per_100g: 9.5
+  fat_per_100g: 0.2
+  fiber_per_100g: 1.5
+  serving_size_grams: 10
+  source_id: egy_food_059
+  locale_tags: [eg, ar, global]
+
+- name: "Potato, boiled"
+  name_ar: "بطاطس مسلوقة"
+  category: vegetable
+  calories_per_100g: 87
+  protein_per_100g: 1.9
+  carbs_per_100g: 20.1
+  fat_per_100g: 0.1
+  fiber_per_100g: 1.8
+  serving_size_grams: 150
+  source_id: egy_food_060
+  locale_tags: [eg, ar, global]
+
+- name: "Potato, fried (chips/french fries)"
+  name_ar: "بطاطس مقلية"
+  category: vegetable
+  calories_per_100g: 312
+  protein_per_100g: 3.4
+  carbs_per_100g: 41.0
+  fat_per_100g: 15.0
+  fiber_per_100g: 3.0
+  serving_size_grams: 130
+  serving_label: "1 medium serving"
+  serving_label_ar: "وسط"
+  source_id: egy_food_061
+  locale_tags: [eg, ar, global]
+
+- name: "Sweet potato, baked"
+  name_ar: "بطاطا مشوية"
+  category: vegetable
+  calories_per_100g: 90
+  protein_per_100g: 2.0
+  carbs_per_100g: 20.7
+  fat_per_100g: 0.1
+  fiber_per_100g: 3.3
+  serving_size_grams: 150
+  source_id: egy_food_062
+  locale_tags: [eg, ar, global]
+
+- name: "Taro (qolqas), cooked"
+  name_ar: "قلقاس مطبوخ"
+  category: vegetable
+  calories_per_100g: 142
+  protein_per_100g: 0.5
+  carbs_per_100g: 34.6
+  fat_per_100g: 0.1
+  fiber_per_100g: 5.1
+  serving_size_grams: 150
+  source_id: egy_food_063
+  locale_tags: [eg, ar]
+
+- name: "Beetroot, boiled"
+  name_ar: "بنجر مسلوق"
+  category: vegetable
+  calories_per_100g: 44
+  protein_per_100g: 1.7
+  carbs_per_100g: 10.0
+  fat_per_100g: 0.2
+  fiber_per_100g: 2.0
+  serving_size_grams: 120
+  source_id: egy_food_064
+  locale_tags: [eg, ar, global]
+
+- name: "Pumpkin, cooked"
+  name_ar: "قرع عسلي مطبوخ"
+  category: vegetable
+  calories_per_100g: 20
+  protein_per_100g: 0.7
+  carbs_per_100g: 4.9
+  fat_per_100g: 0.1
+  fiber_per_100g: 1.1
+  serving_size_grams: 200
+  source_id: egy_food_065
+  locale_tags: [eg, ar, global]
+
+- name: "Mushrooms, raw"
+  name_ar: "عيش الغراب"
+  category: vegetable
+  calories_per_100g: 22
+  protein_per_100g: 3.1
+  carbs_per_100g: 3.3
+  fat_per_100g: 0.3
+  fiber_per_100g: 1.0
+  serving_size_grams: 100
+  source_id: egy_food_066
+  locale_tags: [eg, ar, global]
+
+- name: "Green beans (fasolia), cooked"
+  name_ar: "فاصوليا خضراء مطبوخة"
+  category: vegetable
+  calories_per_100g: 35
+  protein_per_100g: 1.9
+  carbs_per_100g: 7.9
+  fat_per_100g: 0.3
+  fiber_per_100g: 3.4
+  serving_size_grams: 150
+  source_id: egy_food_067
+  locale_tags: [eg, ar, global]
+
+- name: "Peas, cooked"
+  name_ar: "بسلة مطبوخة"
+  category: vegetable
+  calories_per_100g: 84
+  protein_per_100g: 5.4
+  carbs_per_100g: 15.6
+  fat_per_100g: 0.2
+  fiber_per_100g: 5.5
+  serving_size_grams: 150
+  source_id: egy_food_068
+  locale_tags: [eg, ar, global]
+
+- name: "Mixed vegetables, cooked"
+  name_ar: "خضار مشكل"
+  category: vegetable
+  calories_per_100g: 60
+  protein_per_100g: 3.0
+  carbs_per_100g: 11.7
+  fat_per_100g: 0.2
+  fiber_per_100g: 4.0
+  serving_size_grams: 150
+  source_id: egy_food_069
+  locale_tags: [eg, ar, global]
+
+- name: "Cabbage rolls (mahshi)"
+  name_ar: "محشي كرنب"
+  category: dish
+  calories_per_100g: 165
+  protein_per_100g: 4.2
+  carbs_per_100g: 25.0
+  fat_per_100g: 5.6
+  fiber_per_100g: 2.5
+  serving_size_grams: 150
+  source_id: egy_food_070
+  locale_tags: [eg, ar]
+
+- name: "Stuffed vine leaves (mahshi waraq enab)"
+  name_ar: "محشي ورق عنب"
+  category: dish
+  calories_per_100g: 170
+  protein_per_100g: 4.5
+  carbs_per_100g: 26.0
+  fat_per_100g: 5.9
+  fiber_per_100g: 2.3
+  serving_size_grams: 120
+  source_id: egy_food_071
+  locale_tags: [eg, ar]
+
+- name: "Stuffed zucchini (mahshi koosa)"
+  name_ar: "محشي كوسة"
+  category: dish
+  calories_per_100g: 150
+  protein_per_100g: 4.6
+  carbs_per_100g: 22.0
+  fat_per_100g: 5.0
+  fiber_per_100g: 2.0
+  serving_size_grams: 150
+  source_id: egy_food_072
+  locale_tags: [eg, ar]
+
+- name: "Stuffed bell peppers (mahshi felfel)"
+  name_ar: "محشي فلفل"
+  category: dish
+  calories_per_100g: 150
+  protein_per_100g: 4.4
+  carbs_per_100g: 22.0
+  fat_per_100g: 5.0
+  fiber_per_100g: 2.3
+  serving_size_grams: 150
+  source_id: egy_food_073
+  locale_tags: [eg, ar]
+
+- name: "Tomato sauce, plain"
+  name_ar: "صلصة طماطم"
+  category: condiment
+  calories_per_100g: 29
+  protein_per_100g: 1.6
+  carbs_per_100g: 6.4
+  fat_per_100g: 0.2
+  fiber_per_100g: 1.5
+  sodium_mg_per_100g: 320
+  serving_size_grams: 30
+  source_id: egy_food_074
+  locale_tags: [eg, ar, global]
+
+- name: "Tomato paste"
+  name_ar: "صلصة طماطم مركزة"
+  category: condiment
+  calories_per_100g: 82
+  protein_per_100g: 4.3
+  carbs_per_100g: 19.0
+  fat_per_100g: 0.5
+  fiber_per_100g: 4.1
+  sodium_mg_per_100g: 59
+  serving_size_grams: 15
+  source_id: egy_food_075
+  locale_tags: [eg, ar, global]
+
+- name: "Pickled cucumbers (mekhalel)"
+  name_ar: "مخلل خيار"
+  category: condiment
+  calories_per_100g: 11
+  protein_per_100g: 0.3
+  carbs_per_100g: 2.3
+  fat_per_100g: 0.2
+  fiber_per_100g: 1.2
+  sodium_mg_per_100g: 1208
+  serving_size_grams: 35
+  source_id: egy_food_076
+  locale_tags: [eg, ar]
+
+- name: "Pickled turnips, pink"
+  name_ar: "مخلل لفت"
+  category: condiment
+  calories_per_100g: 18
+  protein_per_100g: 0.7
+  carbs_per_100g: 4.0
+  fat_per_100g: 0.1
+  fiber_per_100g: 1.5
+  sodium_mg_per_100g: 1100
+  serving_size_grams: 30
+  source_id: egy_food_077
+  locale_tags: [eg, ar]
+
+- name: "Olives, green"
+  name_ar: "زيتون أخضر"
+  category: condiment
+  calories_per_100g: 145
+  protein_per_100g: 1.0
+  carbs_per_100g: 3.8
+  fat_per_100g: 15.3
+  fiber_per_100g: 3.3
+  sodium_mg_per_100g: 1556
+  serving_size_grams: 20
+  source_id: egy_food_078
+  locale_tags: [eg, ar]
+
+- name: "Olives, black"
+  name_ar: "زيتون أسود"
+  category: condiment
+  calories_per_100g: 115
+  protein_per_100g: 0.8
+  carbs_per_100g: 6.3
+  fat_per_100g: 10.7
+  fiber_per_100g: 3.2
+  sodium_mg_per_100g: 735
+  serving_size_grams: 20
+  source_id: egy_food_079
+  locale_tags: [eg, ar]
+
+# ─────────────────────────────────────────────────────────────────────
+# 5. Fruits
+# ─────────────────────────────────────────────────────────────────────
+
+- name: "Banana, raw"
+  name_ar: "موز"
+  category: fruit
+  calories_per_100g: 89
+  protein_per_100g: 1.1
+  carbs_per_100g: 22.8
+  fat_per_100g: 0.3
+  fiber_per_100g: 2.6
+  sugar_per_100g: 12.2
+  serving_size_grams: 120
+  serving_label: "1 medium"
+  serving_label_ar: "موزة متوسطة"
+  source_id: egy_food_080
+  locale_tags: [eg, ar, global]
+
+- name: "Apple, raw with skin"
+  name_ar: "تفاح"
+  category: fruit
+  calories_per_100g: 52
+  protein_per_100g: 0.3
+  carbs_per_100g: 13.8
+  fat_per_100g: 0.2
+  fiber_per_100g: 2.4
+  sugar_per_100g: 10.4
+  serving_size_grams: 180
+  source_id: egy_food_081
+  locale_tags: [eg, ar, global]
+
+- name: "Orange, raw"
+  name_ar: "برتقال"
+  category: fruit
+  calories_per_100g: 47
+  protein_per_100g: 0.9
+  carbs_per_100g: 11.8
+  fat_per_100g: 0.1
+  fiber_per_100g: 2.4
+  sugar_per_100g: 9.4
+  serving_size_grams: 150
+  source_id: egy_food_082
+  locale_tags: [eg, ar, global]
+
+- name: "Tangerine (yusufi), raw"
+  name_ar: "يوسفي"
+  category: fruit
+  calories_per_100g: 53
+  protein_per_100g: 0.8
+  carbs_per_100g: 13.3
+  fat_per_100g: 0.3
+  fiber_per_100g: 1.8
+  sugar_per_100g: 10.6
+  serving_size_grams: 90
+  source_id: egy_food_083
+  locale_tags: [eg, ar]
+
+- name: "Lemon"
+  name_ar: "ليمون"
+  category: fruit
+  calories_per_100g: 29
+  protein_per_100g: 1.1
+  carbs_per_100g: 9.3
+  fat_per_100g: 0.3
+  fiber_per_100g: 2.8
+  serving_size_grams: 60
+  source_id: egy_food_084
+  locale_tags: [eg, ar, global]
+
+- name: "Grapes, raw"
+  name_ar: "عنب"
+  category: fruit
+  calories_per_100g: 69
+  protein_per_100g: 0.7
+  carbs_per_100g: 18.1
+  fat_per_100g: 0.2
+  fiber_per_100g: 0.9
+  sugar_per_100g: 15.5
+  serving_size_grams: 120
+  source_id: egy_food_085
+  locale_tags: [eg, ar, global]
+
+- name: "Mango, raw"
+  name_ar: "مانجو"
+  category: fruit
+  calories_per_100g: 60
+  protein_per_100g: 0.8
+  carbs_per_100g: 15.0
+  fat_per_100g: 0.4
+  fiber_per_100g: 1.6
+  sugar_per_100g: 13.7
+  serving_size_grams: 150
+  source_id: egy_food_086
+  locale_tags: [eg, ar]
+
+- name: "Watermelon, raw"
+  name_ar: "بطيخ"
+  category: fruit
+  calories_per_100g: 30
+  protein_per_100g: 0.6
+  carbs_per_100g: 7.6
+  fat_per_100g: 0.2
+  fiber_per_100g: 0.4
+  sugar_per_100g: 6.2
+  serving_size_grams: 200
+  source_id: egy_food_087
+  locale_tags: [eg, ar, global]
+
+- name: "Cantaloupe (shammam), raw"
+  name_ar: "شمام"
+  category: fruit
+  calories_per_100g: 34
+  protein_per_100g: 0.8
+  carbs_per_100g: 8.2
+  fat_per_100g: 0.2
+  fiber_per_100g: 0.9
+  sugar_per_100g: 7.9
+  serving_size_grams: 200
+  source_id: egy_food_088
+  locale_tags: [eg, ar]
+
+- name: "Guava, raw"
+  name_ar: "جوافة"
+  category: fruit
+  calories_per_100g: 68
+  protein_per_100g: 2.6
+  carbs_per_100g: 14.3
+  fat_per_100g: 1.0
+  fiber_per_100g: 5.4
+  sugar_per_100g: 8.9
+  serving_size_grams: 100
+  source_id: egy_food_089
+  locale_tags: [eg, ar]
+
+- name: "Strawberry, raw"
+  name_ar: "فراولة"
+  category: fruit
+  calories_per_100g: 32
+  protein_per_100g: 0.7
+  carbs_per_100g: 7.7
+  fat_per_100g: 0.3
+  fiber_per_100g: 2.0
+  sugar_per_100g: 4.9
+  serving_size_grams: 120
+  source_id: egy_food_090
+  locale_tags: [eg, ar, global]
+
+- name: "Peach, raw"
+  name_ar: "خوخ"
+  category: fruit
+  calories_per_100g: 39
+  protein_per_100g: 0.9
+  carbs_per_100g: 9.5
+  fat_per_100g: 0.3
+  fiber_per_100g: 1.5
+  sugar_per_100g: 8.4
+  serving_size_grams: 150
+  source_id: egy_food_091
+  locale_tags: [eg, ar, global]
+
+- name: "Apricot, raw"
+  name_ar: "مشمش"
+  category: fruit
+  calories_per_100g: 48
+  protein_per_100g: 1.4
+  carbs_per_100g: 11.1
+  fat_per_100g: 0.4
+  fiber_per_100g: 2.0
+  sugar_per_100g: 9.2
+  serving_size_grams: 35
+  source_id: egy_food_092
+  locale_tags: [eg, ar, global]
+
+- name: "Plum, raw"
+  name_ar: "برقوق"
+  category: fruit
+  calories_per_100g: 46
+  protein_per_100g: 0.7
+  carbs_per_100g: 11.4
+  fat_per_100g: 0.3
+  fiber_per_100g: 1.4
+  sugar_per_100g: 9.9
+  serving_size_grams: 70
+  source_id: egy_food_093
+  locale_tags: [eg, ar, global]
+
+- name: "Pear, raw"
+  name_ar: "كمثرى"
+  category: fruit
+  calories_per_100g: 57
+  protein_per_100g: 0.4
+  carbs_per_100g: 15.2
+  fat_per_100g: 0.1
+  fiber_per_100g: 3.1
+  sugar_per_100g: 9.8
+  serving_size_grams: 170
+  source_id: egy_food_094
+  locale_tags: [eg, ar, global]
+
+- name: "Pomegranate seeds, raw"
+  name_ar: "رمان"
+  category: fruit
+  calories_per_100g: 83
+  protein_per_100g: 1.7
+  carbs_per_100g: 18.7
+  fat_per_100g: 1.2
+  fiber_per_100g: 4.0
+  sugar_per_100g: 13.7
+  serving_size_grams: 100
+  source_id: egy_food_095
+  locale_tags: [eg, ar]
+
+- name: "Fig, raw"
+  name_ar: "تين"
+  category: fruit
+  calories_per_100g: 74
+  protein_per_100g: 0.8
+  carbs_per_100g: 19.2
+  fat_per_100g: 0.3
+  fiber_per_100g: 2.9
+  sugar_per_100g: 16.3
+  serving_size_grams: 50
+  source_id: egy_food_096
+  locale_tags: [eg, ar]
+
+- name: "Dates, dried (medjool)"
+  name_ar: "بلح مجدول"
+  category: fruit
+  calories_per_100g: 277
+  protein_per_100g: 1.8
+  carbs_per_100g: 75.0
+  fat_per_100g: 0.2
+  fiber_per_100g: 6.7
+  sugar_per_100g: 66.5
+  serving_size_grams: 24
+  source_id: egy_food_097
+  locale_tags: [eg, ar]
+
+- name: "Dates, fresh"
+  name_ar: "بلح طازج"
+  category: fruit
+  calories_per_100g: 142
+  protein_per_100g: 1.5
+  carbs_per_100g: 36.0
+  fat_per_100g: 0.4
+  fiber_per_100g: 6.4
+  sugar_per_100g: 32.0
+  serving_size_grams: 30
+  source_id: egy_food_098
+  locale_tags: [eg, ar]
+
+- name: "Kiwi, raw"
+  name_ar: "كيوي"
+  category: fruit
+  calories_per_100g: 61
+  protein_per_100g: 1.1
+  carbs_per_100g: 14.7
+  fat_per_100g: 0.5
+  fiber_per_100g: 3.0
+  sugar_per_100g: 9.0
+  serving_size_grams: 75
+  source_id: egy_food_099
+  locale_tags: [eg, ar, global]
+
+- name: "Pineapple, raw"
+  name_ar: "أناناس"
+  category: fruit
+  calories_per_100g: 50
+  protein_per_100g: 0.5
+  carbs_per_100g: 13.1
+  fat_per_100g: 0.1
+  fiber_per_100g: 1.4
+  sugar_per_100g: 9.8
+  serving_size_grams: 165
+  source_id: egy_food_100
+  locale_tags: [eg, ar, global]
+
+- name: "Avocado, raw"
+  name_ar: "أفوكادو"
+  category: fruit
+  calories_per_100g: 160
+  protein_per_100g: 2.0
+  carbs_per_100g: 8.5
+  fat_per_100g: 14.7
+  fiber_per_100g: 6.7
+  sugar_per_100g: 0.7
+  saturated_fat_per_100g: 2.1
+  serving_size_grams: 100
+  source_id: egy_food_101
+  locale_tags: [eg, ar, global]
+
+- name: "Cherry, raw"
+  name_ar: "كرز"
+  category: fruit
+  calories_per_100g: 63
+  protein_per_100g: 1.1
+  carbs_per_100g: 16.0
+  fat_per_100g: 0.2
+  fiber_per_100g: 2.1
+  sugar_per_100g: 12.8
+  serving_size_grams: 100
+  source_id: egy_food_102
+  locale_tags: [eg, ar, global]
+
+- name: "Raisins, dried"
+  name_ar: "زبيب"
+  category: fruit
+  calories_per_100g: 299
+  protein_per_100g: 3.1
+  carbs_per_100g: 79.2
+  fat_per_100g: 0.5
+  fiber_per_100g: 3.7
+  sugar_per_100g: 59.2
+  serving_size_grams: 30
+  source_id: egy_food_103
+  locale_tags: [eg, ar, global]
+
+- name: "Prickly pear (teen shoki)"
+  name_ar: "تين شوكي"
+  category: fruit
+  calories_per_100g: 41
+  protein_per_100g: 0.7
+  carbs_per_100g: 9.6
+  fat_per_100g: 0.5
+  fiber_per_100g: 3.6
+  serving_size_grams: 100
+  source_id: egy_food_104
+  locale_tags: [eg, ar]
+
+- name: "Grapefruit, raw"
+  name_ar: "جريب فروت"
+  category: fruit
+  calories_per_100g: 42
+  protein_per_100g: 0.8
+  carbs_per_100g: 10.7
+  fat_per_100g: 0.1
+  fiber_per_100g: 1.6
+  sugar_per_100g: 6.9
+  serving_size_grams: 230
+  source_id: egy_food_105
+  locale_tags: [eg, ar, global]
+
+# ─────────────────────────────────────────────────────────────────────
+# 6. Dairy
+# ─────────────────────────────────────────────────────────────────────
+
+- name: "Cow milk, whole 3.25% fat"
+  name_ar: "لبن بقري كامل الدسم"
+  category: dairy
+  calories_per_100g: 61
+  protein_per_100g: 3.2
+  carbs_per_100g: 4.8
+  fat_per_100g: 3.3
+  saturated_fat_per_100g: 1.9
+  sugar_per_100g: 5.1
+  sodium_mg_per_100g: 43
+  serving_size_grams: 240
+  serving_label: "1 cup"
+  serving_label_ar: "كوب"
+  source_id: egy_food_106
+  locale_tags: [eg, ar, global]
+
+- name: "Cow milk, semi-skimmed 2% fat"
+  name_ar: "لبن نصف دسم"
+  category: dairy
+  calories_per_100g: 50
+  protein_per_100g: 3.3
+  carbs_per_100g: 4.9
+  fat_per_100g: 2.0
+  saturated_fat_per_100g: 1.2
+  sugar_per_100g: 5.0
+  sodium_mg_per_100g: 41
+  serving_size_grams: 240
+  source_id: egy_food_107
+  locale_tags: [eg, ar, global]
+
+- name: "Cow milk, skimmed"
+  name_ar: "لبن خالي الدسم"
+  category: dairy
+  calories_per_100g: 34
+  protein_per_100g: 3.4
+  carbs_per_100g: 5.0
+  fat_per_100g: 0.1
+  sugar_per_100g: 5.0
+  sodium_mg_per_100g: 42
+  serving_size_grams: 240
+  source_id: egy_food_108
+  locale_tags: [eg, ar, global]
+
+- name: "Buffalo milk, whole"
+  name_ar: "لبن جاموسي كامل الدسم"
+  category: dairy
+  calories_per_100g: 97
+  protein_per_100g: 3.8
+  carbs_per_100g: 5.2
+  fat_per_100g: 6.9
+  saturated_fat_per_100g: 4.6
+  sodium_mg_per_100g: 52
+  serving_size_grams: 240
+  source_id: egy_food_109
+  locale_tags: [eg, ar]
+
+- name: "Yoghurt (zabady), plain whole milk"
+  name_ar: "زبادي كامل الدسم"
+  category: dairy
+  calories_per_100g: 61
+  protein_per_100g: 3.5
+  carbs_per_100g: 4.7
+  fat_per_100g: 3.3
+  saturated_fat_per_100g: 2.1
+  sugar_per_100g: 4.7
+  sodium_mg_per_100g: 46
+  serving_size_grams: 170
+  serving_label: "1 cup"
+  serving_label_ar: "علبة"
+  source_id: egy_food_110
+  locale_tags: [eg, ar]
+
+- name: "Yoghurt, low-fat plain"
+  name_ar: "زبادي قليل الدسم"
+  category: dairy
+  calories_per_100g: 56
+  protein_per_100g: 4.3
+  carbs_per_100g: 6.0
+  fat_per_100g: 1.5
+  sugar_per_100g: 6.0
+  sodium_mg_per_100g: 53
+  serving_size_grams: 170
+  source_id: egy_food_111
+  locale_tags: [eg, ar]
+
+- name: "Greek yoghurt, 0% fat"
+  name_ar: "زبادي يوناني خالي الدسم"
+  category: dairy
+  calories_per_100g: 59
+  protein_per_100g: 10.2
+  carbs_per_100g: 3.6
+  fat_per_100g: 0.4
+  sugar_per_100g: 3.2
+  sodium_mg_per_100g: 36
+  serving_size_grams: 170
+  source_id: egy_food_112
+  locale_tags: [eg, ar, global]
+
+- name: "Greek yoghurt, full fat"
+  name_ar: "زبادي يوناني كامل الدسم"
+  category: dairy
+  calories_per_100g: 97
+  protein_per_100g: 9.0
+  carbs_per_100g: 3.6
+  fat_per_100g: 5.0
+  saturated_fat_per_100g: 3.0
+  serving_size_grams: 170
+  source_id: egy_food_113
+  locale_tags: [eg, ar, global]
+
+- name: "Labneh"
+  name_ar: "لبنة"
+  category: dairy
+  calories_per_100g: 174
+  protein_per_100g: 7.7
+  carbs_per_100g: 4.2
+  fat_per_100g: 14.5
+  saturated_fat_per_100g: 8.5
+  sodium_mg_per_100g: 240
+  serving_size_grams: 30
+  source_id: egy_food_114
+  locale_tags: [eg, ar]
+
+- name: "Domiati cheese (gebna domiati)"
+  name_ar: "جبنة دمياطي"
+  category: dairy
+  calories_per_100g: 263
+  protein_per_100g: 14.4
+  carbs_per_100g: 1.2
+  fat_per_100g: 22.0
+  saturated_fat_per_100g: 13.0
+  sodium_mg_per_100g: 1450
+  serving_size_grams: 30
+  source_id: egy_food_115
+  locale_tags: [eg, ar]
+
+- name: "Roumi cheese (aged)"
+  name_ar: "جبنة رومي"
+  category: dairy
+  calories_per_100g: 411
+  protein_per_100g: 25.0
+  carbs_per_100g: 1.3
+  fat_per_100g: 34.0
+  saturated_fat_per_100g: 21.0
+  sodium_mg_per_100g: 1100
+  serving_size_grams: 30
+  source_id: egy_food_116
+  locale_tags: [eg, ar]
+
+- name: "Feta cheese"
+  name_ar: "جبنة فيتا"
+  category: dairy
+  calories_per_100g: 264
+  protein_per_100g: 14.2
+  carbs_per_100g: 4.1
+  fat_per_100g: 21.3
+  saturated_fat_per_100g: 14.9
+  sodium_mg_per_100g: 1116
+  serving_size_grams: 30
+  source_id: egy_food_117
+  locale_tags: [eg, ar, global]
+
+- name: "Talaga cheese (gebna talaga)"
+  name_ar: "جبنة طلاجة"
+  category: dairy
+  calories_per_100g: 287
+  protein_per_100g: 22.0
+  carbs_per_100g: 3.4
+  fat_per_100g: 20.0
+  saturated_fat_per_100g: 12.0
+  sodium_mg_per_100g: 600
+  serving_size_grams: 30
+  source_id: egy_food_118
+  locale_tags: [eg, ar]
+
+- name: "Mozzarella cheese"
+  name_ar: "موتزاريلا"
+  category: dairy
+  calories_per_100g: 280
+  protein_per_100g: 28.0
+  carbs_per_100g: 3.1
+  fat_per_100g: 17.0
+  saturated_fat_per_100g: 10.0
+  sodium_mg_per_100g: 627
+  serving_size_grams: 30
+  source_id: egy_food_119
+  locale_tags: [eg, ar, global]
+
+- name: "Cheddar cheese"
+  name_ar: "تشيدر"
+  category: dairy
+  calories_per_100g: 402
+  protein_per_100g: 24.9
+  carbs_per_100g: 1.3
+  fat_per_100g: 33.1
+  saturated_fat_per_100g: 21.0
+  sodium_mg_per_100g: 621
+  serving_size_grams: 30
+  source_id: egy_food_120
+  locale_tags: [eg, ar, global]
+
+- name: "Cream cheese, spreadable"
+  name_ar: "جبنة كيري / كرافت قابلة للدهن"
+  category: dairy
+  calories_per_100g: 342
+  protein_per_100g: 6.2
+  carbs_per_100g: 4.1
+  fat_per_100g: 34.0
+  saturated_fat_per_100g: 19.3
+  sodium_mg_per_100g: 320
+  serving_size_grams: 17
+  source_id: egy_food_121
+  locale_tags: [eg, ar, global]
+
+- name: "Karish cheese (cottage-style)"
+  name_ar: "جبنة قريش"
+  category: dairy
+  calories_per_100g: 98
+  protein_per_100g: 11.1
+  carbs_per_100g: 3.4
+  fat_per_100g: 4.3
+  saturated_fat_per_100g: 1.7
+  sodium_mg_per_100g: 364
+  serving_size_grams: 50
+  source_id: egy_food_122
+  locale_tags: [eg, ar]
+
+- name: "Cream (qishta), heavy"
+  name_ar: "قشطة / كريمة"
+  category: dairy
+  calories_per_100g: 340
+  protein_per_100g: 2.8
+  carbs_per_100g: 2.8
+  fat_per_100g: 36.0
+  saturated_fat_per_100g: 23.0
+  sodium_mg_per_100g: 38
+  serving_size_grams: 30
+  source_id: egy_food_123
+  locale_tags: [eg, ar]
+
+- name: "Butter, salted"
+  name_ar: "زبدة بالملح"
+  category: oil
+  calories_per_100g: 717
+  protein_per_100g: 0.9
+  carbs_per_100g: 0.1
+  fat_per_100g: 81.1
+  saturated_fat_per_100g: 51.4
+  sodium_mg_per_100g: 643
+  serving_size_grams: 10
+  source_id: egy_food_124
+  locale_tags: [eg, ar, global]
+
+- name: "Ghee (samna)"
+  name_ar: "سمنة بلدي"
+  category: oil
+  calories_per_100g: 900
+  protein_per_100g: 0.3
+  carbs_per_100g: 0.0
+  fat_per_100g: 99.5
+  saturated_fat_per_100g: 62.0
+  serving_size_grams: 10
+  source_id: egy_food_125
+  locale_tags: [eg, ar]
+
+# ─────────────────────────────────────────────────────────────────────
+# 7. Eggs
+# ─────────────────────────────────────────────────────────────────────
+
+- name: "Egg, whole, raw"
+  name_ar: "بيضة كاملة طازجة"
+  category: egg
+  calories_per_100g: 143
+  protein_per_100g: 12.6
+  carbs_per_100g: 0.7
+  fat_per_100g: 9.5
+  saturated_fat_per_100g: 3.1
+  sodium_mg_per_100g: 142
+  serving_size_grams: 50
+  serving_label: "1 large egg"
+  serving_label_ar: "بيضة كبيرة"
+  source_id: egy_food_126
+  locale_tags: [eg, ar, global]
+
+- name: "Egg, boiled"
+  name_ar: "بيضة مسلوقة"
+  category: egg
+  calories_per_100g: 155
+  protein_per_100g: 12.6
+  carbs_per_100g: 1.1
+  fat_per_100g: 10.6
+  saturated_fat_per_100g: 3.3
+  sodium_mg_per_100g: 124
+  serving_size_grams: 50
+  source_id: egy_food_127
+  locale_tags: [eg, ar, global]
+
+- name: "Egg, fried in oil"
+  name_ar: "بيضة مقلية"
+  category: egg
+  calories_per_100g: 196
+  protein_per_100g: 13.6
+  carbs_per_100g: 0.8
+  fat_per_100g: 15.0
+  saturated_fat_per_100g: 4.0
+  sodium_mg_per_100g: 207
+  serving_size_grams: 50
+  source_id: egy_food_128
+  locale_tags: [eg, ar, global]
+
+- name: "Egg whites only, raw"
+  name_ar: "بياض البيض"
+  category: egg
+  calories_per_100g: 52
+  protein_per_100g: 10.9
+  carbs_per_100g: 0.7
+  fat_per_100g: 0.2
+  sodium_mg_per_100g: 166
+  serving_size_grams: 33
+  source_id: egy_food_129
+  locale_tags: [eg, ar, global]
+
+- name: "Egg yolk only, raw"
+  name_ar: "صفار البيض"
+  category: egg
+  calories_per_100g: 322
+  protein_per_100g: 15.9
+  carbs_per_100g: 3.6
+  fat_per_100g: 26.5
+  saturated_fat_per_100g: 9.6
+  sodium_mg_per_100g: 48
+  serving_size_grams: 17
+  source_id: egy_food_130
+  locale_tags: [eg, ar, global]
+
+- name: "Egyptian omelette with cheese"
+  name_ar: "بيض بالجبنة"
+  category: dish
+  calories_per_100g: 215
+  protein_per_100g: 15.0
+  carbs_per_100g: 1.5
+  fat_per_100g: 16.5
+  serving_size_grams: 120
+  source_id: egy_food_131
+  locale_tags: [eg, ar]
+
+# ─────────────────────────────────────────────────────────────────────
+# 8. Poultry
+# ─────────────────────────────────────────────────────────────────────
+
+- name: "Chicken breast, raw skinless"
+  name_ar: "صدور فراخ نية"
+  category: poultry
+  calories_per_100g: 120
+  protein_per_100g: 22.5
+  carbs_per_100g: 0.0
+  fat_per_100g: 2.6
+  saturated_fat_per_100g: 0.7
+  sodium_mg_per_100g: 45
+  serving_size_grams: 120
+  source_id: egy_food_132
+  locale_tags: [eg, ar, global]
+
+- name: "Chicken breast, grilled skinless"
+  name_ar: "صدور فراخ مشوية"
+  category: poultry
+  calories_per_100g: 165
+  protein_per_100g: 31.0
+  carbs_per_100g: 0.0
+  fat_per_100g: 3.6
+  saturated_fat_per_100g: 1.0
+  sodium_mg_per_100g: 74
+  serving_size_grams: 120
+  source_id: egy_food_133
+  locale_tags: [eg, ar, global]
+
+- name: "Chicken thigh, grilled skinless"
+  name_ar: "ورك فراخ مشوي بدون جلد"
+  category: poultry
+  calories_per_100g: 209
+  protein_per_100g: 26.0
+  carbs_per_100g: 0.0
+  fat_per_100g: 10.9
+  saturated_fat_per_100g: 3.0
+  sodium_mg_per_100g: 88
+  serving_size_grams: 100
+  source_id: egy_food_134
+  locale_tags: [eg, ar, global]
+
+- name: "Chicken, fried (e.g. KFC-style)"
+  name_ar: "فراخ بانية / مقرمشة"
+  category: poultry
+  calories_per_100g: 263
+  protein_per_100g: 19.0
+  carbs_per_100g: 9.0
+  fat_per_100g: 17.0
+  saturated_fat_per_100g: 4.5
+  sodium_mg_per_100g: 580
+  serving_size_grams: 100
+  source_id: egy_food_135
+  locale_tags: [eg, ar, global]
+
+- name: "Chicken wings, grilled"
+  name_ar: "جوانح فراخ مشوية"
+  category: poultry
+  calories_per_100g: 226
+  protein_per_100g: 22.4
+  carbs_per_100g: 0.0
+  fat_per_100g: 15.0
+  saturated_fat_per_100g: 4.0
+  sodium_mg_per_100g: 82
+  serving_size_grams: 80
+  source_id: egy_food_136
+  locale_tags: [eg, ar, global]
+
+- name: "Chicken liver, cooked"
+  name_ar: "كبدة فراخ مطبوخة"
+  category: poultry
+  calories_per_100g: 165
+  protein_per_100g: 26.0
+  carbs_per_100g: 0.9
+  fat_per_100g: 6.5
+  saturated_fat_per_100g: 2.1
+  sodium_mg_per_100g: 76
+  serving_size_grams: 100
+  source_id: egy_food_137
+  locale_tags: [eg, ar]
+
+- name: "Chicken shawarma meat"
+  name_ar: "شاورما فراخ"
+  category: dish
+  calories_per_100g: 200
+  protein_per_100g: 22.0
+  carbs_per_100g: 2.5
+  fat_per_100g: 11.0
+  serving_size_grams: 150
+  source_id: egy_food_138
+  locale_tags: [eg, ar]
+
+- name: "Roasted whole chicken (with skin)"
+  name_ar: "فرخة محمرة"
+  category: poultry
+  calories_per_100g: 239
+  protein_per_100g: 27.0
+  carbs_per_100g: 0.0
+  fat_per_100g: 14.0
+  saturated_fat_per_100g: 3.8
+  sodium_mg_per_100g: 80
+  serving_size_grams: 150
+  source_id: egy_food_139
+  locale_tags: [eg, ar, global]
+
+- name: "Turkey breast, cooked skinless"
+  name_ar: "صدور رومي مطبوخة"
+  category: poultry
+  calories_per_100g: 135
+  protein_per_100g: 30.0
+  carbs_per_100g: 0.0
+  fat_per_100g: 0.7
+  sodium_mg_per_100g: 1015
+  serving_size_grams: 100
+  source_id: egy_food_140
+  locale_tags: [eg, ar, global]
+
+- name: "Duck, roasted skinless"
+  name_ar: "بط مشوي بدون جلد"
+  category: poultry
+  calories_per_100g: 201
+  protein_per_100g: 23.5
+  carbs_per_100g: 0.0
+  fat_per_100g: 11.2
+  saturated_fat_per_100g: 4.2
+  sodium_mg_per_100g: 65
+  serving_size_grams: 120
+  source_id: egy_food_141
+  locale_tags: [eg, ar]
+
+- name: "Pigeon, grilled (hamam)"
+  name_ar: "حمام مشوي"
+  category: poultry
+  calories_per_100g: 213
+  protein_per_100g: 27.0
+  carbs_per_100g: 0.0
+  fat_per_100g: 11.5
+  serving_size_grams: 150
+  source_id: egy_food_142
+  locale_tags: [eg, ar]
+
+# ─────────────────────────────────────────────────────────────────────
+# 9. Red meat
+# ─────────────────────────────────────────────────────────────────────
+
+- name: "Beef, lean cuts grilled"
+  name_ar: "لحم بقري مشوي"
+  category: meat
+  calories_per_100g: 217
+  protein_per_100g: 26.1
+  carbs_per_100g: 0.0
+  fat_per_100g: 11.8
+  saturated_fat_per_100g: 4.5
+  sodium_mg_per_100g: 65
+  serving_size_grams: 120
+  source_id: egy_food_143
+  locale_tags: [eg, ar, global]
+
+- name: "Beef, ground 80/20 cooked"
+  name_ar: "لحم مفروم مطبوخ"
+  category: meat
+  calories_per_100g: 254
+  protein_per_100g: 25.0
+  carbs_per_100g: 0.0
+  fat_per_100g: 17.0
+  saturated_fat_per_100g: 6.6
+  sodium_mg_per_100g: 75
+  serving_size_grams: 100
+  source_id: egy_food_144
+  locale_tags: [eg, ar, global]
+
+- name: "Beef kofta, grilled"
+  name_ar: "كفتة لحم مشوية"
+  category: dish
+  calories_per_100g: 240
+  protein_per_100g: 22.5
+  carbs_per_100g: 3.0
+  fat_per_100g: 15.5
+  serving_size_grams: 100
+  source_id: egy_food_145
+  locale_tags: [eg, ar]
+
+- name: "Beef shawarma meat"
+  name_ar: "شاورما لحم"
+  category: dish
+  calories_per_100g: 245
+  protein_per_100g: 23.0
+  carbs_per_100g: 2.5
+  fat_per_100g: 15.5
+  serving_size_grams: 150
+  source_id: egy_food_146
+  locale_tags: [eg, ar]
+
+- name: "Beef liver, cooked"
+  name_ar: "كبدة بقري مطبوخة"
+  category: meat
+  calories_per_100g: 175
+  protein_per_100g: 26.5
+  carbs_per_100g: 5.1
+  fat_per_100g: 4.7
+  sodium_mg_per_100g: 76
+  serving_size_grams: 100
+  source_id: egy_food_147
+  locale_tags: [eg, ar]
+
+- name: "Beef liver, Alexandria style (kibda eskandarani)"
+  name_ar: "كبدة إسكندراني"
+  category: dish
+  calories_per_100g: 200
+  protein_per_100g: 23.0
+  carbs_per_100g: 4.5
+  fat_per_100g: 9.5
+  serving_size_grams: 100
+  source_id: egy_food_148
+  locale_tags: [eg, ar]
+
+- name: "Lamb chops, grilled"
+  name_ar: "ريش ضاني مشوية"
+  category: meat
+  calories_per_100g: 268
+  protein_per_100g: 25.0
+  carbs_per_100g: 0.0
+  fat_per_100g: 18.5
+  saturated_fat_per_100g: 7.8
+  sodium_mg_per_100g: 72
+  serving_size_grams: 120
+  source_id: egy_food_149
+  locale_tags: [eg, ar]
+
+- name: "Lamb (mutton), lean cooked"
+  name_ar: "لحم ضأن قليل الدهن"
+  category: meat
+  calories_per_100g: 235
+  protein_per_100g: 25.6
+  carbs_per_100g: 0.0
+  fat_per_100g: 14.4
+  saturated_fat_per_100g: 5.2
+  sodium_mg_per_100g: 72
+  serving_size_grams: 120
+  source_id: egy_food_150
+  locale_tags: [eg, ar]
+
+- name: "Veal, cooked"
+  name_ar: "بتلو مطبوخ"
+  category: meat
+  calories_per_100g: 196
+  protein_per_100g: 27.4
+  carbs_per_100g: 0.0
+  fat_per_100g: 8.7
+  saturated_fat_per_100g: 3.3
+  sodium_mg_per_100g: 90
+  serving_size_grams: 120
+  source_id: egy_food_151
+  locale_tags: [eg, ar]
+
+- name: "Beef sausage (sogo'a/momba)"
+  name_ar: "سجق بقري"
+  category: dish
+  calories_per_100g: 296
+  protein_per_100g: 14.4
+  carbs_per_100g: 1.9
+  fat_per_100g: 25.9
+  saturated_fat_per_100g: 9.7
+  sodium_mg_per_100g: 800
+  serving_size_grams: 60
+  source_id: egy_food_152
+  locale_tags: [eg, ar]
+
+- name: "Mombar (Egyptian stuffed sausage)"
+  name_ar: "ممبار"
+  category: dish
+  calories_per_100g: 320
+  protein_per_100g: 12.0
+  carbs_per_100g: 18.0
+  fat_per_100g: 23.0
+  serving_size_grams: 100
+  source_id: egy_food_153
+  locale_tags: [eg, ar]
+
+- name: "Beef burger patty, cooked"
+  name_ar: "همبرجر لحم مطبوخ"
+  category: meat
+  calories_per_100g: 250
+  protein_per_100g: 21.0
+  carbs_per_100g: 1.0
+  fat_per_100g: 18.0
+  saturated_fat_per_100g: 6.8
+  sodium_mg_per_100g: 80
+  serving_size_grams: 100
+  source_id: egy_food_154
+  locale_tags: [eg, ar, global]
+
+- name: "Hot dog / frankfurter (beef)"
+  name_ar: "هوت دوج بقري"
+  category: dish
+  calories_per_100g: 290
+  protein_per_100g: 11.0
+  carbs_per_100g: 3.0
+  fat_per_100g: 26.0
+  saturated_fat_per_100g: 10.0
+  sodium_mg_per_100g: 1020
+  serving_size_grams: 45
+  source_id: egy_food_155
+  locale_tags: [eg, ar, global]
+
+- name: "Pastrami (basterma)"
+  name_ar: "بسطرمة"
+  category: meat
+  calories_per_100g: 250
+  protein_per_100g: 33.0
+  carbs_per_100g: 2.0
+  fat_per_100g: 12.0
+  saturated_fat_per_100g: 4.5
+  sodium_mg_per_100g: 1850
+  serving_size_grams: 30
+  source_id: egy_food_156
+  locale_tags: [eg, ar]
+
+# ─────────────────────────────────────────────────────────────────────
+# 10. Fish and seafood
+# ─────────────────────────────────────────────────────────────────────
+
+- name: "Tilapia (bolti), grilled"
+  name_ar: "سمك بلطي مشوي"
+  category: fish
+  calories_per_100g: 128
+  protein_per_100g: 26.2
+  carbs_per_100g: 0.0
+  fat_per_100g: 2.7
+  saturated_fat_per_100g: 0.9
+  sodium_mg_per_100g: 56
+  serving_size_grams: 150
+  source_id: egy_food_157
+  locale_tags: [eg, ar]
+
+- name: "Tilapia, fried"
+  name_ar: "بلطي مقلي"
+  category: fish
+  calories_per_100g: 200
+  protein_per_100g: 21.0
+  carbs_per_100g: 5.0
+  fat_per_100g: 10.5
+  serving_size_grams: 150
+  source_id: egy_food_158
+  locale_tags: [eg, ar]
+
+- name: "Mackerel (estakoza/fesikh), salted"
+  name_ar: "فسيخ"
+  category: fish
+  calories_per_100g: 232
+  protein_per_100g: 22.0
+  carbs_per_100g: 0.0
+  fat_per_100g: 16.0
+  sodium_mg_per_100g: 4900
+  serving_size_grams: 60
+  source_id: egy_food_159
+  locale_tags: [eg, ar]
+
+- name: "Sea bass (denis), grilled"
+  name_ar: "دنيس مشوي"
+  category: fish
+  calories_per_100g: 124
+  protein_per_100g: 23.6
+  carbs_per_100g: 0.0
+  fat_per_100g: 2.5
+  sodium_mg_per_100g: 90
+  serving_size_grams: 150
+  source_id: egy_food_160
+  locale_tags: [eg, ar]
+
+- name: "Sea bream (qaroos), grilled"
+  name_ar: "قاروص مشوي"
+  category: fish
+  calories_per_100g: 130
+  protein_per_100g: 21.5
+  carbs_per_100g: 0.0
+  fat_per_100g: 4.5
+  sodium_mg_per_100g: 80
+  serving_size_grams: 150
+  source_id: egy_food_161
+  locale_tags: [eg, ar]
+
+- name: "Salmon, grilled"
+  name_ar: "سلمون مشوي"
+  category: fish
+  calories_per_100g: 208
+  protein_per_100g: 22.0
+  carbs_per_100g: 0.0
+  fat_per_100g: 13.0
+  saturated_fat_per_100g: 3.1
+  sodium_mg_per_100g: 59
+  serving_size_grams: 120
+  source_id: egy_food_162
+  locale_tags: [eg, ar, global]
+
+- name: "Tuna, canned in water"
+  name_ar: "تونة بالماء"
+  category: fish
+  calories_per_100g: 116
+  protein_per_100g: 25.5
+  carbs_per_100g: 0.0
+  fat_per_100g: 0.8
+  sodium_mg_per_100g: 247
+  serving_size_grams: 100
+  source_id: egy_food_163
+  locale_tags: [eg, ar, global]
+
+- name: "Tuna, canned in oil (drained)"
+  name_ar: "تونة بالزيت"
+  category: fish
+  calories_per_100g: 198
+  protein_per_100g: 26.5
+  carbs_per_100g: 0.0
+  fat_per_100g: 9.5
+  saturated_fat_per_100g: 1.7
+  sodium_mg_per_100g: 354
+  serving_size_grams: 100
+  source_id: egy_food_164
+  locale_tags: [eg, ar, global]
+
+- name: "Sardines, canned in oil"
+  name_ar: "سردين بالزيت"
+  category: fish
+  calories_per_100g: 208
+  protein_per_100g: 24.6
+  carbs_per_100g: 0.0
+  fat_per_100g: 11.5
+  saturated_fat_per_100g: 1.5
+  sodium_mg_per_100g: 307
+  serving_size_grams: 50
+  source_id: egy_food_165
+  locale_tags: [eg, ar, global]
+
+- name: "Shrimp (gambari), boiled"
+  name_ar: "جمبري مسلوق"
+  category: fish
+  calories_per_100g: 99
+  protein_per_100g: 24.0
+  carbs_per_100g: 0.2
+  fat_per_100g: 0.3
+  sodium_mg_per_100g: 111
+  serving_size_grams: 100
+  source_id: egy_food_166
+  locale_tags: [eg, ar, global]
+
+- name: "Calamari (kalamary), grilled"
+  name_ar: "كاليماري مشوي"
+  category: fish
+  calories_per_100g: 92
+  protein_per_100g: 15.6
+  carbs_per_100g: 3.1
+  fat_per_100g: 1.4
+  sodium_mg_per_100g: 44
+  serving_size_grams: 100
+  source_id: egy_food_167
+  locale_tags: [eg, ar, global]
+
+- name: "Crab meat"
+  name_ar: "كابوريا"
+  category: fish
+  calories_per_100g: 87
+  protein_per_100g: 18.1
+  carbs_per_100g: 0.0
+  fat_per_100g: 1.1
+  sodium_mg_per_100g: 293
+  serving_size_grams: 85
+  source_id: egy_food_168
+  locale_tags: [eg, ar, global]
+
+- name: "Lobster, cooked"
+  name_ar: "استاكوزا مطبوخة"
+  category: fish
+  calories_per_100g: 89
+  protein_per_100g: 19.0
+  carbs_per_100g: 0.0
+  fat_per_100g: 0.9
+  sodium_mg_per_100g: 423
+  serving_size_grams: 145
+  source_id: egy_food_169
+  locale_tags: [eg, ar, global]
+
+- name: "Fish, fried (general bolti style)"
+  name_ar: "سمك مقلي"
+  category: fish
+  calories_per_100g: 220
+  protein_per_100g: 22.0
+  carbs_per_100g: 6.0
+  fat_per_100g: 12.0
+  serving_size_grams: 150
+  source_id: egy_food_170
+  locale_tags: [eg, ar]
+
+# ─────────────────────────────────────────────────────────────────────
+# 11. Composite Egyptian dishes (per 100g of plated portion)
+# ─────────────────────────────────────────────────────────────────────
+
+- name: "Koshary (lentils + rice + pasta + chickpeas + tomato sauce + crispy onions)"
+  name_ar: "كشري"
+  category: dish
+  calories_per_100g: 170
+  protein_per_100g: 5.5
+  carbs_per_100g: 32.0
+  fat_per_100g: 2.5
+  fiber_per_100g: 3.0
+  serving_size_grams: 350
+  serving_label: "1 medium bowl"
+  serving_label_ar: "طبق وسط"
+  source_id: egy_food_171
+  locale_tags: [eg, ar]
+
+- name: "Koshary sauce (tomato + garlic + vinegar)"
+  name_ar: "صلصة الكشري"
+  category: condiment
+  calories_per_100g: 40
+  protein_per_100g: 1.2
+  carbs_per_100g: 6.8
+  fat_per_100g: 1.0
+  serving_size_grams: 30
+  source_id: egy_food_172
+  locale_tags: [eg, ar]
+
+- name: "Daqqa garlic chili sauce"
+  name_ar: "دقة كشري"
+  category: condiment
+  calories_per_100g: 45
+  protein_per_100g: 1.0
+  carbs_per_100g: 6.0
+  fat_per_100g: 1.5
+  serving_size_grams: 15
+  source_id: egy_food_173
+  locale_tags: [eg, ar]
+
+- name: "Rice with vermicelli (roz be sha3reya)"
+  name_ar: "أرز بشعرية"
+  category: dish
+  calories_per_100g: 165
+  protein_per_100g: 3.2
+  carbs_per_100g: 32.0
+  fat_per_100g: 2.5
+  serving_size_grams: 200
+  source_id: egy_food_174
+  locale_tags: [eg, ar]
+
+- name: "Mahshi assorted (mixed stuffed vegetables)"
+  name_ar: "محشي مشكل"
+  category: dish
+  calories_per_100g: 160
+  protein_per_100g: 4.3
+  carbs_per_100g: 24.0
+  fat_per_100g: 5.4
+  serving_size_grams: 200
+  source_id: egy_food_175
+  locale_tags: [eg, ar]
+
+- name: "Fattah (rice + bread + meat + tomato sauce + garlic)"
+  name_ar: "فتة لحمة"
+  category: dish
+  calories_per_100g: 220
+  protein_per_100g: 12.0
+  carbs_per_100g: 24.0
+  fat_per_100g: 8.5
+  serving_size_grams: 250
+  source_id: egy_food_176
+  locale_tags: [eg, ar]
+
+- name: "Fish tagen (sayadeya style rice + fish)"
+  name_ar: "صيادية"
+  category: dish
+  calories_per_100g: 175
+  protein_per_100g: 11.0
+  carbs_per_100g: 23.0
+  fat_per_100g: 4.5
+  serving_size_grams: 250
+  source_id: egy_food_177
+  locale_tags: [eg, ar]
+
+- name: "Roz mahshi feteery (oven-baked rice with milk)"
+  name_ar: "أرز معمر باللبن"
+  category: dish
+  calories_per_100g: 175
+  protein_per_100g: 4.0
+  carbs_per_100g: 29.0
+  fat_per_100g: 4.5
+  serving_size_grams: 200
+  source_id: egy_food_178
+  locale_tags: [eg, ar]
+
+- name: "Egyptian molokhia with chicken stock"
+  name_ar: "ملوخية بمرقة الفراخ"
+  category: dish
+  calories_per_100g: 70
+  protein_per_100g: 5.0
+  carbs_per_100g: 4.5
+  fat_per_100g: 3.0
+  serving_size_grams: 200
+  source_id: egy_food_179
+  locale_tags: [eg, ar]
+
+- name: "Bechamel pasta (macarona bechamel)"
+  name_ar: "مكرونة بشاميل"
+  category: dish
+  calories_per_100g: 230
+  protein_per_100g: 9.5
+  carbs_per_100g: 20.0
+  fat_per_100g: 12.0
+  serving_size_grams: 250
+  source_id: egy_food_180
+  locale_tags: [eg, ar]
+
+- name: "Egyptian-style chicken rice (roz bel khoder w farkha)"
+  name_ar: "أرز بالخضار والفراخ"
+  category: dish
+  calories_per_100g: 180
+  protein_per_100g: 10.0
+  carbs_per_100g: 22.0
+  fat_per_100g: 5.5
+  serving_size_grams: 250
+  source_id: egy_food_181
+  locale_tags: [eg, ar]
+
+- name: "Beef stew with potatoes (lahma w batates)"
+  name_ar: "لحمة بالبطاطس"
+  category: dish
+  calories_per_100g: 165
+  protein_per_100g: 11.0
+  carbs_per_100g: 12.0
+  fat_per_100g: 8.0
+  serving_size_grams: 250
+  source_id: egy_food_182
+  locale_tags: [eg, ar]
+
+- name: "Falafel sandwich (taameya in aish baladi)"
+  name_ar: "ساندويتش طعمية"
+  category: dish
+  calories_per_100g: 245
+  protein_per_100g: 9.0
+  carbs_per_100g: 33.0
+  fat_per_100g: 9.0
+  serving_size_grams: 180
+  source_id: egy_food_183
+  locale_tags: [eg, ar]
+
+- name: "Foul sandwich (foul medames in aish baladi)"
+  name_ar: "ساندويتش فول"
+  category: dish
+  calories_per_100g: 200
+  protein_per_100g: 8.5
+  carbs_per_100g: 32.0
+  fat_per_100g: 4.5
+  serving_size_grams: 180
+  source_id: egy_food_184
+  locale_tags: [eg, ar]
+
+- name: "Egyptian breakfast plate (foul + taameya + egg + cheese + bread)"
+  name_ar: "فطار مصري شامل"
+  category: dish
+  calories_per_100g: 220
+  protein_per_100g: 10.0
+  carbs_per_100g: 22.0
+  fat_per_100g: 11.0
+  serving_size_grams: 400
+  source_id: egy_food_185
+  locale_tags: [eg, ar]
+
+- name: "Tahini sauce (tahina)"
+  name_ar: "طحينة"
+  category: condiment
+  calories_per_100g: 595
+  protein_per_100g: 17.0
+  carbs_per_100g: 21.0
+  fat_per_100g: 53.8
+  fiber_per_100g: 9.3
+  saturated_fat_per_100g: 7.6
+  sodium_mg_per_100g: 115
+  serving_size_grams: 30
+  source_id: egy_food_186
+  locale_tags: [eg, ar]
+
+- name: "Egyptian baba ghanouj"
+  name_ar: "بابا غنوج"
+  category: dish
+  calories_per_100g: 195
+  protein_per_100g: 3.5
+  carbs_per_100g: 9.0
+  fat_per_100g: 16.5
+  serving_size_grams: 50
+  source_id: egy_food_187
+  locale_tags: [eg, ar]
+
+- name: "Egyptian baladi salad"
+  name_ar: "سلطة بلدي"
+  category: dish
+  calories_per_100g: 60
+  protein_per_100g: 1.5
+  carbs_per_100g: 7.0
+  fat_per_100g: 3.0
+  serving_size_grams: 150
+  source_id: egy_food_188
+  locale_tags: [eg, ar]
+
+- name: "Tabbouleh"
+  name_ar: "تبولة"
+  category: dish
+  calories_per_100g: 120
+  protein_per_100g: 3.0
+  carbs_per_100g: 16.0
+  fat_per_100g: 5.5
+  serving_size_grams: 100
+  source_id: egy_food_189
+  locale_tags: [eg, ar]
+
+- name: "Fatoush salad"
+  name_ar: "فتوش"
+  category: dish
+  calories_per_100g: 110
+  protein_per_100g: 2.5
+  carbs_per_100g: 15.0
+  fat_per_100g: 4.5
+  serving_size_grams: 200
+  source_id: egy_food_190
+  locale_tags: [eg, ar]
+
+- name: "Chicken kabsa"
+  name_ar: "كبسة فراخ"
+  category: dish
+  calories_per_100g: 195
+  protein_per_100g: 10.0
+  carbs_per_100g: 22.0
+  fat_per_100g: 7.5
+  serving_size_grams: 300
+  source_id: egy_food_191
+  locale_tags: [eg, ar, sa]
+
+- name: "Beef mandi"
+  name_ar: "مندي لحم"
+  category: dish
+  calories_per_100g: 220
+  protein_per_100g: 11.0
+  carbs_per_100g: 21.0
+  fat_per_100g: 10.0
+  serving_size_grams: 300
+  source_id: egy_food_192
+  locale_tags: [eg, ar, sa]
+
+- name: "Lentil rice (mujadara)"
+  name_ar: "مجدرة"
+  category: dish
+  calories_per_100g: 160
+  protein_per_100g: 5.5
+  carbs_per_100g: 26.0
+  fat_per_100g: 3.5
+  serving_size_grams: 250
+  source_id: egy_food_193
+  locale_tags: [eg, ar]
+
+- name: "Egyptian okra and meat stew"
+  name_ar: "بامية مع لحمة"
+  category: dish
+  calories_per_100g: 130
+  protein_per_100g: 8.5
+  carbs_per_100g: 7.0
+  fat_per_100g: 7.5
+  serving_size_grams: 200
+  source_id: egy_food_194
+  locale_tags: [eg, ar]
+
+# ─────────────────────────────────────────────────────────────────────
+# 12. Sweets and desserts
+# ─────────────────────────────────────────────────────────────────────
+
+- name: "Basbousa (semolina cake with syrup)"
+  name_ar: "بسبوسة"
+  category: sweet
+  calories_per_100g: 360
+  protein_per_100g: 5.0
+  carbs_per_100g: 60.0
+  fat_per_100g: 11.0
+  sugar_per_100g: 40.0
+  serving_size_grams: 80
+  source_id: egy_food_195
+  locale_tags: [eg, ar]
+
+- name: "Kunafa with cheese"
+  name_ar: "كنافة بالجبنة"
+  category: sweet
+  calories_per_100g: 380
+  protein_per_100g: 8.0
+  carbs_per_100g: 45.0
+  fat_per_100g: 19.0
+  sugar_per_100g: 25.0
+  serving_size_grams: 100
+  source_id: egy_food_196
+  locale_tags: [eg, ar]
+
+- name: "Kunafa with cream (qishta)"
+  name_ar: "كنافة بالقشطة"
+  category: sweet
+  calories_per_100g: 360
+  protein_per_100g: 6.0
+  carbs_per_100g: 44.0
+  fat_per_100g: 18.0
+  serving_size_grams: 100
+  source_id: egy_food_197
+  locale_tags: [eg, ar]
+
+- name: "Baklava (baklawa)"
+  name_ar: "بقلاوة"
+  category: sweet
+  calories_per_100g: 480
+  protein_per_100g: 7.0
+  carbs_per_100g: 50.0
+  fat_per_100g: 28.0
+  sugar_per_100g: 30.0
+  serving_size_grams: 40
+  source_id: egy_food_198
+  locale_tags: [eg, ar]
+
+- name: "Om Ali"
+  name_ar: "أم علي"
+  category: sweet
+  calories_per_100g: 280
+  protein_per_100g: 7.0
+  carbs_per_100g: 32.0
+  fat_per_100g: 13.5
+  sugar_per_100g: 18.0
+  serving_size_grams: 150
+  source_id: egy_food_199
+  locale_tags: [eg, ar]
+
+- name: "Mahalabia"
+  name_ar: "مهلبية"
+  category: sweet
+  calories_per_100g: 140
+  protein_per_100g: 3.5
+  carbs_per_100g: 22.0
+  fat_per_100g: 4.0
+  sugar_per_100g: 15.0
+  serving_size_grams: 150
+  source_id: egy_food_200
+  locale_tags: [eg, ar]
+
+- name: "Rice pudding (roz be laban)"
+  name_ar: "أرز بلبن"
+  category: sweet
+  calories_per_100g: 145
+  protein_per_100g: 4.0
+  carbs_per_100g: 23.0
+  fat_per_100g: 3.5
+  sugar_per_100g: 12.0
+  serving_size_grams: 150
+  source_id: egy_food_201
+  locale_tags: [eg, ar]
+
+- name: "Qatayef with nuts (fried)"
+  name_ar: "قطايف مقلية بالمكسرات"
+  category: sweet
+  calories_per_100g: 400
+  protein_per_100g: 7.5
+  carbs_per_100g: 48.0
+  fat_per_100g: 19.0
+  serving_size_grams: 50
+  source_id: egy_food_202
+  locale_tags: [eg, ar]
+
+- name: "Qatayef asafiri (baked, with cream)"
+  name_ar: "قطايف عصافيري بالقشطة"
+  category: sweet
+  calories_per_100g: 250
+  protein_per_100g: 5.5
+  carbs_per_100g: 38.0
+  fat_per_100g: 9.0
+  serving_size_grams: 50
+  source_id: egy_food_203
+  locale_tags: [eg, ar]
+
+- name: "Zalabia (loqmat el qadi)"
+  name_ar: "زلابية / لقمة القاضي"
+  category: sweet
+  calories_per_100g: 340
+  protein_per_100g: 5.0
+  carbs_per_100g: 50.0
+  fat_per_100g: 13.5
+  sugar_per_100g: 22.0
+  serving_size_grams: 60
+  source_id: egy_food_204
+  locale_tags: [eg, ar]
+
+- name: "Balah el sham"
+  name_ar: "بلح الشام"
+  category: sweet
+  calories_per_100g: 380
+  protein_per_100g: 4.5
+  carbs_per_100g: 55.0
+  fat_per_100g: 16.0
+  sugar_per_100g: 32.0
+  serving_size_grams: 60
+  source_id: egy_food_205
+  locale_tags: [eg, ar]
+
+- name: "Halawa (sesame halva)"
+  name_ar: "حلاوة طحينية"
+  category: sweet
+  calories_per_100g: 470
+  protein_per_100g: 12.0
+  carbs_per_100g: 55.0
+  fat_per_100g: 22.0
+  sugar_per_100g: 47.0
+  serving_size_grams: 40
+  source_id: egy_food_206
+  locale_tags: [eg, ar]
+
+- name: "Sugar, white granulated"
+  name_ar: "سكر أبيض"
+  category: sweet
+  calories_per_100g: 387
+  protein_per_100g: 0.0
+  carbs_per_100g: 100.0
+  fat_per_100g: 0.0
+  sugar_per_100g: 100.0
+  serving_size_grams: 5
+  serving_label: "1 tsp"
+  serving_label_ar: "ملعقة صغيرة"
+  source_id: egy_food_207
+  locale_tags: [eg, ar, global]
+
+- name: "Honey, raw"
+  name_ar: "عسل أبيض / نحل"
+  category: sweet
+  calories_per_100g: 304
+  protein_per_100g: 0.3
+  carbs_per_100g: 82.4
+  fat_per_100g: 0.0
+  sugar_per_100g: 82.1
+  serving_size_grams: 21
+  source_id: egy_food_208
+  locale_tags: [eg, ar, global]
+
+- name: "Molasses (asal eswed)"
+  name_ar: "عسل أسود"
+  category: sweet
+  calories_per_100g: 290
+  protein_per_100g: 0.0
+  carbs_per_100g: 75.0
+  fat_per_100g: 0.1
+  sugar_per_100g: 75.0
+  serving_size_grams: 20
+  source_id: egy_food_209
+  locale_tags: [eg, ar]
+
+- name: "Strawberry jam"
+  name_ar: "مربى فراولة"
+  category: sweet
+  calories_per_100g: 278
+  protein_per_100g: 0.4
+  carbs_per_100g: 69.0
+  fat_per_100g: 0.1
+  sugar_per_100g: 48.0
+  serving_size_grams: 20
+  source_id: egy_food_210
+  locale_tags: [eg, ar, global]
+
+- name: "Chocolate, milk"
+  name_ar: "شوكولاتة بالحليب"
+  category: sweet
+  calories_per_100g: 535
+  protein_per_100g: 7.7
+  carbs_per_100g: 59.4
+  fat_per_100g: 29.7
+  saturated_fat_per_100g: 18.5
+  sugar_per_100g: 51.5
+  serving_size_grams: 30
+  source_id: egy_food_211
+  locale_tags: [eg, ar, global]
+
+- name: "Chocolate, dark 70%"
+  name_ar: "شوكولاتة دارك ٧٠٪"
+  category: sweet
+  calories_per_100g: 598
+  protein_per_100g: 7.8
+  carbs_per_100g: 45.9
+  fat_per_100g: 42.6
+  saturated_fat_per_100g: 24.5
+  sugar_per_100g: 24.0
+  serving_size_grams: 30
+  source_id: egy_food_212
+  locale_tags: [eg, ar, global]
+
+- name: "Plain croissant with cheese (gabal el nayel)"
+  name_ar: "كرواسون بالجبنة"
+  category: sweet
+  calories_per_100g: 380
+  protein_per_100g: 11.0
+  carbs_per_100g: 38.0
+  fat_per_100g: 21.0
+  serving_size_grams: 70
+  source_id: egy_food_213
+  locale_tags: [eg, ar]
+
+- name: "Biscuits, plain digestive"
+  name_ar: "بسكويت ساده"
+  category: snack
+  calories_per_100g: 471
+  protein_per_100g: 6.7
+  carbs_per_100g: 68.0
+  fat_per_100g: 20.0
+  sugar_per_100g: 23.0
+  serving_size_grams: 25
+  source_id: egy_food_214
+  locale_tags: [eg, ar, global]
+
+# ─────────────────────────────────────────────────────────────────────
+# 13. Drinks
+# ─────────────────────────────────────────────────────────────────────
+
+- name: "Tea, plain brewed (no sugar)"
+  name_ar: "شاي بدون سكر"
+  category: drink
+  calories_per_100g: 1
+  protein_per_100g: 0.0
+  carbs_per_100g: 0.3
+  fat_per_100g: 0.0
+  serving_size_grams: 240
+  source_id: egy_food_215
+  locale_tags: [eg, ar, global]
+
+- name: "Tea with sugar (2 tsp per cup)"
+  name_ar: "شاي بسكر"
+  category: drink
+  calories_per_100g: 33
+  protein_per_100g: 0.0
+  carbs_per_100g: 8.4
+  fat_per_100g: 0.0
+  sugar_per_100g: 8.4
+  serving_size_grams: 240
+  source_id: egy_food_216
+  locale_tags: [eg, ar]
+
+- name: "Coffee, plain black"
+  name_ar: "قهوة سادة"
+  category: drink
+  calories_per_100g: 2
+  protein_per_100g: 0.1
+  carbs_per_100g: 0.0
+  fat_per_100g: 0.0
+  serving_size_grams: 240
+  source_id: egy_food_217
+  locale_tags: [eg, ar, global]
+
+- name: "Turkish coffee, medium (with sugar)"
+  name_ar: "قهوة تركي مظبوط"
+  category: drink
+  calories_per_100g: 18
+  protein_per_100g: 0.2
+  carbs_per_100g: 4.5
+  fat_per_100g: 0.1
+  sugar_per_100g: 4.5
+  serving_size_grams: 60
+  source_id: egy_food_218
+  locale_tags: [eg, ar]
+
+- name: "Nescafe 3-in-1"
+  name_ar: "نسكافيه ٣ في ١"
+  category: drink
+  calories_per_100g: 460
+  protein_per_100g: 4.0
+  carbs_per_100g: 80.0
+  fat_per_100g: 13.0
+  sugar_per_100g: 50.0
+  serving_size_grams: 18
+  serving_label: "1 sachet"
+  serving_label_ar: "كيس"
+  source_id: egy_food_219
+  locale_tags: [eg, ar, global]
+
+- name: "Karkadeh (hibiscus tea, unsweetened)"
+  name_ar: "كركديه بدون سكر"
+  category: drink
+  calories_per_100g: 3
+  protein_per_100g: 0.1
+  carbs_per_100g: 0.7
+  fat_per_100g: 0.0
+  serving_size_grams: 240
+  source_id: egy_food_220
+  locale_tags: [eg, ar]
+
+- name: "Karkadeh, sweetened"
+  name_ar: "كركديه بسكر"
+  category: drink
+  calories_per_100g: 40
+  protein_per_100g: 0.1
+  carbs_per_100g: 10.0
+  fat_per_100g: 0.0
+  sugar_per_100g: 10.0
+  serving_size_grams: 240
+  source_id: egy_food_221
+  locale_tags: [eg, ar]
+
+- name: "Sahlab (sweetened)"
+  name_ar: "سحلب"
+  category: drink
+  calories_per_100g: 95
+  protein_per_100g: 3.0
+  carbs_per_100g: 16.0
+  fat_per_100g: 2.0
+  sugar_per_100g: 13.0
+  serving_size_grams: 200
+  source_id: egy_food_222
+  locale_tags: [eg, ar]
+
+- name: "Sobia (Egyptian Ramadan rice drink)"
+  name_ar: "سوبيا"
+  category: drink
+  calories_per_100g: 100
+  protein_per_100g: 2.0
+  carbs_per_100g: 19.0
+  fat_per_100g: 1.5
+  sugar_per_100g: 15.0
+  serving_size_grams: 250
+  source_id: egy_food_223
+  locale_tags: [eg, ar]
+
+- name: "Tamarind (tamr hindi) drink"
+  name_ar: "تمر هندي"
+  category: drink
+  calories_per_100g: 60
+  protein_per_100g: 0.4
+  carbs_per_100g: 15.0
+  fat_per_100g: 0.1
+  sugar_per_100g: 13.5
+  serving_size_grams: 240
+  source_id: egy_food_224
+  locale_tags: [eg, ar]
+
+- name: "Licorice drink (ersous)"
+  name_ar: "عرقسوس"
+  category: drink
+  calories_per_100g: 30
+  protein_per_100g: 0.5
+  carbs_per_100g: 7.0
+  fat_per_100g: 0.0
+  sugar_per_100g: 6.0
+  serving_size_grams: 200
+  source_id: egy_food_225
+  locale_tags: [eg, ar]
+
+- name: "Sugarcane juice"
+  name_ar: "عصير قصب"
+  category: drink
+  calories_per_100g: 71
+  protein_per_100g: 0.1
+  carbs_per_100g: 18.0
+  fat_per_100g: 0.0
+  sugar_per_100g: 17.0
+  serving_size_grams: 250
+  source_id: egy_food_226
+  locale_tags: [eg, ar]
+
+- name: "Mango juice, fresh"
+  name_ar: "عصير مانجو طازج"
+  category: drink
+  calories_per_100g: 54
+  protein_per_100g: 0.4
+  carbs_per_100g: 13.0
+  fat_per_100g: 0.2
+  sugar_per_100g: 12.0
+  serving_size_grams: 250
+  source_id: egy_food_227
+  locale_tags: [eg, ar]
+
+- name: "Orange juice, freshly squeezed"
+  name_ar: "عصير برتقال طازج"
+  category: drink
+  calories_per_100g: 45
+  protein_per_100g: 0.7
+  carbs_per_100g: 10.4
+  fat_per_100g: 0.2
+  sugar_per_100g: 8.4
+  serving_size_grams: 250
+  source_id: egy_food_228
+  locale_tags: [eg, ar, global]
+
+- name: "Lemonade with mint"
+  name_ar: "ليمون بالنعناع"
+  category: drink
+  calories_per_100g: 40
+  protein_per_100g: 0.1
+  carbs_per_100g: 10.0
+  fat_per_100g: 0.0
+  sugar_per_100g: 9.5
+  serving_size_grams: 250
+  source_id: egy_food_229
+  locale_tags: [eg, ar]
+
+- name: "Cola soft drink"
+  name_ar: "كوكاكولا / بيبسي"
+  category: drink
+  calories_per_100g: 42
+  protein_per_100g: 0.0
+  carbs_per_100g: 10.6
+  fat_per_100g: 0.0
+  sugar_per_100g: 10.6
+  sodium_mg_per_100g: 4
+  serving_size_grams: 330
+  serving_label: "1 can"
+  serving_label_ar: "علبة"
+  source_id: egy_food_230
+  locale_tags: [eg, ar, global]
+
+- name: "Diet cola"
+  name_ar: "كوكا دايت"
+  category: drink
+  calories_per_100g: 0
+  protein_per_100g: 0.0
+  carbs_per_100g: 0.0
+  fat_per_100g: 0.0
+  serving_size_grams: 330
+  source_id: egy_food_231
+  locale_tags: [eg, ar, global]
+
+- name: "7Up / Sprite"
+  name_ar: "سفن أب / سبرايت"
+  category: drink
+  calories_per_100g: 40
+  protein_per_100g: 0.0
+  carbs_per_100g: 10.4
+  fat_per_100g: 0.0
+  sugar_per_100g: 10.4
+  serving_size_grams: 330
+  source_id: egy_food_232
+  locale_tags: [eg, ar, global]
+
+- name: "Energy drink, Red Bull"
+  name_ar: "ريد بول"
+  category: drink
+  calories_per_100g: 45
+  protein_per_100g: 0.0
+  carbs_per_100g: 11.0
+  fat_per_100g: 0.0
+  sugar_per_100g: 11.0
+  sodium_mg_per_100g: 100
+  serving_size_grams: 250
+  source_id: egy_food_233
+  locale_tags: [eg, ar, global]
+
+- name: "Mineral water (still)"
+  name_ar: "مياه معدنية"
+  category: drink
+  calories_per_100g: 0
+  protein_per_100g: 0.0
+  carbs_per_100g: 0.0
+  fat_per_100g: 0.0
+  serving_size_grams: 500
+  source_id: egy_food_234
+  locale_tags: [eg, ar, global]
+
+# ─────────────────────────────────────────────────────────────────────
+# 14. Oils, fats, condiments
+# ─────────────────────────────────────────────────────────────────────
+
+- name: "Olive oil, extra virgin"
+  name_ar: "زيت زيتون بكر"
+  category: oil
+  calories_per_100g: 884
+  protein_per_100g: 0.0
+  carbs_per_100g: 0.0
+  fat_per_100g: 100.0
+  saturated_fat_per_100g: 13.8
+  serving_size_grams: 14
+  serving_label: "1 tbsp"
+  serving_label_ar: "ملعقة كبيرة"
+  source_id: egy_food_235
+  locale_tags: [eg, ar, global]
+
+- name: "Sunflower oil"
+  name_ar: "زيت دوار الشمس"
+  category: oil
+  calories_per_100g: 884
+  protein_per_100g: 0.0
+  carbs_per_100g: 0.0
+  fat_per_100g: 100.0
+  saturated_fat_per_100g: 10.3
+  serving_size_grams: 14
+  source_id: egy_food_236
+  locale_tags: [eg, ar, global]
+
+- name: "Corn oil"
+  name_ar: "زيت ذرة"
+  category: oil
+  calories_per_100g: 884
+  protein_per_100g: 0.0
+  carbs_per_100g: 0.0
+  fat_per_100g: 100.0
+  saturated_fat_per_100g: 12.9
+  serving_size_grams: 14
+  source_id: egy_food_237
+  locale_tags: [eg, ar, global]
+
+- name: "Sesame oil"
+  name_ar: "زيت سمسم"
+  category: oil
+  calories_per_100g: 884
+  protein_per_100g: 0.0
+  carbs_per_100g: 0.0
+  fat_per_100g: 100.0
+  saturated_fat_per_100g: 14.2
+  serving_size_grams: 14
+  source_id: egy_food_238
+  locale_tags: [eg, ar, global]
+
+- name: "Mayonnaise, full fat"
+  name_ar: "مايونيز كامل الدسم"
+  category: condiment
+  calories_per_100g: 680
+  protein_per_100g: 1.0
+  carbs_per_100g: 2.0
+  fat_per_100g: 75.0
+  saturated_fat_per_100g: 12.0
+  sodium_mg_per_100g: 568
+  serving_size_grams: 14
+  source_id: egy_food_239
+  locale_tags: [eg, ar, global]
+
+- name: "Mayonnaise, light"
+  name_ar: "مايونيز لايت"
+  category: condiment
+  calories_per_100g: 300
+  protein_per_100g: 1.0
+  carbs_per_100g: 9.0
+  fat_per_100g: 30.0
+  sodium_mg_per_100g: 600
+  serving_size_grams: 14
+  source_id: egy_food_240
+  locale_tags: [eg, ar, global]
+
+- name: "Ketchup"
+  name_ar: "كاتشب"
+  category: condiment
+  calories_per_100g: 112
+  protein_per_100g: 1.3
+  carbs_per_100g: 27.4
+  fat_per_100g: 0.4
+  sugar_per_100g: 22.8
+  sodium_mg_per_100g: 907
+  serving_size_grams: 17
+  source_id: egy_food_241
+  locale_tags: [eg, ar, global]
+
+- name: "Mustard, prepared"
+  name_ar: "مسطردة"
+  category: condiment
+  calories_per_100g: 66
+  protein_per_100g: 4.4
+  carbs_per_100g: 5.8
+  fat_per_100g: 3.3
+  sodium_mg_per_100g: 1135
+  serving_size_grams: 5
+  source_id: egy_food_242
+  locale_tags: [eg, ar, global]
+
+- name: "Soy sauce"
+  name_ar: "صلصة صويا"
+  category: condiment
+  calories_per_100g: 53
+  protein_per_100g: 8.0
+  carbs_per_100g: 5.0
+  fat_per_100g: 0.6
+  sodium_mg_per_100g: 5493
+  serving_size_grams: 16
+  source_id: egy_food_243
+  locale_tags: [eg, ar, global]
+
+- name: "Vinegar, white"
+  name_ar: "خل أبيض"
+  category: condiment
+  calories_per_100g: 18
+  protein_per_100g: 0.0
+  carbs_per_100g: 0.0
+  fat_per_100g: 0.0
+  sodium_mg_per_100g: 5
+  serving_size_grams: 15
+  source_id: egy_food_244
+  locale_tags: [eg, ar, global]
+
+# ─────────────────────────────────────────────────────────────────────
+# 15. Nuts, seeds and dried fruit
+# ─────────────────────────────────────────────────────────────────────
+
+- name: "Almonds, raw"
+  name_ar: "لوز"
+  category: nut
+  calories_per_100g: 579
+  protein_per_100g: 21.2
+  carbs_per_100g: 21.6
+  fat_per_100g: 49.9
+  fiber_per_100g: 12.5
+  saturated_fat_per_100g: 3.8
+  serving_size_grams: 28
+  serving_label: "1 oz (~23 nuts)"
+  serving_label_ar: "حفنة"
+  source_id: egy_food_245
+  locale_tags: [eg, ar, global]
+
+- name: "Walnuts, raw"
+  name_ar: "عين جمل"
+  category: nut
+  calories_per_100g: 654
+  protein_per_100g: 15.2
+  carbs_per_100g: 13.7
+  fat_per_100g: 65.2
+  fiber_per_100g: 6.7
+  saturated_fat_per_100g: 6.1
+  serving_size_grams: 28
+  source_id: egy_food_246
+  locale_tags: [eg, ar, global]
+
+- name: "Cashews, raw"
+  name_ar: "كاجو"
+  category: nut
+  calories_per_100g: 553
+  protein_per_100g: 18.2
+  carbs_per_100g: 30.2
+  fat_per_100g: 43.9
+  fiber_per_100g: 3.3
+  saturated_fat_per_100g: 7.8
+  serving_size_grams: 28
+  source_id: egy_food_247
+  locale_tags: [eg, ar, global]
+
+- name: "Pistachios, raw"
+  name_ar: "فستق حلبي"
+  category: nut
+  calories_per_100g: 562
+  protein_per_100g: 20.2
+  carbs_per_100g: 27.5
+  fat_per_100g: 45.4
+  fiber_per_100g: 10.3
+  saturated_fat_per_100g: 5.6
+  serving_size_grams: 28
+  source_id: egy_food_248
+  locale_tags: [eg, ar, global]
+
+- name: "Hazelnuts, raw"
+  name_ar: "بندق"
+  category: nut
+  calories_per_100g: 628
+  protein_per_100g: 14.9
+  carbs_per_100g: 16.7
+  fat_per_100g: 60.7
+  fiber_per_100g: 9.7
+  saturated_fat_per_100g: 4.5
+  serving_size_grams: 28
+  source_id: egy_food_249
+  locale_tags: [eg, ar, global]
+
+- name: "Peanuts (sudani), roasted"
+  name_ar: "سوداني محمص"
+  category: nut
+  calories_per_100g: 587
+  protein_per_100g: 24.4
+  carbs_per_100g: 21.5
+  fat_per_100g: 49.7
+  fiber_per_100g: 8.0
+  saturated_fat_per_100g: 6.9
+  serving_size_grams: 28
+  source_id: egy_food_250
+  locale_tags: [eg, ar]
+
+- name: "Pumpkin seeds (lib), roasted"
+  name_ar: "لب أبيض"
+  category: nut
+  calories_per_100g: 559
+  protein_per_100g: 30.2
+  carbs_per_100g: 10.7
+  fat_per_100g: 49.0
+  fiber_per_100g: 6.0
+  serving_size_grams: 30
+  source_id: egy_food_251
+  locale_tags: [eg, ar]
+
+- name: "Sunflower seeds (lib syrii), roasted"
+  name_ar: "لب سوري"
+  category: nut
+  calories_per_100g: 619
+  protein_per_100g: 17.2
+  carbs_per_100g: 20.6
+  fat_per_100g: 56.8
+  fiber_per_100g: 11.1
+  serving_size_grams: 30
+  source_id: egy_food_252
+  locale_tags: [eg, ar]
+
+- name: "Sesame seeds, whole"
+  name_ar: "سمسم"
+  category: nut
+  calories_per_100g: 573
+  protein_per_100g: 17.7
+  carbs_per_100g: 23.4
+  fat_per_100g: 49.7
+  fiber_per_100g: 11.8
+  serving_size_grams: 15
+  source_id: egy_food_253
+  locale_tags: [eg, ar, global]
+
+- name: "Chia seeds"
+  name_ar: "بذور شيا"
+  category: nut
+  calories_per_100g: 486
+  protein_per_100g: 16.5
+  carbs_per_100g: 42.1
+  fat_per_100g: 30.7
+  fiber_per_100g: 34.4
+  serving_size_grams: 14
+  source_id: egy_food_254
+  locale_tags: [eg, ar, global]
+
+- name: "Flax seeds, ground"
+  name_ar: "بذور الكتان مطحونة"
+  category: nut
+  calories_per_100g: 534
+  protein_per_100g: 18.3
+  carbs_per_100g: 28.9
+  fat_per_100g: 42.2
+  fiber_per_100g: 27.3
+  serving_size_grams: 14
+  source_id: egy_food_255
+  locale_tags: [eg, ar, global]
+
+- name: "Peanut butter, smooth"
+  name_ar: "زبدة فول سوداني"
+  category: nut
+  calories_per_100g: 588
+  protein_per_100g: 25.1
+  carbs_per_100g: 19.6
+  fat_per_100g: 50.4
+  fiber_per_100g: 6.0
+  saturated_fat_per_100g: 10.0
+  serving_size_grams: 32
+  source_id: egy_food_256
+  locale_tags: [eg, ar, global]
+
+# ─────────────────────────────────────────────────────────────────────
+# 16. Packaged snacks (Egyptian market staples)
+# ─────────────────────────────────────────────────────────────────────
+
+- name: "Potato crisps, salted (chipsy)"
+  name_ar: "شيبسي بطاطس"
+  category: snack
+  calories_per_100g: 536
+  protein_per_100g: 6.6
+  carbs_per_100g: 53.0
+  fat_per_100g: 34.6
+  saturated_fat_per_100g: 3.0
+  sodium_mg_per_100g: 525
+  serving_size_grams: 30
+  source_id: egy_food_257
+  locale_tags: [eg, ar]
+
+- name: "Popcorn, air-popped"
+  name_ar: "فشار ساده"
+  category: snack
+  calories_per_100g: 387
+  protein_per_100g: 12.9
+  carbs_per_100g: 77.9
+  fat_per_100g: 4.5
+  fiber_per_100g: 14.5
+  serving_size_grams: 30
+  source_id: egy_food_258
+  locale_tags: [eg, ar, global]
+
+- name: "Popcorn, butter"
+  name_ar: "فشار بالزبدة"
+  category: snack
+  calories_per_100g: 480
+  protein_per_100g: 9.0
+  carbs_per_100g: 56.0
+  fat_per_100g: 25.0
+  saturated_fat_per_100g: 12.0
+  sodium_mg_per_100g: 700
+  serving_size_grams: 30
+  source_id: egy_food_259
+  locale_tags: [eg, ar, global]
+
+- name: "Corn flakes, plain"
+  name_ar: "كورن فليكس ساده"
+  category: snack
+  calories_per_100g: 357
+  protein_per_100g: 7.5
+  carbs_per_100g: 84.0
+  fat_per_100g: 0.4
+  sugar_per_100g: 8.0
+  sodium_mg_per_100g: 729
+  serving_size_grams: 30
+  source_id: egy_food_260
+  locale_tags: [eg, ar, global]
+
+- name: "Granola bar, chocolate chip"
+  name_ar: "بار جرانولا"
+  category: snack
+  calories_per_100g: 421
+  protein_per_100g: 6.3
+  carbs_per_100g: 66.0
+  fat_per_100g: 15.0
+  sugar_per_100g: 30.0
+  serving_size_grams: 30
+  source_id: egy_food_261
+  locale_tags: [eg, ar, global]
+
+- name: "Doritos / cheese crisps"
+  name_ar: "دوريتوس"
+  category: snack
+  calories_per_100g: 500
+  protein_per_100g: 7.0
+  carbs_per_100g: 60.0
+  fat_per_100g: 26.0
+  saturated_fat_per_100g: 4.0
+  sodium_mg_per_100g: 750
+  serving_size_grams: 30
+  source_id: egy_food_262
+  locale_tags: [eg, ar, global]
+
+- name: "Kit-Kat / wafer chocolate bar"
+  name_ar: "كيت كات"
+  category: sweet
+  calories_per_100g: 518
+  protein_per_100g: 7.3
+  carbs_per_100g: 60.5
+  fat_per_100g: 26.5
+  sugar_per_100g: 48.0
+  serving_size_grams: 41
+  source_id: egy_food_263
+  locale_tags: [eg, ar, global]
+
+- name: "Snickers chocolate bar"
+  name_ar: "سنيكرز"
+  category: sweet
+  calories_per_100g: 488
+  protein_per_100g: 8.9
+  carbs_per_100g: 59.2
+  fat_per_100g: 24.4
+  sugar_per_100g: 47.7
+  serving_size_grams: 50
+  source_id: egy_food_264
+  locale_tags: [eg, ar, global]
+
+- name: "Mars chocolate bar"
+  name_ar: "مارس"
+  category: sweet
+  calories_per_100g: 449
+  protein_per_100g: 4.1
+  carbs_per_100g: 70.6
+  fat_per_100g: 17.0
+  sugar_per_100g: 58.0
+  serving_size_grams: 51
+  source_id: egy_food_265
+  locale_tags: [eg, ar, global]
+
+- name: "Bounty chocolate bar"
+  name_ar: "باونتي"
+  category: sweet
+  calories_per_100g: 484
+  protein_per_100g: 3.9
+  carbs_per_100g: 58.0
+  fat_per_100g: 26.0
+  sugar_per_100g: 47.0
+  serving_size_grams: 57
+  source_id: egy_food_266
+  locale_tags: [eg, ar, global]
+
+- name: "Vanilla ice cream"
+  name_ar: "آيس كريم فانيليا"
+  category: sweet
+  calories_per_100g: 207
+  protein_per_100g: 3.5
+  carbs_per_100g: 23.6
+  fat_per_100g: 11.0
+  sugar_per_100g: 21.2
+  serving_size_grams: 70
+  source_id: egy_food_267
+  locale_tags: [eg, ar, global]
+
+- name: "Chocolate ice cream"
+  name_ar: "آيس كريم شوكولاتة"
+  category: sweet
+  calories_per_100g: 216
+  protein_per_100g: 3.8
+  carbs_per_100g: 28.2
+  fat_per_100g: 11.0
+  sugar_per_100g: 25.4
+  serving_size_grams: 70
+  source_id: egy_food_268
+  locale_tags: [eg, ar, global]
+
+- name: "Sponge cake (plain)"
+  name_ar: "كيك إسفنجي ساده"
+  category: sweet
+  calories_per_100g: 297
+  protein_per_100g: 7.0
+  carbs_per_100g: 53.0
+  fat_per_100g: 6.0
+  sugar_per_100g: 31.0
+  serving_size_grams: 60
+  source_id: egy_food_269
+  locale_tags: [eg, ar, global]
+
+- name: "Chocolate cake with frosting"
+  name_ar: "كيك شوكولاتة بكريمة"
+  category: sweet
+  calories_per_100g: 367
+  protein_per_100g: 4.0
+  carbs_per_100g: 51.0
+  fat_per_100g: 17.0
+  sugar_per_100g: 35.0
+  serving_size_grams: 80
+  source_id: egy_food_270
+  locale_tags: [eg, ar, global]
+
+# ─────────────────────────────────────────────────────────────────────
+# 17. Fast-food / restaurant items (Egyptian market)
+# ─────────────────────────────────────────────────────────────────────
+
+- name: "Pizza, cheese (thin crust)"
+  name_ar: "بيتزا جبنة"
+  category: dish
+  calories_per_100g: 266
+  protein_per_100g: 11.0
+  carbs_per_100g: 33.0
+  fat_per_100g: 10.0
+  saturated_fat_per_100g: 4.5
+  sodium_mg_per_100g: 598
+  serving_size_grams: 110
+  serving_label: "1 slice"
+  serving_label_ar: "شريحة"
+  source_id: egy_food_271
+  locale_tags: [eg, ar, global]
+
+- name: "Pizza, pepperoni"
+  name_ar: "بيتزا بيبروني"
+  category: dish
+  calories_per_100g: 296
+  protein_per_100g: 12.0
+  carbs_per_100g: 32.0
+  fat_per_100g: 13.5
+  sodium_mg_per_100g: 700
+  serving_size_grams: 110
+  source_id: egy_food_272
+  locale_tags: [eg, ar, global]
+
+- name: "Cheeseburger, fast-food regular"
+  name_ar: "تشيز برجر"
+  category: dish
+  calories_per_100g: 295
+  protein_per_100g: 15.0
+  carbs_per_100g: 26.0
+  fat_per_100g: 14.5
+  sodium_mg_per_100g: 690
+  serving_size_grams: 110
+  source_id: egy_food_273
+  locale_tags: [eg, ar, global]
+
+- name: "Big Mac / double cheeseburger"
+  name_ar: "بيج ماك"
+  category: dish
+  calories_per_100g: 250
+  protein_per_100g: 13.0
+  carbs_per_100g: 20.0
+  fat_per_100g: 13.0
+  sodium_mg_per_100g: 480
+  serving_size_grams: 215
+  source_id: egy_food_274
+  locale_tags: [eg, ar, global]
+
+- name: "Chicken nuggets (fast-food)"
+  name_ar: "ناجتس فراخ"
+  category: dish
+  calories_per_100g: 297
+  protein_per_100g: 15.0
+  carbs_per_100g: 16.0
+  fat_per_100g: 20.0
+  sodium_mg_per_100g: 633
+  serving_size_grams: 95
+  source_id: egy_food_275
+  locale_tags: [eg, ar, global]
+
+- name: "Shawarma sandwich, chicken (in saj/baladi bread)"
+  name_ar: "ساندويتش شاورما فراخ"
+  category: dish
+  calories_per_100g: 240
+  protein_per_100g: 14.0
+  carbs_per_100g: 24.0
+  fat_per_100g: 9.5
+  serving_size_grams: 200
+  source_id: egy_food_276
+  locale_tags: [eg, ar]
+
+- name: "Shawarma sandwich, beef"
+  name_ar: "ساندويتش شاورما لحم"
+  category: dish
+  calories_per_100g: 260
+  protein_per_100g: 14.5
+  carbs_per_100g: 24.0
+  fat_per_100g: 11.0
+  serving_size_grams: 200
+  source_id: egy_food_277
+  locale_tags: [eg, ar]
+
+- name: "Kofta sandwich"
+  name_ar: "ساندويتش كفتة"
+  category: dish
+  calories_per_100g: 245
+  protein_per_100g: 14.0
+  carbs_per_100g: 24.0
+  fat_per_100g: 10.0
+  serving_size_grams: 200
+  source_id: egy_food_278
+  locale_tags: [eg, ar]
+
+- name: "Hawawshi (Egyptian meat-stuffed bread)"
+  name_ar: "حواوشي"
+  category: dish
+  calories_per_100g: 270
+  protein_per_100g: 14.0
+  carbs_per_100g: 30.0
+  fat_per_100g: 10.0
+  serving_size_grams: 200
+  source_id: egy_food_279
+  locale_tags: [eg, ar]
+
+- name: "Pizza Hut personal pan pizza"
+  name_ar: "بيتزا هت بان"
+  category: dish
+  calories_per_100g: 290
+  protein_per_100g: 12.0
+  carbs_per_100g: 28.0
+  fat_per_100g: 14.0
+  sodium_mg_per_100g: 650
+  serving_size_grams: 250
+  source_id: egy_food_280
+  locale_tags: [eg, ar, global]
+
+# ─────────────────────────────────────────────────────────────────────
+# 18. Misc Arab / breakfast items
+# ─────────────────────────────────────────────────────────────────────
+
+- name: "Hummus (chickpea spread)"
+  name_ar: "حمص بالطحينة (دهن)"
+  category: dish
+  calories_per_100g: 177
+  protein_per_100g: 7.9
+  carbs_per_100g: 20.1
+  fat_per_100g: 8.7
+  fiber_per_100g: 6.0
+  serving_size_grams: 60
+  source_id: egy_food_281
+  locale_tags: [eg, ar, global]
+
+- name: "Mish (aged fermented cheese)"
+  name_ar: "مش"
+  category: dairy
+  calories_per_100g: 250
+  protein_per_100g: 18.0
+  carbs_per_100g: 4.0
+  fat_per_100g: 18.0
+  sodium_mg_per_100g: 1900
+  serving_size_grams: 30
+  source_id: egy_food_282
+  locale_tags: [eg, ar]
+
+- name: "Halloumi cheese"
+  name_ar: "جبنة حلوم"
+  category: dairy
+  calories_per_100g: 321
+  protein_per_100g: 21.0
+  carbs_per_100g: 2.2
+  fat_per_100g: 25.0
+  saturated_fat_per_100g: 16.5
+  sodium_mg_per_100g: 1600
+  serving_size_grams: 40
+  source_id: egy_food_283
+  locale_tags: [eg, ar]
+
+- name: "Halloumi, grilled"
+  name_ar: "حلوم مشوي"
+  category: dish
+  calories_per_100g: 330
+  protein_per_100g: 22.0
+  carbs_per_100g: 2.0
+  fat_per_100g: 27.0
+  serving_size_grams: 60
+  source_id: egy_food_284
+  locale_tags: [eg, ar]
+
+- name: "Sahleb, plain instant mix (dry)"
+  name_ar: "بودرة سحلب"
+  category: drink
+  calories_per_100g: 380
+  protein_per_100g: 1.5
+  carbs_per_100g: 87.0
+  fat_per_100g: 1.0
+  sugar_per_100g: 65.0
+  serving_size_grams: 25
+  source_id: egy_food_285
+  locale_tags: [eg, ar]
+
+- name: "Egyptian mahalabia with rose water"
+  name_ar: "مهلبية بماء الورد"
+  category: sweet
+  calories_per_100g: 145
+  protein_per_100g: 3.6
+  carbs_per_100g: 22.5
+  fat_per_100g: 4.0
+  serving_size_grams: 150
+  source_id: egy_food_286
+  locale_tags: [eg, ar]
+
+- name: "Roz be laban (cold rice pudding)"
+  name_ar: "أرز بلبن بارد"
+  category: sweet
+  calories_per_100g: 148
+  protein_per_100g: 4.0
+  carbs_per_100g: 23.0
+  fat_per_100g: 3.8
+  serving_size_grams: 150
+  source_id: egy_food_287
+  locale_tags: [eg, ar]
+
+- name: "Aroussa (Egyptian sesame brittle)"
+  name_ar: "حمصية / عروسة"
+  category: sweet
+  calories_per_100g: 480
+  protein_per_100g: 10.0
+  carbs_per_100g: 58.0
+  fat_per_100g: 22.0
+  serving_size_grams: 40
+  source_id: egy_food_288
+  locale_tags: [eg, ar]
+
+- name: "Sweet potato, roasted (batata madfia)"
+  name_ar: "بطاطا مدفية"
+  category: vegetable
+  calories_per_100g: 95
+  protein_per_100g: 2.1
+  carbs_per_100g: 22.5
+  fat_per_100g: 0.2
+  fiber_per_100g: 3.5
+  serving_size_grams: 200
+  source_id: egy_food_289
+  locale_tags: [eg, ar]
+
+- name: "Roasted chestnuts (abu farwa)"
+  name_ar: "أبو فروة"
+  category: nut
+  calories_per_100g: 245
+  protein_per_100g: 3.2
+  carbs_per_100g: 53.0
+  fat_per_100g: 2.2
+  fiber_per_100g: 5.1
+  serving_size_grams: 100
+  source_id: egy_food_290
+  locale_tags: [eg, ar]
+
+- name: "Termes (lupin beans), pickled"
+  name_ar: "ترمس"
+  category: legume
+  calories_per_100g: 119
+  protein_per_100g: 15.6
+  carbs_per_100g: 9.9
+  fat_per_100g: 2.9
+  fiber_per_100g: 2.8
+  sodium_mg_per_100g: 470
+  serving_size_grams: 100
+  source_id: egy_food_291
+  locale_tags: [eg, ar]
+
+- name: "Hummus el sham (boiled chickpeas)"
+  name_ar: "حمص الشام"
+  category: legume
+  calories_per_100g: 164
+  protein_per_100g: 8.9
+  carbs_per_100g: 27.4
+  fat_per_100g: 2.6
+  fiber_per_100g: 7.6
+  serving_size_grams: 100
+  source_id: egy_food_292
+  locale_tags: [eg, ar]
+
+- name: "Egyptian-style fava beans with eggs (foul belbeid)"
+  name_ar: "فول بالبيض"
+  category: dish
+  calories_per_100g: 175
+  protein_per_100g: 10.0
+  carbs_per_100g: 16.0
+  fat_per_100g: 7.5
+  serving_size_grams: 250
+  source_id: egy_food_293
+  locale_tags: [eg, ar]
+
+- name: "Egyptian-style scrambled eggs with tomatoes (shakshuka)"
+  name_ar: "شكشوكة"
+  category: dish
+  calories_per_100g: 130
+  protein_per_100g: 7.5
+  carbs_per_100g: 4.0
+  fat_per_100g: 9.5
+  serving_size_grams: 200
+  source_id: egy_food_294
+  locale_tags: [eg, ar]
+
+- name: "Bread + cheese + tomato sandwich"
+  name_ar: "ساندويتش جبنة بطماطم"
+  category: dish
+  calories_per_100g: 260
+  protein_per_100g: 11.0
+  carbs_per_100g: 32.0
+  fat_per_100g: 10.0
+  serving_size_grams: 120
+  source_id: egy_food_295
+  locale_tags: [eg, ar]
+
+- name: "Protein bar (~20 g protein, generic)"
+  name_ar: "بار بروتين"
+  category: snack
+  calories_per_100g: 380
+  protein_per_100g: 33.0
+  carbs_per_100g: 35.0
+  fat_per_100g: 13.0
+  sugar_per_100g: 5.0
+  serving_size_grams: 60
+  source_id: egy_food_296
+  locale_tags: [eg, ar, global]
+
+- name: "Whey protein powder, generic"
+  name_ar: "واي بروتين"
+  category: snack
+  calories_per_100g: 380
+  protein_per_100g: 80.0
+  carbs_per_100g: 7.0
+  fat_per_100g: 5.0
+  serving_size_grams: 30
+  serving_label: "1 scoop"
+  serving_label_ar: "سكوب"
+  source_id: egy_food_297
+  locale_tags: [eg, ar, global]
+
+- name: "Casein protein powder"
+  name_ar: "كازيين بروتين"
+  category: snack
+  calories_per_100g: 370
+  protein_per_100g: 80.0
+  carbs_per_100g: 5.0
+  fat_per_100g: 5.0
+  serving_size_grams: 30
+  source_id: egy_food_298
+  locale_tags: [eg, ar, global]
+
+- name: "Sports drink (Gatorade-style)"
+  name_ar: "مشروب رياضي"
+  category: drink
+  calories_per_100g: 25
+  protein_per_100g: 0.0
+  carbs_per_100g: 6.0
+  fat_per_100g: 0.0
+  sugar_per_100g: 6.0
+  sodium_mg_per_100g: 41
+  serving_size_grams: 240
+  source_id: egy_food_299
+  locale_tags: [eg, ar, global]
+
+- name: "Coconut, fresh"
+  name_ar: "جوز هند طازج"
+  category: fruit
+  calories_per_100g: 354
+  protein_per_100g: 3.3
+  carbs_per_100g: 15.2
+  fat_per_100g: 33.5
+  fiber_per_100g: 9.0
+  saturated_fat_per_100g: 29.7
+  serving_size_grams: 30
+  source_id: egy_food_300
+  locale_tags: [eg, ar, global]

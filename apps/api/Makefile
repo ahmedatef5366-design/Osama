@@ -9,7 +9,7 @@ endif
 DATABASE_URL ?= postgres://osama:osama@localhost:5432/osama?sslmode=disable
 MIGRATE_BIN  := $(shell command -v migrate 2>/dev/null)
 
-.PHONY: help dev build run test lint fmt vet tidy sqlc migrate-up migrate-down migrate-new keys
+.PHONY: help dev build run test lint fmt vet tidy sqlc migrate-up migrate-down migrate-new keys seed-foods seed-foods-dry-run
 
 help:
 	@echo "Targets:"
@@ -25,6 +25,8 @@ help:
 	@echo "  migrate-down  rollback the latest migration"
 	@echo "  migrate-new   NAME=foo  scaffold a new pair of migration files"
 	@echo "  keys          generate dev RS256 keypair into ./keys"
+	@echo "  seed-foods    bulk-load ./seed/foods/*.yaml into food_database"
+	@echo "  seed-foods-dry-run  validate seed YAML without writing to the DB"
 
 dev:
 	go run ./cmd/server
@@ -84,3 +86,9 @@ keys:
 	  openssl rsa -pubout -in keys/jwt_private.pem -out keys/jwt_public.pem; \
 	  echo "wrote keys/jwt_{private,public}.pem"; \
 	fi
+
+seed-foods:
+	DATABASE_URL="$(DATABASE_URL)" go run ./cmd/seed-foods -dir ./seed/foods
+
+seed-foods-dry-run:
+	go run ./cmd/seed-foods -dir ./seed/foods -dry-run
