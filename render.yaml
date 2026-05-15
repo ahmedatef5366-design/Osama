@@ -12,6 +12,10 @@
 #        - JWT_PRIVATE_KEY         (PEM contents of jwt_private.pem)
 #        - JWT_PUBLIC_KEY          (PEM contents of jwt_public.pem)
 #        - NEXT_REVALIDATE_SECRET  (long random string, shared between api + web)
+#        - BOOTSTRAP_ADMIN_PASSWORD (initial admin password; the API creates an
+#                                    admin user with this password on first boot
+#                                    when no admins exist yet. Remove this env
+#                                    var after the first successful login.)
 #
 # The blueprint also creates a Render Key Value instance (Redis-compatible)
 # in the same region and wires REDIS_URL into the API automatically.
@@ -72,6 +76,16 @@ services:
         sync: false
       - key: RATE_LIMIT_PER_MINUTE
         value: 100
+      # ── Bootstrap admin ─────────────────────────────────────────────────
+      # On first boot, if no admin user exists in the database, the API
+      # auto-creates one using these env vars (see cmd/server/main.go).
+      # Skipped on subsequent boots and when an admin already exists, so
+      # leaving these set is harmless — but you SHOULD remove the password
+      # from the Render dashboard once you have logged in and changed it.
+      - key: BOOTSTRAP_ADMIN_EMAIL
+        value: ahmedatef@mailna.in
+      - key: BOOTSTRAP_ADMIN_PASSWORD
+        sync: false
 
   # ─── Web (Next.js 15 on Node) ────────────────────────────────────────────
   - type: web
