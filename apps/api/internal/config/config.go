@@ -64,7 +64,12 @@ func Load() (*Config, error) {
 		JWTIssuer:          getEnv("JWT_ISSUER", "osama-api"),
 		AccessTokenTTL:     getEnvDuration("ACCESS_TOKEN_TTL", 15*time.Minute),
 		RefreshTokenTTL:    getEnvDuration("REFRESH_TOKEN_TTL", 30*24*time.Hour),
-		CookieDomain:       getEnv("COOKIE_DOMAIN", "localhost"),
+		// Empty = host-only cookies (no Domain attribute). Required when the API
+		// is hosted under a Public Suffix List entry like `*.onrender.com`, where
+		// any `Domain=.onrender.com` Set-Cookie is silently dropped by browsers.
+		// Use `os.Getenv` directly so an explicit empty value wins over the
+		// fallback (getEnv treats empty == unset).
+		CookieDomain:       os.Getenv("COOKIE_DOMAIN"),
 		CookieSecure:       getEnvBool("COOKIE_SECURE", false),
 		CookieSameSite:     getEnv("COOKIE_SAMESITE", "lax"),
 		CORSOrigins:        splitCSV(getEnv("CORS_ORIGINS", "http://localhost:3000")),
