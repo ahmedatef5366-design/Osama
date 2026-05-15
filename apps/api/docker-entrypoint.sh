@@ -28,6 +28,12 @@ url_encode_password() {
       c="${pass:i:1}"
       case "$c" in
         [A-Za-z0-9._~-]) encoded+="$c" ;;
+        # Skip already-encoded %XX sequences to avoid double-encoding.
+        %) if [[ "${pass:i+1:2}" =~ ^[0-9A-Fa-f]{2}$ ]]; then
+             encoded+="${pass:i:3}"; (( i += 2 ))
+           else
+             encoded+="%25"
+           fi ;;
         *) printf -v c '%%%02X' "'$c"; encoded+="$c" ;;
       esac
     done
