@@ -85,19 +85,34 @@ func TestValidate(t *testing.T) {
 }
 
 func TestLoadAllParsesShippedSeed(t *testing.T) {
-	// Smoke test: the seed file we ship must parse cleanly and contain
+	// Smoke test: every YAML file we ship must parse cleanly and contain
 	// the expected number of items. Catches accidental YAML breakage
 	// (typos, duplicate keys, wrong indentation) at CI time.
-	entries, err := loadAll([]string{"../../seed/foods/egyptian-foods.yaml"})
+	entries, err := loadAll([]string{
+		"../../seed/foods/egyptian-foods.yaml",
+		"../../seed/foods/egyptian-foods-extended.yaml",
+	})
 	if err != nil {
 		t.Fatalf("loadAll: %v", err)
 	}
-	if got, want := len(entries), 300; got != want {
+	if got, want := len(entries), 500; got != want {
 		t.Errorf("entries: got %d, want %d", got, want)
 	}
 	// Spot-check the first entry to make sure fields wire through correctly.
 	if entries[0].Name == "" || entries[0].SourceID == nil || *entries[0].SourceID == "" {
 		t.Errorf("first entry malformed: %+v", entries[0])
+	}
+	// Every entry must have a stable source_id so the seed is upsertable.
+	seen := make(map[string]struct{}, len(entries))
+	for i, e := range entries {
+		if e.SourceID == nil || *e.SourceID == "" {
+			t.Errorf("entry %d (%q) missing source_id", i+1, e.Name)
+			continue
+		}
+		if _, dup := seen[*e.SourceID]; dup {
+			t.Errorf("duplicate source_id %q", *e.SourceID)
+		}
+		seen[*e.SourceID] = struct{}{}
 	}
 }
 
