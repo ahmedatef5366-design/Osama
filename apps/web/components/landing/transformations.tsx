@@ -30,8 +30,8 @@ export function Transformations({ content, locale }: TransformationsProps) {
   const loc = asLocale(locale);
 
   return (
-    <section className="bg-surface py-24 sm:py-32" id="transformations">
-      <div className="mx-auto max-w-7xl px-6">
+    <section className="bg-surface py-16 sm:py-24 md:py-32" id="transformations">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6">
         <motion.div
           className="mb-12 sm:mb-16"
           variants={headingVariants}
@@ -39,11 +39,11 @@ export function Transformations({ content, locale }: TransformationsProps) {
           whileInView="visible"
           viewport={{ once: true, margin: "-60px" }}
         >
-          <h2 className="font-display text-text-1 text-4xl sm:text-5xl font-extrabold">
+          <h2 className="font-display text-text-1 text-3xl sm:text-4xl md:text-5xl font-extrabold">
             {t(content.title, loc)}
           </h2>
           {content.subtitle ? (
-            <p className="mt-3 max-w-xl text-text-2 text-lg">{t(content.subtitle, loc)}</p>
+            <p className="mt-3 max-w-xl text-text-2 text-base sm:text-lg">{t(content.subtitle, loc)}</p>
           ) : null}
         </motion.div>
 

@@ -9,9 +9,9 @@ const config: Config = {
   theme: {
     extend: {
       fontFamily: {
-        display: ["var(--font-display)", "Syne", "sans-serif"],
-        body: ["var(--font-body)", "DM Sans", "sans-serif"],
-        arabic: ["var(--font-arabic)", "Cairo", "sans-serif"],
+        display: ["var(--font-display)", "Outfit", "sans-serif"],
+        body: ["var(--font-body)", "Inter", "sans-serif"],
+        arabic: ["var(--font-arabic)", "Tajawal", "sans-serif"],
         mono: ["var(--font-mono)", "JetBrains Mono", "monospace"],
       },
       colors: {

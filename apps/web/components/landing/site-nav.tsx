@@ -52,7 +52,7 @@ export function SiteNav({ locale }: Props) {
           : "border-b border-transparent bg-transparent")
       }
     >
-      <div className="mx-auto flex max-w-7xl items-center justify-between gap-6 px-6 py-3 sm:py-4">
+      <div className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-4 py-3 sm:gap-6 sm:px-6 sm:py-4">
         <Link
           href="/"
           aria-label={t("brand")}
@@ -82,7 +82,7 @@ export function SiteNav({ locale }: Props) {
           <LanguageSwitcher currentLocale={locale} />
           <Link
             href="/login"
-            className="hidden sm:inline-flex items-center gap-2 rounded-full bg-accent px-4 py-2 font-medium text-bg text-sm shadow-[0_6px_24px_-8px_rgba(200,241,53,0.6)] transition-transform duration-200 hover:scale-[1.03]"
+            className="inline-flex items-center gap-2 rounded-full bg-accent px-3 py-1.5 text-xs font-medium text-bg shadow-[0_6px_24px_-8px_rgba(200,241,53,0.6)] transition-transform duration-200 hover:scale-[1.03] sm:px-4 sm:py-2 sm:text-sm"
           >
             <span>{t("login")}</span>
             <Arrow />
@@ -122,7 +122,7 @@ export function SiteNav({ locale }: Props) {
             transition={{ duration: 0.25, ease: "easeOut" }}
             className="lg:hidden overflow-hidden border-t border-border bg-bg/95 backdrop-blur"
           >
-            <ul className="mx-auto flex max-w-7xl flex-col gap-1 px-6 py-4 font-mono text-text-1 text-sm uppercase tracking-[0.18em]">
+            <ul className="mx-auto flex max-w-7xl flex-col gap-1 px-4 py-4 font-mono text-text-1 text-sm uppercase tracking-[0.18em] sm:px-6">
               {SECTIONS.map((s) => (
                 <li key={s.id}>
                   <a

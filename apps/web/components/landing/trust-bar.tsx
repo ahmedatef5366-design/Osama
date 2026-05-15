@@ -30,8 +30,8 @@ export function TrustBar({ locale: _locale }: Props) {
   const t = useTranslations("landing.trust");
 
   return (
-    <section className="border-y border-border/60 bg-bg/60 py-8 sm:py-10">
-      <div className="mx-auto max-w-7xl px-6">
+    <section className="border-y border-border/60 bg-bg/60 py-6 sm:py-8 md:py-10">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6">
         <motion.div
           variants={stagger}
           initial="hidden"

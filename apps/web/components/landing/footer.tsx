@@ -20,9 +20,9 @@ export function Footer({ content, locale }: FooterProps) {
   const year = new Date().getFullYear();
 
   return (
-    <footer className="border-t border-border bg-surface py-16">
-      <div className="mx-auto max-w-7xl px-6">
-        <div className="grid gap-10 sm:grid-cols-4">
+    <footer className="border-t border-border bg-surface py-10 sm:py-16">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6">
+        <div className="grid gap-8 sm:gap-10 sm:grid-cols-4">
           <section className="sm:col-span-1">
             <p className="font-display text-text-1 text-2xl font-extrabold">Osama</p>
             <p className="mt-2 max-w-xs text-text-2 text-sm">{t(content.tagline, loc)}</p>

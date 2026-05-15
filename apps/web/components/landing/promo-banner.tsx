@@ -33,22 +33,22 @@ export function PromoBanner({ content, locale }: PromoBannerProps) {
   const isAccent = tone === "accent";
 
   return (
-    <section className="bg-bg py-24 sm:py-32" id="promo-banner">
-      <div className="mx-auto max-w-7xl px-6">
+    <section className="bg-bg py-16 sm:py-24 md:py-32" id="promo-banner">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-80px" }}
           transition={{ duration: 0.55, ease: [0.16, 1, 0.3, 1] }}
           className={
-            "relative overflow-hidden rounded-3xl border " +
+            "relative overflow-hidden rounded-2xl border sm:rounded-3xl " +
             (isAccent
               ? "border-accent/30 bg-gradient-to-br from-accent/15 via-surface-high to-surface"
               : "border-border bg-surface")
           }
         >
           <div className="grid items-stretch gap-0 sm:grid-cols-2">
-            <div className="flex flex-col justify-center gap-5 p-8 sm:p-12">
+            <div className="flex flex-col justify-center gap-4 p-6 sm:gap-5 sm:p-8 md:p-12">
               {eyebrow ? (
                 <span className="font-mono text-text-3 text-[11px] uppercase tracking-[0.32em]">
                   {eyebrow}
