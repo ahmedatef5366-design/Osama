@@ -14,23 +14,37 @@ import { unstable_cache as nextCache } from "next/cache";
 import { cookies } from "next/headers";
 import { CMS_TAG, fetchSectionInner } from "@/lib/cms-shared";
 import {
+  defaultAnnouncement,
+  defaultBanner,
+  defaultBeforeAfter,
+  defaultCustomerActivity,
   defaultFaq,
+  defaultFeaturedStories,
   defaultFeatures,
   defaultFooter,
   defaultHero,
   defaultPricing,
+  defaultProcessSteps,
   defaultTestimonials,
   defaultTransformations,
+  defaultValueProps,
 } from "@/lib/cms-defaults";
 import type { Section, SectionContent, SectionKey } from "@/types/cms";
 
 export { CMS_TAG } from "@/lib/cms-shared";
 
 const DEFAULTS: SectionContent = {
+  announcement: defaultAnnouncement,
   hero: defaultHero,
+  banner: defaultBanner,
+  valueProps: defaultValueProps,
   features: defaultFeatures,
   transformations: defaultTransformations,
+  beforeAfter: defaultBeforeAfter,
+  featuredStories: defaultFeaturedStories,
+  processSteps: defaultProcessSteps,
   testimonials: defaultTestimonials,
+  customerActivity: defaultCustomerActivity,
   pricing: defaultPricing,
   faq: defaultFaq,
   footer: defaultFooter,
