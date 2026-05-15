@@ -74,5 +74,11 @@ else
   echo "→ RUN_MIGRATIONS=false, skipping migrate"
 fi
 
+# Also encode DATABASE_URL for the API server — pgx uses the same Go URL
+# parser and will reject unencoded special characters in the password.
+if [[ -n "${DATABASE_URL:-}" ]]; then
+  export DATABASE_URL="$(url_encode_password "${DATABASE_URL}")"
+fi
+
 echo "→ starting API"
 exec "$@"
