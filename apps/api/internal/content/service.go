@@ -22,13 +22,20 @@ import (
 // the seed migration means the admin editor can't accidentally introduce
 // a typo'd section that the frontend doesn't know how to render.
 var allowedSections = map[string]struct{}{
-	"hero":            {},
-	"features":        {},
-	"transformations": {},
-	"testimonials":    {},
-	"pricing":         {},
-	"faq":             {},
-	"footer":          {},
+	"announcement":     {},
+	"hero":             {},
+	"banner":           {},
+	"valueProps":       {},
+	"features":         {},
+	"transformations":  {},
+	"beforeAfter":      {},
+	"featuredStories":  {},
+	"processSteps":     {},
+	"testimonials":     {},
+	"customerActivity": {},
+	"pricing":          {},
+	"faq":              {},
+	"footer":           {},
 }
 
 // MaxContentBytes caps the JSONB payload at 64 KB. Realistically a section

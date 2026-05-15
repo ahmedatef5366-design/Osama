@@ -320,10 +320,17 @@
         "invalidJson": "محتوى JSON غير صالح"
       },
       "sections": {
+        "announcement": "شريط الإعلان",
         "hero": "الواجهة",
+        "banner": "البانر الترويجي",
+        "valueProps": "القيم المضافة",
         "features": "المزايا",
         "transformations": "التحوّلات",
+        "beforeAfter": "قبل / بعد",
+        "featuredStories": "قصص مميزة",
+        "processSteps": "إزاي تشترك",
         "testimonials": "الشهادات",
+        "customerActivity": "نشاط العملاء",
         "pricing": "الباقات",
         "faq": "الأسئلة الشائعة",
         "footer": "التذييل"

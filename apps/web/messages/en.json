@@ -320,10 +320,17 @@
         "invalidJson": "Invalid JSON"
       },
       "sections": {
+        "announcement": "Announcement bar",
         "hero": "Hero",
+        "banner": "Promo banner",
+        "valueProps": "Value props",
         "features": "Features",
         "transformations": "Transformations",
+        "beforeAfter": "Before / After",
+        "featuredStories": "Featured stories",
+        "processSteps": "How it works",
         "testimonials": "Testimonials",
+        "customerActivity": "Customer activity",
         "pricing": "Pricing",
         "faq": "FAQ",
         "footer": "Footer"

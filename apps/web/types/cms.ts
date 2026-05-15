@@ -6,10 +6,17 @@
 //   • the matching landing-page component that consumes it
 
 export type SectionKey =
+  | "announcement"
   | "hero"
+  | "banner"
+  | "valueProps"
   | "features"
   | "transformations"
+  | "beforeAfter"
+  | "featuredStories"
+  | "processSteps"
   | "testimonials"
+  | "customerActivity"
   | "pricing"
   | "faq"
   | "footer";
@@ -124,15 +131,144 @@ export type FooterContent = {
   copyright: Localized;
 };
 
+/**
+ * Thin top-of-page strip with a single message and optional CTA. Renders
+ * above the site navigation on the landing page only. Visitors can
+ * dismiss it for the session via localStorage.
+ */
+export type AnnouncementContent = {
+  visible: boolean;
+  message: Localized;
+  ctaText?: Localized;
+  ctaUrl?: string;
+  /** When true, the bar shows a close button that hides it locally. */
+  dismissible?: boolean;
+};
+
+/**
+ * Full-width promotional banner: headline + subhead + optional image + CTA.
+ * Used for limited-time offers, new program launches, etc.
+ */
+export type BannerContent = {
+  visible: boolean;
+  eyebrow?: Localized;
+  title: Localized;
+  description?: Localized;
+  ctaText?: Localized;
+  ctaUrl?: string;
+  imageUrl?: string;
+  /** Visual tone — affects accent / surface treatment. */
+  tone?: "accent" | "surface";
+};
+
+/**
+ * Interactive before/after slider: a draggable divider reveals more of the
+ * "before" or "after" image as the visitor pulls it across.
+ */
+export type BeforeAfterContent = {
+  visible: boolean;
+  title: Localized;
+  subtitle?: Localized;
+  items: Array<{
+    clientName?: string;
+    beforeImg: string;
+    afterImg: string;
+    caption?: Localized;
+    weeks?: number;
+  }>;
+};
+
+/**
+ * Live-style activity feed ("Ahmed just joined the Pro plan"). Drives a
+ * compact card with a rotating ticker. Items are static CMS content; no
+ * real billing data is exposed.
+ */
+export type CustomerActivityContent = {
+  visible: boolean;
+  title: Localized;
+  subtitle?: Localized;
+  items: Array<{
+    name: string;
+    /** Locale-specific city or country, displayed under the name. */
+    location?: Localized;
+    /** Short description of what they did — e.g. "اشترك في باقة Pro". */
+    action: Localized;
+    /** Relative time string — e.g. "٢ دقيقة" / "2 min ago". */
+    timeAgo?: Localized;
+    avatarUrl?: string;
+  }>;
+};
+
+/**
+ * Three-up value proposition section: short headline + intro paragraph +
+ * a list of named pillars. Inspired by FITSTN's "Wellness Made Personal".
+ */
+export type ValuePropsContent = {
+  visible: boolean;
+  eyebrow?: Localized;
+  title: Localized;
+  description?: Localized;
+  ctaText?: Localized;
+  ctaUrl?: string;
+  items: Array<{
+    title: Localized;
+    description?: Localized;
+  }>;
+};
+
+/**
+ * Long-form transformation stories — each item is its own card with
+ * a name, a wide image, and a paragraph-length narrative. Different from
+ * `transformations`, which renders a snap-scroll before/after carousel.
+ */
+export type FeaturedStoriesContent = {
+  visible: boolean;
+  eyebrow?: Localized;
+  title: Localized;
+  subtitle?: Localized;
+  items: Array<{
+    name: string;
+    /** Optional small label above the name — e.g. "Family transformation". */
+    badge?: Localized;
+    /** Paragraph-length story. */
+    body: Localized;
+    imageUrl?: string;
+    ctaText?: Localized;
+    ctaUrl?: string;
+  }>;
+};
+
+/**
+ * Ordered step-by-step explainer ("How to subscribe"). Each step has a
+ * short title and a description; the index drives the rendered numeral.
+ */
+export type ProcessStepsContent = {
+  visible: boolean;
+  eyebrow?: Localized;
+  title: Localized;
+  subtitle?: Localized;
+  steps: Array<{
+    title: Localized;
+    description?: Localized;
+  }>;
+};
+
 // ───────────────────────────────────────────────────────────────────────
 // Key → content type mapping
 // ───────────────────────────────────────────────────────────────────────
 
 export type SectionContent = {
+  announcement: AnnouncementContent;
   hero: HeroContent;
+  banner: BannerContent;
+  valueProps: ValuePropsContent;
   features: FeaturesContent;
   transformations: TransformationsContent;
+  beforeAfter: BeforeAfterContent;
+  featuredStories: FeaturedStoriesContent;
+  processSteps: ProcessStepsContent;
   testimonials: TestimonialsContent;
+  customerActivity: CustomerActivityContent;
   pricing: PricingContent;
   faq: FaqContent;
   footer: FooterContent;

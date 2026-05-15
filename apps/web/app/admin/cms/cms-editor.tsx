@@ -9,10 +9,17 @@ import { Button } from "@/components/ui/button";
 import type { Section, SectionHistoryEntry, SectionKey } from "@/types/cms";
 
 const SECTIONS: SectionKey[] = [
+  "announcement",
   "hero",
+  "banner",
+  "valueProps",
   "features",
   "transformations",
+  "beforeAfter",
+  "featuredStories",
+  "processSteps",
   "testimonials",
+  "customerActivity",
   "pricing",
   "faq",
   "footer",
