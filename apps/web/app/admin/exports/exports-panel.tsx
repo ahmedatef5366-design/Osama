@@ -5,7 +5,9 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardBody } from "@/components/ui/card";
 
-const API_BASE = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8080";
+// Same-origin: requests go through the Next.js /api rewrite so cookies stay
+// first-party. Override with NEXT_PUBLIC_API_URL only for direct dev access.
+const API_BASE = process.env.NEXT_PUBLIC_API_URL ?? "";
 
 type Job = "clients" | "checkins";
 

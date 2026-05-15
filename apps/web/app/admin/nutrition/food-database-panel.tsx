@@ -51,7 +51,7 @@ export function FoodDatabasePanel() {
       const fd = new FormData();
       fd.append("file", file);
       const res = await fetch(
-        `${process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8080"}/api/food-database/import`,
+        `${process.env.NEXT_PUBLIC_API_URL ?? ""}/api/food-database/import`,
         { method: "POST", body: fd, credentials: "include" },
       );
       const json = (await res.json()) as Envelope<{ imported: number }>;

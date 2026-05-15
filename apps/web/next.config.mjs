@@ -3,11 +3,16 @@ import createNextIntlPlugin from "next-intl/plugin";
 const withNextIntl = createNextIntlPlugin("./i18n/request.ts");
 
 /**
- * The API origin the browser talks to for /api/* fetches. We allow it in
- * connect-src so the CSP doesn't block legitimate cross-origin XHRs.
- * Falls back to the local dev API URL.
+ * Upstream Go API the Next.js server forwards /api/* and /healthz requests to.
+ * This is a server-only var — the browser always talks to the Next.js origin
+ * and never sees the API host directly, so cookies are first-party and the
+ * Public Suffix List rules around `*.onrender.com` (which silently drop any
+ * `Domain=.onrender.com` cookie) don't apply.
+ *
+ * For local dev this defaults to the standard Go server port. For Render set
+ * `API_INTERNAL_URL=https://osama-api-sq1f.onrender.com` on the web service.
  */
-const API_ORIGIN = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8080";
+const API_INTERNAL_URL = process.env.API_INTERNAL_URL || "http://localhost:8080";
 
 const isProd = process.env.NODE_ENV === "production";
 
@@ -39,7 +44,10 @@ const csp = [
   "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com",
   "font-src 'self' https://fonts.gstatic.com data:",
   "img-src 'self' data: blob: https://*.cloudinary.com https://res.cloudinary.com https://images.unsplash.com",
-  `connect-src 'self' ${API_ORIGIN} ws: wss:`,
+  // All /api/* and /healthz traffic now goes through the Next.js rewrite below,
+  // so the browser only ever opens connections to its own origin. WebSockets
+  // are still allowed for future SSE/streaming features.
+  "connect-src 'self' ws: wss:",
   "media-src 'self' blob:",
   "worker-src 'self' blob:",
   "manifest-src 'self'",
@@ -60,6 +68,15 @@ const nextConfig = {
       { protocol: "https", hostname: "res.cloudinary.com" },
       { protocol: "https", hostname: "images.unsplash.com" },
     ],
+  },
+  async rewrites() {
+    // Proxy API + health probes server-side to the Go API. Keeps the browser
+    // origin a single host so authentication cookies are first-party and
+    // CORS is sidestepped entirely.
+    return [
+      { source: "/api/:path*", destination: `${API_INTERNAL_URL}/api/:path*` },
+      { source: "/healthz", destination: `${API_INTERNAL_URL}/healthz` },
+    ];
   },
   async headers() {
     const headers = [
