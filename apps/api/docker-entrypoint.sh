@@ -2,9 +2,9 @@
 # Entrypoint for the Osama API container.
 #
 # 1. Apply pending Postgres migrations. Uses MIGRATE_DATABASE_URL when set
-#    (a direct, non-pooled connection — required by Supabase because the
-#    transaction pooler rejects DDL like CREATE EXTENSION). Falls back to
-#    DATABASE_URL for hosts that don't differentiate.
+#    (Supabase session-mode pooler — supports DDL and provides IPv4
+#    connectivity required by Render). Falls back to DATABASE_URL for hosts
+#    that don't differentiate.
 # 2. Exec the API binary (or whatever was passed as CMD).
 set -euo pipefail
 
@@ -28,6 +28,12 @@ url_encode_password() {
       c="${pass:i:1}"
       case "$c" in
         [A-Za-z0-9._~-]) encoded+="$c" ;;
+        # Skip already-encoded %XX sequences to avoid double-encoding.
+        %) if [[ "${pass:i+1:2}" =~ ^[0-9A-Fa-f]{2}$ ]]; then
+             encoded+="${pass:i:3}"; (( i += 2 ))
+           else
+             encoded+="%25"
+           fi ;;
         *) printf -v c '%%%02X' "'$c"; encoded+="$c" ;;
       esac
     done
@@ -50,7 +56,20 @@ MIGRATE_URL="$(url_encode_password "${MIGRATE_URL}")"
 
 if [[ "${RUN_MIGRATIONS:-true}" == "true" ]]; then
   echo "→ applying migrations against ${MIGRATE_URL%%@*}@…"
-  migrate -path /app/migrations -database "${MIGRATE_URL}" up
+  if ! migrate -path /app/migrations -database "${MIGRATE_URL}" up 2>&1; then
+    # Surface a helpful hint when the failure looks like an IPv6 issue with
+    # Supabase's direct-connection hostname (db.*.supabase.co is IPv6-only
+    # and Render free-tier lacks IPv6 outbound connectivity).
+    if [[ "${MIGRATE_URL}" == *"db."*".supabase.co"* ]]; then
+      echo "" >&2
+      echo "HINT: db.<project>.supabase.co is IPv6-only. Render's free tier" >&2
+      echo "does not support IPv6. Use the Supabase *Session-mode* pooler" >&2
+      echo "for MIGRATE_DATABASE_URL instead:" >&2
+      echo "  postgresql://postgres.<project>:<password>@aws-0-<region>.pooler.supabase.com:5432/postgres?sslmode=require" >&2
+      echo "(Supabase Dashboard → Settings → Database → Connection Pooling → Session mode)" >&2
+    fi
+    exit 1
+  fi
 else
   echo "→ RUN_MIGRATIONS=false, skipping migrate"
 fi

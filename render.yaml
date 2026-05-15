@@ -5,7 +5,10 @@
 #   2. In the Render dashboard: New → Blueprint → pick this repo.
 #   3. Fill in the prompted secrets (marked `sync: false` below):
 #        - DATABASE_URL            (Supabase pooler — Transaction mode, port 6543, sslmode=require)
-#        - MIGRATE_DATABASE_URL    (Supabase direct — port 5432, sslmode=require — needed for DDL)
+#        - MIGRATE_DATABASE_URL    (Supabase pooler — Session mode, port 5432, sslmode=require
+#                                   — supports DDL and provides IPv4 connectivity that Render needs.
+#                                   Do NOT use the direct connection (db.*.supabase.co) — it is
+#                                   IPv6-only and Render free-tier cannot reach it.)
 #        - JWT_PRIVATE_KEY         (PEM contents of jwt_private.pem)
 #        - JWT_PUBLIC_KEY          (PEM contents of jwt_public.pem)
 #        - NEXT_REVALIDATE_SECRET  (long random string, shared between api + web)

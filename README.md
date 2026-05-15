@@ -122,8 +122,8 @@ missing (see [migration 0005](./apps/api/migrations/0005_progress.up.sql)).
 ### One-time setup
 
 1. **Supabase**: create a project, then from *Settings → Database → Connection pooling* copy two URIs:
-   - `DATABASE_URL` — *Transaction* pooler (port `6543`), append `?sslmode=require`.
-   - `MIGRATE_DATABASE_URL` — *Direct connection* (port `5432`), append `?sslmode=require`. Migrations need this because the pooler rejects DDL statements like `CREATE EXTENSION`.
+   - `DATABASE_URL` — *Transaction* mode pooler (port `6543`), append `?sslmode=require`.
+   - `MIGRATE_DATABASE_URL` — *Session* mode pooler (port `5432`), append `?sslmode=require`. Session mode supports DDL (`CREATE EXTENSION`, `CREATE TABLE`, etc.) and provides IPv4 connectivity — **do not** use the direct connection (`db.<project>.supabase.co`) because it is IPv6-only and unreachable from Render's free tier.
 
 2. **JWT keypair**: generate locally with the snippet from [First-time setup](#first-time-setup) and keep the PEM contents handy. You'll paste them into Render as `JWT_PRIVATE_KEY` / `JWT_PUBLIC_KEY` env vars (no filesystem mount required — the API loads them from env when set).
 
