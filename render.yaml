@@ -77,7 +77,12 @@ services:
     plan: free
     region: frankfurt
     rootDir: .
-    buildCommand: corepack enable && corepack prepare pnpm@9.15.1 --activate && pnpm install --frozen-lockfile && pnpm --filter @osama/web build
+    # `--prod=false` forces pnpm to install devDependencies even though Render
+    # sets NODE_ENV=production at build time. Next.js needs build-time tooling
+    # (tailwindcss, postcss, autoprefixer, typescript, @types/*) that lives in
+    # devDependencies, so without this flag `next build` fails with
+    # "Cannot find module 'tailwindcss'".
+    buildCommand: corepack enable && corepack prepare pnpm@9.15.1 --activate && pnpm install --frozen-lockfile --prod=false && pnpm --filter @osama/web build
     startCommand: pnpm --filter @osama/web exec next start -p $PORT
     healthCheckPath: /
     autoDeployTrigger: commit
