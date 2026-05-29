@@ -4,7 +4,7 @@
   "start_url": "/client/today",
   "display": "standalone",
   "background_color": "#080B0F",
-  "theme_color": "#C8F135",
+  "theme_color": "#E0A93E",
   "icons": [
     {
       "src": "/icon-192.png",
