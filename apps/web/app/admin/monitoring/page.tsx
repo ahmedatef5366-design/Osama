@@ -1,6 +1,7 @@
 "use client";
 
 import { useCallback, useEffect, useState } from "react";
+import Link from "next/link";
 import { useTranslations } from "next-intl";
 import { apiData } from "@/lib/api";
 import { Card, CardHeader, CardBody, CardTitle } from "@/components/ui/card";
@@ -11,6 +12,26 @@ import type {
   TopClient,
   AtRiskClient,
 } from "@/types/api";
+
+/** Thin horizontal bar visualising a 0–100 compliance score so the coach
+ *  can scan a list without reading every number. */
+function ComplianceBar({
+  value,
+  tone = "accent",
+}: {
+  value: number;
+  tone?: "accent" | "danger";
+}) {
+  const pct = Math.max(0, Math.min(100, value));
+  return (
+    <div className="h-1.5 w-full overflow-hidden rounded-full bg-surface-edge">
+      <div
+        className={tone === "danger" ? "h-full rounded-full bg-danger" : "h-full rounded-full bg-accent"}
+        style={{ width: `${pct}%` }}
+      />
+    </div>
+  );
+}
 
 export default function MonitoringPage() {
   return (
@@ -152,18 +173,29 @@ function TopClientsSection() {
           <p className="text-text-2 text-sm">{t("noData")}</p>
         ) : (
           <div className="space-y-2">
-            {clients.map((c) => (
-              <div
+            {clients.map((c, i) => (
+              <Link
                 key={c.id}
-                className="flex items-center justify-between rounded-md bg-surface-high px-3 py-2"
+                href={`/admin/clients/${c.id}`}
+                className="flex items-center gap-3 rounded-md bg-surface-high px-3 py-2 transition-colors hover:bg-surface-edge"
               >
-                <span className="text-sm font-medium text-text-1">
-                  {c.name}
+                <span className="w-5 shrink-0 font-mono text-xs tabular-nums text-text-3">
+                  {i + 1}
                 </span>
-                <span className="font-mono text-sm font-bold text-accent">
-                  {c.avgCompliance}%
-                </span>
-              </div>
+                <div className="min-w-0 flex-1">
+                  <div className="flex items-center justify-between gap-2">
+                    <span className="truncate text-sm font-medium text-text-1">
+                      {c.name}
+                    </span>
+                    <span className="font-mono text-sm font-bold text-accent">
+                      {c.avgCompliance}%
+                    </span>
+                  </div>
+                  <div className="mt-1.5">
+                    <ComplianceBar value={c.avgCompliance} />
+                  </div>
+                </div>
+              </Link>
             ))}
           </div>
         )}
@@ -198,33 +230,38 @@ function AtRiskSection() {
         {clients.length === 0 ? (
           <p className="text-text-2 text-sm">{t("noData")}</p>
         ) : (
-          <div className="overflow-x-auto">
-            <table className="w-full text-sm">
-              <thead>
-                <tr className="border-b border-border text-text-2">
-                  <th className="px-3 py-2 text-left">{t("clientName")}</th>
-                  <th className="px-3 py-2 text-right">{t("compliance")}</th>
-                  <th className="px-3 py-2 text-right">{t("checkins")}</th>
-                </tr>
-              </thead>
-              <tbody>
-                {clients.map((c) => (
-                  <tr
-                    key={c.id}
-                    className="border-b border-border/50 text-text-1"
-                  >
-                    <td className="px-3 py-2">{c.name}</td>
-                    <td className="px-3 py-2 text-right font-mono text-danger">
-                      {c.avgCompliance}%
-                    </td>
-                    <td className="px-3 py-2 text-right font-mono">
-                      {c.checkinCount}
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
+          <ul className="divide-y divide-border/60">
+            {clients.map((c) => (
+              <li key={c.id}>
+                <Link
+                  href={`/admin/clients/${c.id}`}
+                  className="group flex items-center gap-4 px-1 py-3 transition-colors hover:bg-surface-high/60"
+                >
+                  <div className="min-w-0 flex-1">
+                    <div className="flex items-center justify-between gap-3">
+                      <span className="truncate font-medium text-text-1">
+                        {c.name}
+                      </span>
+                      <span className="shrink-0 font-mono text-sm font-bold tabular-nums text-danger">
+                        {c.avgCompliance}%
+                      </span>
+                    </div>
+                    <div className="mt-2">
+                      <ComplianceBar value={c.avgCompliance} tone="danger" />
+                    </div>
+                    <p className="mt-1.5 font-mono text-[11px] tabular-nums text-text-3">
+                      {c.checkinCount} {t("checkins")}
+                    </p>
+                  </div>
+                  <span className="shrink-0 text-xs font-medium text-text-2 transition-colors group-hover:text-accent">
+                    {t("openProfile")}
+                    <span className="ms-1 rtl:hidden">→</span>
+                    <span className="me-1 hidden rtl:inline">←</span>
+                  </span>
+                </Link>
+              </li>
+            ))}
+          </ul>
         )}
       </CardBody>
     </Card>

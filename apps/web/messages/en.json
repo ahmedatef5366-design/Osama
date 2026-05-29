@@ -285,7 +285,8 @@
       "noData": "No data yet",
       "clientName": "Name",
       "compliance": "Compliance",
-      "checkins": "Check-ins"
+      "checkins": "Check-ins",
+      "openProfile": "Open profile"
     },
     "clients": {
       "title": "Clients",

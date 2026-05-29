@@ -285,7 +285,8 @@
       "noData": "لا توجد بيانات بعد",
       "clientName": "الاسم",
       "compliance": "الالتزام",
-      "checkins": "المتابعات"
+      "checkins": "المتابعات",
+      "openProfile": "افتح الملف"
     },
     "clients": {
       "title": "العملاء",

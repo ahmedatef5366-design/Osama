@@ -39,7 +39,7 @@ export async function generateMetadata(): Promise<Metadata> {
     title: t("title"),
     description: t("description"),
     manifest: "/manifest.json",
-    themeColor: "#C8F135",
+    themeColor: "#E0A93E",
   };
 }
 
